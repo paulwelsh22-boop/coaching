@@ -1,4 +1,4 @@
-/* Rep One Coaching. No dependencies. */
+/* Paul Welsh Coaching. No dependencies. */
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);

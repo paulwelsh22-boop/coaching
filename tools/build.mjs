@@ -51,10 +51,10 @@ const favicon = 'assets/favicon.png';
 
 /* ------------------------------ FAQ data ------------------------------ */
 const FAQ = {
-  cost: ['How much does online coaching with Rep One Coaching cost?', SHOW_PRICES ? 'Plans start from £80 a month, or £100 a month with nutrition guidance. Your first call is free, with no obligation.' : 'Coaching is a monthly Membership, with or without nutrition guidance. You will hear the exact price on your free call, before you commit to anything.'],
-  exp: ['Do I need any experience to start?', 'No. Rep One Coaching is a great place to start, whether you have never trained, are coming back after a break, or already train and want more structure. No gym background, no calisthenics experience and no starting strength required. If you cannot yet do a push-up or a pull-up, that is the point.'],
+  cost: ['How much does online coaching with Paul Welsh Coaching cost?', SHOW_PRICES ? 'Plans start from £80 a month, or £100 a month with nutrition guidance. Your first call is free, with no obligation.' : 'Coaching is a monthly Membership, with or without nutrition guidance. You will hear the exact price on your free call, before you commit to anything.'],
+  exp: ['Do I need any experience to start?', 'No. Paul Welsh Coaching is a great place to start, whether you have never trained, are coming back after a break, or already train and want more structure. No gym background, no calisthenics experience and no starting strength required. If you cannot yet do a push-up or a pull-up, that is the point.'],
   online: ['Is this in-person or online?', 'Fully online and remote. Coaching happens by video check-ins and messaging, so it works wherever you are in the world.'],
-  diff: ['How is this different from a normal personal trainer?', 'Most personal trainers and calisthenics accounts assume you already have a training base. Rep One Coaching starts from where you are: learning how to move properly, a clear way to progress, and food guidance that does not assume you already know what you are doing.'],
+  diff: ['How is this different from a normal personal trainer?', 'Most personal trainers and calisthenics accounts assume you already have a training base. Paul Welsh Coaching starts from where you are: learning how to move properly, a clear way to progress, and food guidance that does not assume you already know what you are doing.'],
   get: ['What do I get with coaching?', 'A personalised training plan in an app, a video demo for every exercise, regular check-ins and direct contact with me.'],
   involve: ['What does online coaching involve?', 'A personalised training plan in an app, with a video demo of every exercise, regular check-ins to review how it is going, and direct contact with me between check-ins. Your plan is adjusted as you get stronger.'],
   loss: ['Is this just for weight loss?', 'No. People start for lots of reasons: getting stronger, learning to move well, building confidence, or simply having a routine they can stick to. We set your goal on the first call and build the plan around it.'],
@@ -104,7 +104,7 @@ FORM: Dark athletic brand site, brand-pinned, seed key n/a (palette/type pinned 
 -->` : ''}
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="wrap">
-<a class="brand" href="${r || './'}" aria-label="Rep One Coaching, home"><img src="${r}assets/logo-light.png" alt="Rep One Coaching" width="134" height="34"></a>
+<a class="brand" href="${r || './'}" aria-label="Paul Welsh Coaching, home"><img src="${r}assets/logo-light.png" alt="Paul Welsh Coaching" width="149" height="34"></a>
 <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span></button>
 <ul class="nav-links" id="nav-links">${nav}<li><a class="btn sm" href="${r}book-a-call/">Book a free call</a></li></ul>
 </div></header>
@@ -112,9 +112,9 @@ FORM: Dark athletic brand site, brand-pinned, seed key n/a (palette/type pinned 
 ${body(r)}
 </main>
 <footer class="footer"><div class="wrap">
-<div class="brand"><img src="${r}assets/logo-light.png" alt="Rep One Coaching" width="176" height="44"><p>Movement for real life. Strength, calisthenics, mobility and practical nutrition, online.</p></div>
+<div class="brand"><img src="${r}assets/logo-stacked-light.png" alt="Paul Welsh Coaching" width="139" height="96"><p>Movement for real life. Strength, calisthenics, mobility and practical nutrition, online.</p></div>
 <nav aria-label="Footer"><a href="${r}coaching/">Coaching</a><a href="${r}about/">About</a><a href="${r}blog/">Blog</a><a href="${r}faq/">FAQ</a><a href="${r}book-a-call/">Contact</a></nav>
-<small><span>&copy; 2026 Rep One Coaching. 1:1 online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a></span></small>
+<small><span>&copy; 2026 Paul Welsh Coaching. 1:1 online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a></span></small>
 </div></footer>
 ${path === 'book-a-call/' ? '' : `<a class="btn sticky-cta" href="${r}book-a-call/">Book a free call ${arrow}</a>`}
 <script src="${r}assets/main.js" defer></script>
@@ -132,7 +132,7 @@ const cta = (r, headline = 'Start with a free call, not a <span class="hl">sales
 <section class="final pad">${arcs('', 9)}
 <div class="wrap"><h2 data-reveal>${headline}</h2><p data-reveal>${sub}</p><a class="btn" href="${r}book-a-call/" data-reveal>${btn} ${arrow}</a></div></section>`;
 
-const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Rep One Coaching', url: SITE + '/', logo: SITE + '/assets/logo-dark.png', description: '1:1 online strength and calisthenics coaching, built for people starting out.' };
+const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Paul Welsh Coaching', url: SITE + '/', logo: SITE + '/assets/logo-dark.png', description: '1:1 online strength and calisthenics coaching, built for people starting out.' };
 
 /* ------------------------------ HOME ------------------------------ */
 const stages = [
@@ -145,7 +145,7 @@ const stages = [
 
 write('', page({
   path: '', depth: 0,
-  title: 'Online Strength & Calisthenics Coaching | Rep One',
+  title: 'Online Strength & Calisthenics Coaching | Paul Welsh Coaching',
   desc: '1:1 online strength and calisthenics coaching, ideal if you are new to training or starting again. Learn the technique, build the basics, progress at your pace.',
   ld: [org, faqLd(['cost', 'exp', 'online', 'diff'])],
   body: (r) => `
@@ -176,7 +176,7 @@ ${arcs('', 10)}
 <div class="copy">
 <h2 data-reveal>Most fitness content isn't made for <span class="hl">you yet</span></h2>
 <p data-reveal>If you've watched a hundred "calisthenics for beginners" videos and still don't know where to start, you're not the problem. Most fitness and calisthenics content is made by people who have trained for years, for people who already know the basics. Most personal trainers assume you already know your way around a gym.</p>
-<p data-reveal>Rep One Coaching starts before all of that: how to move well, how to set up a session, how to eat without overthinking it, and how to get a little better every week.</p>
+<p data-reveal>Paul Welsh Coaching starts before all of that: how to move well, how to set up a session, how to eat without overthinking it, and how to get a little better every week.</p>
 </div>
 <div class="pic" data-reveal><div class="photo"><img src="${r}assets/man-tank.jpg" alt="A man in a black tank top hanging from a bar, smiling at the camera" width="1067" height="1600" loading="lazy" style="object-position:50% 35%"></div></div>
 </div>
@@ -236,7 +236,7 @@ ${cta(r)}`,
 /* ------------------------------ COACHING ------------------------------ */
 write('coaching', page({
   path: 'coaching/', depth: 1,
-  title: 'Online Strength & Calisthenics Coaching | Rep One',
+  title: 'Online Strength & Calisthenics Coaching | Paul Welsh Coaching',
   desc: '1:1 remote coaching in strength, calisthenics, mobility and nutrition, ideal if you are new to training or starting again. See what is included.',
   ld: [org, faqLd(['involve', 'cost', 'busy', 'social', 'call', 'kit', 'often', 'cancel'])],
   body: (r) => `
@@ -317,7 +317,7 @@ ${cta(r, SHOW_PRICES ? 'Plans from £80. First call free.' : 'Find your plan. Fi
 /* ------------------------------ ABOUT ------------------------------ */
 write('about', page({
   path: 'about/', depth: 1,
-  title: 'About Paul | Rep One Coaching',
+  title: 'About Paul | Paul Welsh Coaching',
   desc: 'Meet Paul, a Level 2 and 3 qualified personal trainer with over 10 years of training experience, coaching strength and calisthenics online.',
   ld: [org],
   body: (r) => `
@@ -330,7 +330,7 @@ write('about', page({
 <p class="lede" style="color:var(--paper);font-size:clamp(1.4rem,2.4vw,2rem);line-height:1.4;letter-spacing:-0.015em" data-reveal>I've trained for over ten years, but three years ago I was introduced to calisthenics.</p>
 <p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">Calisthenics opened my eyes to new ways of training, skills I never knew I could learn, and gave me a better understanding of my body and movement.</p>
 <p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">Now, in my mid 30s, I care as much about moving well and recovering properly as I do about getting stronger. Still playing, still progressing, and proof that you can start strength training and calisthenics at any age.</p>
-<p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">That's why Rep One exists. Starting, or starting again, is the hardest part. I want to make it feel possible, and fun.</p>
+<p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">That's why I do this. Starting, or starting again, is the hardest part. I want to make it feel possible, and fun.</p>
 </div>
 <aside class="facts" data-reveal aria-label="Paul at a glance">
 <!-- Add a real photo of Paul here: <img src="..." alt="Paul coaching"> -->
@@ -366,7 +366,7 @@ const posts = [
 ];
 write('blog', page({
   path: 'blog/', depth: 1,
-  title: 'Training Blog | Rep One Coaching',
+  title: 'Training Blog | Paul Welsh Coaching',
   desc: 'Straight answers for anyone starting out: technique, progression, calisthenics vs weights and simple food.',
   ld: [org],
   body: (r) => `
@@ -400,12 +400,12 @@ write('blog/first-pull-up-beginner-timeline', page({
   title: 'How Long Does a First Pull-Up Take? A Beginner Guide',
   desc: 'There is no single timeline for a first pull-up. Here is what affects it, and the progression that gets you there.',
   ld: [org,
-    { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: 'How Long Does It Take to Get Your First Pull-Up? A Beginner\'s Timeline', author: { '@type': 'Person', name: 'Paul', worksFor: { '@type': 'Organization', name: 'Rep One Coaching' } }, publisher: { '@type': 'Organization', name: 'Rep One Coaching' }, datePublished: '2026-10-01', dateModified: '2026-10-01', mainEntityOfPage: SITE + '/blog/first-pull-up-beginner-timeline/' },
+    { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: 'How Long Does It Take to Get Your First Pull-Up? A Beginner\'s Timeline', author: { '@type': 'Person', name: 'Paul', worksFor: { '@type': 'Organization', name: 'Paul Welsh Coaching' } }, publisher: { '@type': 'Organization', name: 'Paul Welsh Coaching' }, datePublished: '2026-10-01', dateModified: '2026-10-01', mainEntityOfPage: SITE + '/blog/first-pull-up-beginner-timeline/' },
     faqLd([], articleFaq)],
   body: (r) => `
 <section class="page-hero" style="padding-bottom:40px">${arcs('', 8)}
 <div class="wrap"><div class="article"><h1 style="max-width:16ch;font-size:clamp(2.25rem,5vw,4.25rem)">How long does it take to get your <span class="hl">first pull-up?</span></h1>
-<p class="meta">By Paul, Rep One Coaching &middot; Last updated: ${UPDATED}</p></div></div></section>
+<p class="meta">By Paul, Paul Welsh Coaching &middot; Last updated: ${UPDATED}</p></div></div></section>
 <article class="pad" style="padding-top:24px"><div class="wrap"><div class="article">
 <p class="answer">There is no single reliable timeline for every beginner. Your starting strength, the amount of bodyweight you are moving, consistency and recovery all affect how long your first strict pull-up takes. Think in terms of gradual progress, rather than a deadline.</p>
 <h2>Why "just try harder" isn't a plan</h2>
@@ -421,8 +421,8 @@ write('blog/first-pull-up-beginner-timeline', page({
 </ol>
 <h2>Progress can look smaller than you expect</h2>
 <p>Using a little less assistance, moving with more control or feeling more confident are all useful signs of progress. You do not need to test a maximum attempt every time you train.</p>
-<h2>How Rep One Coaching approaches this</h2>
-<p>Rep One brings strength fundamentals and beginner calisthenics together. The aim is a plan built around where you actually are, adjusted from your check-ins. See <a href="${r}coaching/">how coaching works</a>.</p>
+<h2>How Paul Welsh Coaching approaches this</h2>
+<p>My coaching brings strength fundamentals and beginner calisthenics together. The aim is a plan built around where you actually are, adjusted from your check-ins. See <a href="${r}coaching/">how coaching works</a>.</p>
 <h2>Your pull-up questions</h2>
 ${articleFaq.map(([q, a]) => `<div class="qa"><h3>${q}</h3><p>${a}</p></div>`).join('')}
 <div class="article-end"><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
@@ -433,7 +433,7 @@ ${articleFaq.map(([q, a]) => `<div class="qa"><h3>${q}</h3><p>${a}</p></div>`).j
 const groups = [['Getting started', ['exp', 'loss', 'call', 'know', 'oblig']], ['Pricing and logistics', ['cost', 'involve', 'busy', 'online', 'away', 'cancel', 'often']], ['Training and food', ['diff', 'kit', 'social']]];
 write('faq', page({
   path: 'faq/', depth: 1,
-  title: 'FAQ | Rep One Coaching',
+  title: 'FAQ | Paul Welsh Coaching',
   desc: 'Answers to the questions people ask before starting online coaching: cost, experience, equipment, format and booking.',
   ld: [org, faqLd(groups.flatMap((g) => g[1]))],
   body: (r) => `
@@ -446,13 +446,13 @@ ${cta(r, 'Still wondering?', 'Fifteen minutes, no pressure. Bring your questions
 /* ------------------------------ BOOK ------------------------------ */
 write('book-a-call', page({
   path: 'book-a-call/', depth: 1,
-  title: 'Book a free call | Rep One Coaching',
-  desc: 'Book a free, no-obligation 15 minute call with Rep One Coaching to see if online coaching is right for you.',
+  title: 'Book a free call | Paul Welsh Coaching',
+  desc: 'Book a free, no-obligation 15 minute call with Paul Welsh Coaching to see if online coaching is right for you.',
   ld: [org, faqLd(['know', 'oblig', 'away'])],
   body: (r) => `
 <section class="page-hero" style="padding-bottom:clamp(32px,5vw,64px)">${arcs('', 9)}
 <div class="wrap"><h1 style="max-width:16ch">Let's talk it through. <span class="hl">No pressure, no pitch.</span></h1>
-<p class="lede">Fifteen minutes to talk about where you are now, what you want, and whether Rep One Coaching is a fit. If it's not, I'll tell you.</p></div></section>
+<p class="lede">Fifteen minutes to talk about where you are now, what you want, and whether Paul Welsh Coaching is a fit. If it's not, I'll tell you.</p></div></section>
 <section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap book-grid">
 <div class="cal" data-calendly="${CALENDLY}"><div><h3>Booking calendar</h3><p>Your Calendly calendar appears here once your link is added. Set <code>CALENDLY</code> in <code>tools/build.mjs</code> and re-run the build.</p></div></div>
 <div><div class="faq-list" style="border-color:var(--line)">${faqHtml(['know', 'oblig', 'away'])}</div></div>
@@ -464,14 +464,14 @@ write('book-a-call', page({
 const T = (t) => `<mark class="todo">[${t}]</mark>`;
 const BIZ = T('Your legal or trading name'), ADDR = T('Business address'), MAIL = T('Contact email');
 const legalPage = (path, title, desc, inner) => write(path, page({
-  path: path + '/', depth: 1, title: title + ' | Rep One Coaching', desc, ld: [],
+  path: path + '/', depth: 1, title: title + ' | Paul Welsh Coaching', desc, ld: [],
   body: () => `<section class="page-hero" style="padding-bottom:40px">${arcs('', 8)}
 <div class="wrap"><div class="article"><h1 style="font-size:clamp(2.25rem,5vw,4rem)">${title}</h1><p class="meta">Last updated: ${UPDATED}</p></div></div></section>
 <article class="pad" style="padding-top:24px"><div class="wrap"><div class="article legal-doc">${inner}</div></div></article>`,
 }));
 
-legalPage('privacy', 'Privacy Policy', 'How Rep One Coaching collects, uses and protects your personal information.', `
-<p>This policy explains how ${BIZ} (trading as Rep One Coaching, "I", "me") looks after your personal information under UK data protection law. I am the data controller. You can contact me at ${MAIL} or at ${ADDR}.</p>
+legalPage('privacy', 'Privacy Policy', 'How Paul Welsh Coaching collects, uses and protects your personal information.', `
+<p>This policy explains how ${BIZ} (trading as Paul Welsh Coaching, "I", "me") looks after your personal information under UK data protection law. I am the data controller. You can contact me at ${MAIL} or at ${ADDR}.</p>
 <h2>What I collect</h2>
 <ul>
 <li><strong>When you book a call:</strong> your name, email address and any notes you add, collected through Calendly.</li>
@@ -499,8 +499,8 @@ ${T('If you add an email list: "your email address if you sign up for guides or 
 <h2>Changes</h2>
 <p>If I change this policy I will update the date above.</p>`);
 
-legalPage('terms', 'Terms of Service', 'The terms that apply when you book a call or sign up for coaching with Rep One Coaching.', `
-<p>These terms apply to coaching provided by ${BIZ} (trading as Rep One Coaching). By starting coaching you agree to them. They do not affect your statutory rights as a consumer.</p>
+legalPage('terms', 'Terms of Service', 'The terms that apply when you book a call or sign up for coaching with Paul Welsh Coaching.', `
+<p>These terms apply to coaching provided by ${BIZ} (trading as Paul Welsh Coaching). By starting coaching you agree to them. They do not affect your statutory rights as a consumer.</p>
 <h2>The service</h2>
 <p>Online coaching includes a personalised training plan in an app, exercise demos, regular check-ins and contact with me, and, if you choose the nutrition plan, practical food guidance. Exactly what is included is confirmed before you start.</p>
 <h2>Before you start</h2>
@@ -523,7 +523,7 @@ legalPage('terms', 'Terms of Service', 'The terms that apply when you book a cal
 <h2>Complaints and law</h2>
 <p>If something is wrong, please tell me at ${MAIL} and I will try to put it right. These terms are governed by the laws of ${T('England and Wales')}, and the courts of ${T('England and Wales')} can hear any dispute.</p>`);
 
-legalPage('cookies', 'Cookie Notice', 'What cookies and third-party services the Rep One Coaching website uses.', `
+legalPage('cookies', 'Cookie Notice', 'What cookies and third-party services the Paul Welsh Coaching website uses.', `
 <p>This website does not use advertising, tracking or analytics cookies, and it does not set cookies of its own. A few third-party services are involved, described below.</p>
 <h2>Fonts</h2>
 <p>The site loads its typeface (Poppins) from Google Fonts. When a page loads, your browser contacts Google, which receives your IP address. Google Fonts does not set cookies for this.</p>
@@ -548,7 +548,7 @@ legalPage('health-disclaimer', 'Health Disclaimer', 'Important health and safety
 
 // 404 lives at the root; it uses root-relative links so it works from any URL.
 {
-  const html = page({ path: '404', depth: 0, root: '/', noindex: true, title: 'Page not found | Rep One Coaching', desc: 'This page could not be found.', body: (r) => `
+  const html = page({ path: '404', depth: 0, root: '/', noindex: true, title: 'Page not found | Paul Welsh Coaching', desc: 'This page could not be found.', body: (r) => `
 <section class="page-hero nf" style="min-height:100svh;display:grid;align-items:center">${arcs('', 10)}
 <div class="wrap"><p class="nf-code" aria-hidden="true">404</p><h1 style="max-width:14ch">That page has gone for a walk.</h1>
 <p class="lede">The link may be old or mistyped. Here is a good place to start again.</p>
