@@ -1,0 +1,6 @@
+tools
+PRODUCT.md
+README.md
+wrangler.jsonc
+.gitignore
+.assetsignore
