@@ -584,3 +584,42 @@ mark.todo { background: rgba(255, 214, 102, 0.9); color: var(--ink); padding: 1p
 .hero-foot { border-top-color: rgba(193, 213, 225, 0.28); }
 .f-meta span:first-child { background: var(--blue); color: var(--paper); }
 .about-side .facts { grid-column: auto; }
+
+/* Full-bleed photo section with frosted panels */
+.bleed { position: relative; isolation: isolate; background: var(--black); color: var(--paper); padding-block: clamp(80px, 11vw, 150px); }
+.bleed-bg { position: absolute; inset: -12% 0; z-index: -2; will-change: transform; }
+.bleed-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: grayscale(1) contrast(1.1) brightness(0.8); }
+.bleed::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11, 20, 26, 0.82), rgba(21, 37, 49, 0.5) 38%, rgba(11, 20, 26, 0.9)); pointer-events: none; }
+.bleed::before { z-index: 0; }
+.bleed-head { max-width: 40rem; margin-bottom: clamp(40px, 6vw, 80px); }
+.bleed-head h2 { font-size: clamp(2.2rem, 5vw, 4.25rem); margin-bottom: 20px; }
+.bleed-head p { color: var(--ice-dim); font-size: 1.1875rem; margin-bottom: 28px; }
+.glass-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.glass { border-radius: 20px; padding: clamp(24px, 3vw, 34px); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; background: rgba(21, 37, 49, 0.42); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); border: 1px solid rgba(193, 213, 225, 0.14); transition: transform 0.7s var(--ease), background 0.5s var(--ease), border-color 0.4s; }
+.glass:hover { transform: translateY(-6px); background: rgba(28, 69, 95, 0.62); border-color: rgba(193, 213, 225, 0.32); }
+.glass h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); letter-spacing: -0.02em; margin-bottom: 14px; }
+.glass p { margin: 0; color: var(--ice-dim); }
+@media (max-width: 900px) { .glass-grid { grid-template-columns: 1fr; } .glass { min-height: 0; } }
+@media (prefers-reduced-transparency: reduce) { .glass { background: var(--ink-2); -webkit-backdrop-filter: none; backdrop-filter: none; } }
+
+/* Coaching: included cards with imagery */
+.inc-cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.inc-card { position: relative; isolation: isolate; overflow: hidden; border-radius: 24px; padding: clamp(22px, 2.6vw, 30px); min-height: clamp(280px, 30vw, 360px); display: flex; flex-direction: column; justify-content: flex-end; background: var(--black); }
+.inc-card:nth-child(-n+2) { grid-column: span 3; }
+.inc-card:nth-child(n+3) { grid-column: span 2; }
+.inc-card .bg { position: absolute; inset: 0; z-index: -2; background: var(--img) var(--pos) / var(--size) no-repeat; filter: grayscale(1) contrast(1.05); transition: transform 1.4s var(--ease); }
+.inc-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(11, 20, 26, 0.94), rgba(11, 20, 26, 0.42) 65%, rgba(28, 69, 95, 0.3)); }
+.inc-card:hover .bg { transform: scale(1.07); }
+.inc-card h3 { font-size: clamp(1.3rem, 2vw, 1.75rem); letter-spacing: -0.025em; margin-bottom: 8px; }
+.inc-card p { margin: 0; color: rgba(238, 240, 242, 0.82); max-width: 26em; }
+@media (max-width: 900px) { .inc-cards { grid-template-columns: 1fr; } .inc-card:nth-child(n) { grid-column: auto; min-height: 260px; } }
+
+/* Scroll: sections roll over each other as rounded sheets, hero stays put on desktop */
+main > section:not(:first-child) { border-radius: clamp(24px, 3.4vw, 44px) clamp(24px, 3.4vw, 44px) 0 0; margin-top: calc(-1 * clamp(24px, 3.4vw, 44px)); position: relative; z-index: 1; overflow: clip; }
+main > section:not(:first-child):not([class*="light"]):not(.bleed):not(.final):not(.path):not(.manifesto):not(.steps) { background: var(--ink); }
+.nav { inset: 12px max(12px, calc((100vw - var(--max)) / 2)) auto; height: 64px; border-radius: 18px; border: 1px solid rgba(193, 213, 225, 0.14); }
+.nav::after { display: none; }
+@media (min-width: 901px) and (min-height: 640px) {
+  .hero { position: sticky; top: 0; height: 100svh; min-height: 0; z-index: 0; }
+}
+@media (max-width: 900px) { .nav { inset: 8px 8px auto 8px; } .nav-links { top: calc(8px + var(--nav-h) + 6px); inset-inline: 8px; border-radius: 18px; } }

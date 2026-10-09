@@ -49,6 +49,12 @@
     ticking = false;
     const y = scrollY;
     nav && nav.classList.toggle('is-scrolled', y > 8);
+    if (!reduce) $$('[data-parallax]').forEach((el) => {
+      const r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > innerHeight + 200) return;
+      const p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      el.style.transform = `translate3d(0, ${(-p * 70).toFixed(1)}px, 0)`;
+    });
     if (heroPhoto && !reduce && y < innerHeight * 1.2) heroPhoto.style.transform = `translate3d(0, ${y * 0.12}px, 0)`;
     if (statement && words.length && !reduce) {
       // Lights as the section travels up the screen. Nothing is pinned, so scrolling never stalls.

@@ -193,19 +193,20 @@ ${arcs('', 10)}
 <script type="application/json" id="stages-data">${JSON.stringify(stages)}</script>
 </section>
 
-<section class="light pad includes">
-<div class="wrap inc-grid">
-<figure class="inc-photo" data-reveal><img src="${r}assets/lsit.jpg" alt="Paul holding an L-sit on parallettes in a busy gym" width="2000" height="1126" loading="lazy"><figcaption data-inc-cap>A plan built around where you are</figcaption></figure>
-<div class="inc-main"><h2 data-reveal>What coaching actually <span class="hl">includes</span></h2>
-<div class="acc" data-acc data-reveal>
-<div class="acc-item open"><h3><button type="button" aria-expanded="true" aria-controls="acc-0" id="acc-b0"><span>A plan built around where you are</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-0" role="region" aria-labelledby="acc-b0"><div><p>Strength fundamentals, beginner calisthenics and mobility, sequenced so the first few weeks are genuinely achievable. Not a programme borrowed from someone who has trained for a decade.</p></div></div></div>
-<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-1" id="acc-b1"><span>Technique you can trust</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-1" role="region" aria-labelledby="acc-b1"><div><p>Every movement is taught step by step, with form feedback on your own videos, so you are never guessing whether you are doing it right.</p></div></div></div>
-<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-2" id="acc-b2"><span>A clear way to progress</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-2" role="region" aria-labelledby="acc-b2"><div><p>Every exercise has an easier and a harder version, so you always know your next step and when you are ready for it.</p></div></div></div>
-<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-3" id="acc-b3"><span>Mobility, built in</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-3" role="region" aria-labelledby="acc-b3"><div><p>Warm-ups, better positions and recovery routines, so you move well in training and bounce back after it.</p></div></div></div>
-<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-4" id="acc-b4"><span>Real 1:1 coaching, remotely</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-4" role="region" aria-labelledby="acc-b4"><div><p>Regular video check-ins with someone who knows your plan, wherever you train.</p></div></div></div>
-<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-5" id="acc-b5"><span>Food that fits real life</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-5" role="region" aria-labelledby="acc-b5"><div><p>Practical, no-fuss nutrition guidance. Not a meal plan you will abandon by Thursday.</p></div></div></div>
-<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-6" id="acc-b6"><span>Someone who answers</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-6" role="region" aria-labelledby="acc-b6"><div><p>Direct messaging access between check-ins. Coaching, not just a programme PDF.</p></div></div></div>
-</div></div>
+<section class="bleed includes">
+<div class="bleed-bg" data-parallax aria-hidden="true"><img src="${r}assets/lsit.jpg" alt="" width="2000" height="1126" loading="lazy"></div>
+<div class="wrap">
+<div class="bleed-head"><h2 data-reveal>What coaching actually <span class="hl">includes</span></h2>
+<p data-reveal>Most people don't need more motivation. They need a plan that fits their week, and someone in their corner.</p>
+<a class="btn" data-reveal href="${r}book-a-call/">Book a free call ${arrow}</a></div>
+<div class="glass-grid">
+<article class="glass" data-reveal><h3>A plan built around where you are</h3><p>Strength fundamentals, beginner calisthenics and mobility, sequenced so the first few weeks are genuinely achievable.</p></article>
+<article class="glass" data-reveal><h3>Technique you can trust</h3><p>Every movement taught step by step, with form feedback on your own videos.</p></article>
+<article class="glass" data-reveal><h3>A clear way to progress</h3><p>An easier and a harder version of every exercise, so you always know what is next.</p></article>
+<article class="glass" data-reveal><h3>Mobility, built in</h3><p>Warm-ups, better positions and recovery routines, so you move well and bounce back.</p></article>
+<article class="glass" data-reveal><h3>Food that fits real life</h3><p>Practical, no-fuss nutrition guidance. Not a meal plan you will abandon by Thursday.</p></article>
+<article class="glass" data-reveal><h3>Someone who answers</h3><p>Regular video check-ins and direct messaging between them, wherever you train.</p></article>
+</div>
 </div>
 </section>
 
@@ -264,23 +265,15 @@ write('coaching', page({
 </ul>
 </div></section>
 
-<section class="light pad"><div class="wrap">
-<div class="includes-head"><h2 data-reveal>What's <span class="hl">included</span></h2></div>
-<div class="tabs" data-tabs data-reveal>
-<div class="tab-list" role="tablist" aria-label="What is included in coaching">
-<button role="tab" type="button" aria-selected="true"><span>Your plan, in the app</span></button>
-<button role="tab" type="button" aria-selected="false"><span>Regular check-ins</span></button>
-<button role="tab" type="button" aria-selected="false"><span>Direct contact</span></button>
-<button role="tab" type="button" aria-selected="false"><span>Food guidance</span></button>
-<button role="tab" type="button" aria-selected="false"><span>Progress tracking</span></button>
+<section class="pad"><div class="wrap">
+<h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">What's <span class="hl">included</span></h2>
+<div class="inc-cards">
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/lsit.jpg);--pos:52% 40%;--size:260%" aria-hidden="true"></div><h3>Your plan, in the app</h3><p>A personalised plan built around where you are starting, with a video demo of every exercise.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/curl.jpg);--pos:50% 36%;--size:250%" aria-hidden="true"></div><h3>Regular check-ins</h3><p>We review how training is going and adjust from there.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/hero-handstand.jpg);--pos:49% 22%;--size:300%" aria-hidden="true"></div><h3>Direct contact</h3><p>Ask questions between check-ins, so you are never stuck on your own.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/curl.jpg);--pos:92% 62%;--size:230%" aria-hidden="true"></div><h3>Food guidance</h3><p>Simple, practical and non-restrictive. Add it to any plan.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/lsit.jpg);--pos:38% 92%;--size:240%" aria-hidden="true"></div><h3>Progress tracking</h3><p>Your training in one place, so your first rep is something you can point to.</p></article>
 </div>
-<div class="tab-panels">
-<div role="tabpanel"><h3>Your plan, in the app</h3><p>A personalised plan built around where you are starting, with a video demo of every exercise.</p></div>
-<div role="tabpanel" hidden><h3>Regular check-ins</h3><p>We review how training is going and adjust from there.</p></div>
-<div role="tabpanel" hidden><h3>Direct contact</h3><p>Ask questions between check-ins, so you are never stuck on your own.</p></div>
-<div role="tabpanel" hidden><h3>Food guidance</h3><p>Simple, practical and non-restrictive. ${SHOW_PRICES ? 'Add it to any plan for &pound;20 a month.' : 'Add it to any plan.'}</p></div>
-<div role="tabpanel" hidden><h3>Progress tracking</h3><p>Your training in one place, so your first rep is something you can point to.</p></div>
-</div></div>
 </div></section>
 
 <section class="pad"><div class="wrap">
@@ -297,14 +290,7 @@ write('coaching', page({
 <div class="tick-result" aria-live="polite"><p data-tick-msg>Pick as many as you like.</p><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
 </div></section>
 
-<section class="pad" style="padding-top:0"><div class="wrap">
-<h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">${SHOW_PRICES ? 'Simple <span class="hl">pricing</span>' : 'Two ways to <span class="hl">train</span>'}</h2>
-<div class="tiers">
-<div class="tier" data-reveal><h3>Coaching</h3><p>Personalised training plan in the app, check-ins and contact with me.</p>${SHOW_PRICES ? '<div class="price"><span>From</span> &pound;80<small> a month</small></div>' : ''}</div>
-<div class="tier plus" data-reveal><h3>Coaching with nutrition</h3><p>Everything above, plus practical food guidance that fits your week.</p>${SHOW_PRICES ? '<div class="price">&pound;100<small> a month</small></div>' : ''}</div>
-</div>
-<p class="tier-note" data-reveal>${SHOW_PRICES ? '' : 'Your price is shared on the call. '}Your first call is free. No card details, no obligation. <a href="${r}book-a-call/" class="text-link">Book a free call ${arrow}</a></p>
-</div></section>
+
 
 <section class="light pad"><div class="wrap faq-wrap"><h2 data-reveal>Coaching questions</h2><div class="faq-list" data-reveal>${faqHtml(['involve', 'cost', 'busy', 'social', 'call', 'kit', 'often', 'cancel'])}</div></div></section>
 ${cta(r, SHOW_PRICES ? 'Plans from £80. First call free.' : 'Find your plan. First call free.', 'Fifteen minutes to talk through where you are and which plan fits. No obligation.', 'Book a free call')}`,
