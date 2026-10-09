@@ -10,4 +10,4 @@
 
 **Voice.** Direct, warm, never gym-bro. No fabricated credentials, testimonials, statistics or prices.
 
-**Constraints.** Multi-page static HTML/CSS/JS. SEO and AEO structure from the copy brief (direct answers first, FAQPage schema, dated content, crawler-friendly robots.txt). Calendly for booking.
+**Constraints.** Multi-page static HTML/CSS/JS. SEO and AEO structure from the copy brief (direct answers first, FAQPage schema, dated content, crawler-friendly robots.txt). Google Calendar appointment page for booking.

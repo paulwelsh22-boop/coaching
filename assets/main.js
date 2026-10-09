@@ -296,16 +296,4 @@
     });
   }
 
-  /* ---------- Calendly: loads only when the visitor asks, so no third-party cookies before consent ---------- */
-  const cal = $('[data-calendly]');
-  if (cal) {
-    const url = cal.getAttribute('data-calendly');
-    if (url && !url.includes('YOUR-CALENDLY')) {
-      cal.innerHTML = '<div><h3>Choose a time</h3><p>The calendar is provided by Calendly. Loading it connects to their service, see our <a href="../cookies/">cookie notice</a>.</p><button type="button" class="btn" data-load-cal>Show available times</button></div>';
-      $('[data-load-cal]', cal).addEventListener('click', () => {
-        cal.innerHTML = '<div class="calendly-inline-widget" data-url="' + url + '?hide_gdpr_banner=1&background_color=f1f3f4&text_color=101820&primary_color=101820"></div>';
-        const s = document.createElement('script'); s.src = 'https://assets.calendly.com/assets/external/widget.js'; s.async = true; document.body.appendChild(s);
-      });
-    }
-  }
 })();

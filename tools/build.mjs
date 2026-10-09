@@ -1,12 +1,12 @@
 // Generates the static site into ../ . Run: node tools/build.mjs
-// Change SITE and CALENDLY once your domain and booking link are known, then re-run.
+// Change SITE and BOOKING_URL once your domain and booking link are known, then re-run.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.example.com'; // TODO: your real domain
-const CALENDLY = 'https://calendly.com/YOUR-CALENDLY-LINK'; // TODO: your Calendly link
+const BOOKING_URL = 'https://calendar.app.google/1KBg3BsF3Zg69i1c6'; // Google Calendar appointment page
 const UPDATED = 'October 2026';
 const SHOW_PRICES = false; // set true to show "From £80 / £100" again
 
@@ -431,7 +431,7 @@ write('book-a-call', page({
 <div class="wrap"><h1 style="max-width:16ch">Let's talk it through. <span class="hl">No pressure, no pitch.</span></h1>
 <p class="lede">Fifteen minutes to talk about where you are now, what you want, and whether Paul Welsh Coaching is a fit. If it's not, I'll tell you.</p></div></section>
 <section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap book-grid">
-<div class="cal" data-calendly="${CALENDLY}"><div><h3>Booking calendar</h3><p>Your Calendly calendar appears here once your link is added. Set <code>CALENDLY</code> in <code>tools/build.mjs</code> and re-run the build.</p></div></div>
+<div class="cal"><div><h3>Choose a time that suits you</h3><p>Pick a 15 minute slot in my calendar. It opens in a new tab, and you will get a confirmation by email.</p><a class="btn" href="${BOOKING_URL}" target="_blank" rel="noopener">Choose a time ${arrow}</a></div></div>
 <div><div class="faq-list" style="border-color:var(--line)">${faqHtml(['know', 'oblig', 'away'])}</div></div>
 </div></section>`,
 }));
@@ -451,7 +451,7 @@ legalPage('privacy', 'Privacy Policy', 'How Paul Welsh Coaching collects, uses a
 <p>This policy explains how ${BIZ} (trading as Paul Welsh Coaching, "I", "me") looks after your personal information under UK data protection law. I am the data controller. You can contact me at ${MAIL} or at ${ADDR}.</p>
 <h2>What I collect</h2>
 <ul>
-<li><strong>When you book a call:</strong> your name, email address and any notes you add, collected through Calendly.</li>
+<li><strong>When you book a call:</strong> your name, email address and any notes you add, collected through Google Calendar's appointment booking.</li>
 <li><strong>When you become a client:</strong> contact details, your goals, training history, and health and injury information you choose to share, your training and progress data in the coaching app, messages, and any photos or videos you send for form checks.</li>
 <li><strong>Payments:</strong> processed by ${T('payment provider, e.g. Stripe, GoCardless')}. I do not store your card details.</li>
 <li><strong>When you use this website:</strong> basic technical data your browser sends (such as IP address and device type) when pages and fonts load. This site does not use advertising or analytics cookies. See the <a href="../cookies/">cookie notice</a>.</li>
@@ -466,7 +466,7 @@ ${T('If you add an email list: "your email address if you sign up for guides or 
 <li>To send updates or guides: your consent, and you can unsubscribe at any time.</li>
 </ul>
 <h2>Who I share it with</h2>
-<p>Only the providers I need to run the service: Calendly (booking), WhatsApp (messaging), ${T('coaching app provider')}, ${T('payment provider')}, ${T('email provider, if used')} and my website host ${T('host')}. They process data on my instructions or under their own terms. I do not sell your data. Some providers are based outside the UK; where that happens, I rely on approved safeguards such as the UK International Data Transfer Agreement or an adequacy decision.</p>
+<p>Only the providers I need to run the service: Google Calendar (booking), WhatsApp (messaging), ${T('coaching app provider')}, ${T('payment provider')}, ${T('email provider, if used')} and my website host ${T('host')}. They process data on my instructions or under their own terms. I do not sell your data. Some providers are based outside the UK; where that happens, I rely on approved safeguards such as the UK International Data Transfer Agreement or an adequacy decision.</p>
 <h2>How long I keep it</h2>
 <p>Coaching records are kept for ${T('e.g. 2 years')} after our work ends, and accounting records for ${T('6 years, as required by HMRC')}. Enquiries that do not become coaching are deleted after ${T('e.g. 12 months')}.</p>
 <h2>Your rights</h2>
@@ -504,8 +504,8 @@ legalPage('cookies', 'Cookie Notice', 'What cookies and third-party services the
 <p>This website does not use advertising, tracking or analytics cookies, and it does not set cookies of its own. A few third-party services are involved, described below.</p>
 <h2>Fonts</h2>
 <p>The site loads its typeface (Poppins) from Google Fonts. When a page loads, your browser contacts Google, which receives your IP address. Google Fonts does not set cookies for this.</p>
-<h2>Booking calendar</h2>
-<p>On the Book a Call page, the calendar is provided by Calendly. It only loads after you choose to show it. Once loaded, Calendly may set its own cookies and collect data as described in its <a href="https://calendly.com/privacy">privacy notice</a>. If you prefer not to load it, you can contact me directly at ${MAIL}.</p>
+<h2>Booking</h2>
+<p>Booking uses a Google Calendar appointment page. The Book a Call page links to it and opens it in a new tab on Google's site, so Google's own cookies and privacy policy apply there. This website does not load it or set any cookies for it. If you prefer not to use it, you can contact me directly at ${MAIL}.</p>
 <h2>Changing your mind</h2>
 <p>You can delete or block cookies in your browser settings at any time.</p>
 ${T('If you later add analytics, an email form or social embeds, update this notice and add a cookie consent banner first.')}`);
