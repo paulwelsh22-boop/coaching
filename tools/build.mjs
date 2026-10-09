@@ -351,7 +351,7 @@ write('blog', page({
 <div class="wrap"><h1>Less guesswork. <span class="hl">More getting started.</span></h1><p class="lede">Straightforward guides to strength, calisthenics and the questions everyone has at the beginning.</p></div></section>
 <section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap">
 ${posts.map(([t, sl]) => `<a class="featured" href="${r}blog/${sl}/" data-reveal>
-<div class="f-img"><img src="${r}assets/hero-handstand.jpg" alt="Paul holding a handstand on parallettes in a gym" width="2000" height="1126" loading="lazy"></div>
+<div class="f-img"><img src="${r}assets/blog-pullup.jpg" alt="A man seen from behind doing a pull-up in a dark gym" width="1067" height="1600" loading="lazy" style="object-position:50% 40%"></div>
 <div class="f-body"><p class="f-meta"><span>Beginner guide</span><span>3 min read</span><span>Updated ${UPDATED}</span></p>
 <h2>${t}</h2>
 <p class="f-ex">There is no single timeline for a first pull-up. Here is what affects it, the building blocks that get you there, and why smaller progress still counts.</p>
