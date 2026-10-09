@@ -224,7 +224,7 @@ ${arcs('', 10)}
 <section class="light pad" style="padding-top:clamp(80px,12vw,168px)">
 <div class="wrap faq-wrap">
 <h2 data-reveal>Questions people <span class="hl">ask first</span></h2>
-<div class="faq-list" data-reveal>${faqHtml(['cost', 'exp', 'online', 'diff'])}</div>
+<div class="faq-col" data-reveal><div class="faq-list">${faqHtml(['cost', 'exp', 'online', 'diff'])}</div><p class="faq-more"><a class="text-link" href="${r}faq/">View all FAQs ${arrow}</a></p></div>
 </div>
 </section>
 ${cta(r)}`,
@@ -291,7 +291,7 @@ write('coaching', page({
 
 
 
-<section class="light pad"><div class="wrap faq-wrap"><h2 data-reveal>Coaching questions</h2><div class="faq-list" data-reveal>${faqHtml(['involve', 'cost', 'busy', 'social', 'call', 'kit', 'often', 'cancel'])}</div></div></section>
+<section class="light pad"><div class="wrap faq-wrap"><h2 data-reveal>Coaching questions</h2><div class="faq-col" data-reveal><div class="faq-list">${faqHtml(['involve', 'cost', 'busy', 'social', 'call', 'kit', 'often', 'cancel'])}</div><p class="faq-more"><a class="text-link" href="${r}faq/">View all FAQs ${arrow}</a></p></div></div></section>
 ${cta(r, SHOW_PRICES ? 'Plans from £80. First call free.' : 'Find your plan. First call free.', 'Fifteen minutes to talk through where you are and which plan fits. No obligation.', 'Book a free call')}`,
 }));
 
@@ -306,23 +306,25 @@ write('about', page({
 <div class="wrap"><h1>Hi, I'm Paul. I'll help you <span class="hl">start, and keep going.</span></h1>
 <a class="btn" href="${r}book-a-call/">Let's talk ${arrow}</a></div></section>
 
-<section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap split">
-<div style="grid-column:1 / span 7">
-<p class="lede" style="color:var(--paper);font-size:clamp(1.4rem,2.4vw,2rem);line-height:1.4;letter-spacing:-0.015em" data-reveal>I've trained for over ten years, but three years ago I was introduced to calisthenics.</p>
-<p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">Calisthenics opened my eyes to new ways of training, skills I never knew I could learn, and gave me a better understanding of my body and movement.</p>
-<p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">Now, in my mid 30s, I care as much about moving well and recovering properly as I do about getting stronger. Still playing, still progressing, and proof that you can start strength training and calisthenics at any age.</p>
-<p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">That's why I do this. Starting, or starting again, is the hardest part. I want to make it feel possible, and fun.</p>
+<section class="bleed about-bleed">
+<div class="bleed-bg" data-parallax aria-hidden="true"><img src="${r}assets/curl.jpg" alt="" width="2000" height="1126" loading="eager"></div>
+<div class="wrap about-grid">
+<div class="about-copy">
+<p class="lede" data-reveal>I've trained for over ten years, but three years ago I was introduced to calisthenics.</p>
+<p data-reveal>Calisthenics opened my eyes to new ways of training, skills I never knew I could learn, and gave me a better understanding of my body and movement.</p>
+<p data-reveal>Now, in my mid 30s, I care as much about moving well and recovering properly as I do about getting stronger. Still playing, still progressing, and proof that you can start strength training and calisthenics at any age.</p>
+<p data-reveal>That's why I do this. Starting, or starting again, is the hardest part. I want to make it feel possible, and fun.</p>
 </div>
-<div class="about-side" data-reveal><figure class="about-photo"><img src="${r}assets/curl.jpg" alt="Paul doing a preacher curl in the gym" width="2000" height="1126" loading="lazy"></figure>
-<aside class="facts" aria-label="Paul at a glance">
+<aside class="quals glass" data-reveal aria-label="Paul at a glance">
 <dl>
 <div><dt>Qualified</dt><dd>Level 2 and 3 Personal Training</dd></div>
 <div><dt>Training for</dt><dd>10+ years</dd></div>
 <div><dt>Calisthenics</dt><dd>3 years and counting</dd></div>
 <div><dt>Coaching</dt><dd>1:1, online</dd></div>
 </dl>
-</aside></div>
-</div></section>
+</aside>
+</div>
+</section>
 
 <section class="pad" style="padding-top:0"><div class="wrap">
 <h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">Patient. Fun. <span class="hl">Built around you.</span></h2>
