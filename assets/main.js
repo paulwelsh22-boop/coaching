@@ -42,25 +42,25 @@
   /* ---------- Single scroll loop ---------- */
   const hero = $('.hero');
   const heroPhoto = $('.hero-photo');
-  const statement = $('.statement');
-  const words = $$('.statement .sw');
+  const statement = $('.manifesto');
+  const words = $$('.manifesto .sw');
   let ticking = false;
   function onScroll() {
     ticking = false;
     const y = scrollY;
     nav && nav.classList.toggle('is-scrolled', y > 8);
     if (heroPhoto && !reduce && y < innerHeight * 1.2) heroPhoto.style.transform = `translate3d(0, ${y * 0.12}px, 0)`;
-    if (statement && words.length && !statement.classList.contains('static')) {
+    if (statement && words.length && !reduce) {
+      // Lights as the section travels up the screen. Nothing is pinned, so scrolling never stalls.
       const r = statement.getBoundingClientRect();
-      const total = r.height - innerHeight;
-      const p = Math.min(1, Math.max(0, -r.top / Math.max(total, 1)));
-      const lit = Math.round(p * 1.12 * words.length);
+      const p = Math.min(1, Math.max(0, (innerHeight * 0.9 - r.top) / (innerHeight * 0.55)));
+      const lit = Math.ceil(p * words.length);
       words.forEach((w, i) => w.classList.toggle('on', i < lit));
     }
   }
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   addEventListener('resize', onScroll);
-  if (reduce && statement) statement.classList.add('static');
+  if (reduce) words.forEach((w) => w.classList.add('on'));
   onScroll();
 
   /* ---------- Sticky call button (phones) ---------- */
@@ -93,6 +93,20 @@
     entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('drawn'); arcIO.unobserve(e.target); } });
   }, { threshold: 0.1 });
   $$('.arcs').filter((a) => !a.closest('.hero')).forEach((a) => arcIO.observe(a));
+
+  /* ---------- Accordion with photo caption ---------- */
+  const acc = $('[data-acc]');
+  if (acc) {
+    const cap = $('[data-inc-cap]');
+    $$('.acc-item', acc).forEach((it) => {
+      const b = $('button', it);
+      b.addEventListener('click', () => {
+        const open = !it.classList.contains('open');
+        $$('.acc-item', acc).forEach((o) => { o.classList.remove('open'); $('button', o).setAttribute('aria-expanded', 'false'); });
+        if (open) { it.classList.add('open'); b.setAttribute('aria-expanded', 'true'); if (cap) cap.textContent = $('span', b).textContent; }
+      });
+    });
+  }
 
   /* ---------- FAQ ---------- */
   $$('.q').forEach((q) => {

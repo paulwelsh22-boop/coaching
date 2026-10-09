@@ -85,8 +85,8 @@ function page({ path, depth, title, desc, body, ld = [], hero = false, ogType = 
 <title>${title}</title>
 <meta name="description" content="${desc}">
 ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${url}">`}
-<meta name="theme-color" content="#192530">
-<meta property="og:type" content="${ogType}"><meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE}/assets/hero-man.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#152531">
+<meta property="og:type" content="${ogType}"><meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE}/assets/hero-handstand.jpg"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="${r}${favicon}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -151,7 +151,7 @@ write('', page({
   body: (r) => `
 <section class="hero">
 ${arcs('', 10)}
-<div class="hero-photo"><img src="${r}assets/hero-man.jpg" alt="A man in a black tank top pulling up to a bar in a misty gym" width="2000" height="1333" fetchpriority="high"></div>
+<div class="hero-photo"><img src="${r}assets/hero-handstand.jpg" alt="Paul holding a handstand on parallettes in a busy gym" width="2000" height="1126" fetchpriority="high"></div>
 <div class="wrap hero-inner">
 <h1>${words("Your first rep ~starts ~here.")}</h1>
 <p class="lede fade-in">1:1 online coaching in strength, calisthenics and mobility, with food that fits your life. Ideal if you are new to training or starting again: learn the technique, build the basics, and know exactly how to progress.</p>
@@ -160,25 +160,19 @@ ${arcs('', 10)}
 </div>
 </section>
 
-<section class="statement" aria-label="Show up. Start small. Build strength.">
-<div class="statement-stick"><div class="wrap">
-<p aria-hidden="true">
+<section class="manifesto pad">
+<div class="wrap mf-grid">
+<div class="mf-left"><h2 class="sr">Show up. Start small. Build strength.</h2>
+<p class="mf-big" aria-hidden="true">
 <span class="ln">${'Show up.'.split(' ').map((w) => `<span class="sw">${w}</span>`).join(' ')}</span>
 <span class="ln">${'Start small.'.split(' ').map((w) => `<span class="sw">${w}</span>`).join(' ')}</span>
 <span class="ln">${'Build strength.'.split(' ').map((w) => `<span class="sw">${w}</span>`).join(' ')}</span>
-</p>
-<div class="sub">That is the whole method. Everything else is making it fit your week.</div>
-</div></div>
-</section>
-
-<section class="problem pad">
-<div class="wrap split">
-<div class="copy">
+</p></div>
+<div class="mf-copy">
 <h2 data-reveal>Most fitness content isn't made for <span class="hl">you yet</span></h2>
 <p data-reveal>If you've watched a hundred "calisthenics for beginners" videos and still don't know where to start, you're not the problem. Most fitness and calisthenics content is made by people who have trained for years, for people who already know the basics. Most personal trainers assume you already know your way around a gym.</p>
-<p data-reveal>Paul Welsh Coaching starts before all of that: how to move well, how to set up a session, how to eat without overthinking it, and how to get a little better every week.</p>
+<p data-reveal class="mf-strong">Paul Welsh Coaching starts before all of that: how to move well, how to set up a session, how to eat without overthinking it, and how to get a little better every week.</p>
 </div>
-<div class="pic" data-reveal><div class="photo"><img src="${r}assets/man-tank.jpg" alt="A man in a black tank top hanging from a bar, smiling at the camera" width="1067" height="1600" loading="lazy" style="object-position:50% 35%"></div></div>
 </div>
 </section>
 
@@ -199,17 +193,19 @@ ${arcs('', 10)}
 <script type="application/json" id="stages-data">${JSON.stringify(stages)}</script>
 </section>
 
-<section class="light pad">
-<div class="wrap">
-<div class="includes-head"><h2 data-reveal>What coaching actually <span class="hl">includes</span></h2><div class="mark" data-reveal>${markImg(r)}</div></div>
-<ul class="rows">
-<li data-reveal>${ico('plan')}<h3>A plan built around where you are</h3><p>Strength fundamentals, beginner calisthenics and mobility, sequenced so the first few weeks are genuinely achievable. Not a programme borrowed from someone who has trained for a decade.</p></li>
-<li data-reveal>${ico('tech')}<h3>Technique you can trust</h3><p>Every movement is taught step by step, with form feedback on your own videos, so you are never guessing whether you are doing it right.</p></li>
-<li data-reveal>${ico('prog')}<h3>A clear way to progress</h3><p>Every exercise has an easier and a harder version, so you always know your next step and when you are ready for it.</p></li>
-<li data-reveal>${ico('video')}<h3>Real 1:1 coaching, remotely</h3><p>Regular video check-ins with someone who knows your plan, wherever you train.</p></li>
-<li data-reveal>${ico('food')}<h3>Food that fits real life</h3><p>Practical, no-fuss nutrition guidance. Not a meal plan you will abandon by Thursday.</p></li>
-<li data-reveal>${ico('msg')}<h3>Someone who answers</h3><p>Direct messaging access between check-ins. Coaching, not just a programme PDF.</p></li>
-</ul>
+<section class="light pad includes">
+<div class="wrap inc-grid">
+<figure class="inc-photo" data-reveal><img src="${r}assets/lsit.jpg" alt="Paul holding an L-sit on parallettes in a busy gym" width="2000" height="1126" loading="lazy"><figcaption data-inc-cap>A plan built around where you are</figcaption></figure>
+<div class="inc-main"><h2 data-reveal>What coaching actually <span class="hl">includes</span></h2>
+<div class="acc" data-acc data-reveal>
+<div class="acc-item open"><h3><button type="button" aria-expanded="true" aria-controls="acc-0" id="acc-b0"><span>A plan built around where you are</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-0" role="region" aria-labelledby="acc-b0"><div><p>Strength fundamentals, beginner calisthenics and mobility, sequenced so the first few weeks are genuinely achievable. Not a programme borrowed from someone who has trained for a decade.</p></div></div></div>
+<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-1" id="acc-b1"><span>Technique you can trust</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-1" role="region" aria-labelledby="acc-b1"><div><p>Every movement is taught step by step, with form feedback on your own videos, so you are never guessing whether you are doing it right.</p></div></div></div>
+<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-2" id="acc-b2"><span>A clear way to progress</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-2" role="region" aria-labelledby="acc-b2"><div><p>Every exercise has an easier and a harder version, so you always know your next step and when you are ready for it.</p></div></div></div>
+<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-3" id="acc-b3"><span>Mobility, built in</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-3" role="region" aria-labelledby="acc-b3"><div><p>Warm-ups, better positions and recovery routines, so you move well in training and bounce back after it.</p></div></div></div>
+<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-4" id="acc-b4"><span>Real 1:1 coaching, remotely</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-4" role="region" aria-labelledby="acc-b4"><div><p>Regular video check-ins with someone who knows your plan, wherever you train.</p></div></div></div>
+<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-5" id="acc-b5"><span>Food that fits real life</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-5" role="region" aria-labelledby="acc-b5"><div><p>Practical, no-fuss nutrition guidance. Not a meal plan you will abandon by Thursday.</p></div></div></div>
+<div class="acc-item"><h3><button type="button" aria-expanded="false" aria-controls="acc-6" id="acc-b6"><span>Someone who answers</span><span class="pm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="acc-6" role="region" aria-labelledby="acc-b6"><div><p>Direct messaging access between check-ins. Coaching, not just a programme PDF.</p></div></div></div>
+</div></div>
 </div>
 </section>
 
@@ -269,14 +265,14 @@ write('coaching', page({
 </div></section>
 
 <section class="light pad"><div class="wrap">
-<div class="includes-head"><h2 data-reveal>What's <span class="hl">included</span></h2><div class="mark" data-reveal>${markImg(r)}</div></div>
+<div class="includes-head"><h2 data-reveal>What's <span class="hl">included</span></h2></div>
 <div class="tabs" data-tabs data-reveal>
 <div class="tab-list" role="tablist" aria-label="What is included in coaching">
-<button role="tab" type="button" aria-selected="true">${ico('plan')}<span>Your plan, in the app</span></button>
-<button role="tab" type="button" aria-selected="false">${ico('video')}<span>Regular check-ins</span></button>
-<button role="tab" type="button" aria-selected="false">${ico('msg')}<span>Direct contact</span></button>
-<button role="tab" type="button" aria-selected="false">${ico('food')}<span>Food guidance</span></button>
-<button role="tab" type="button" aria-selected="false">${ico('chart')}<span>Progress tracking</span></button>
+<button role="tab" type="button" aria-selected="true"><span>Your plan, in the app</span></button>
+<button role="tab" type="button" aria-selected="false"><span>Regular check-ins</span></button>
+<button role="tab" type="button" aria-selected="false"><span>Direct contact</span></button>
+<button role="tab" type="button" aria-selected="false"><span>Food guidance</span></button>
+<button role="tab" type="button" aria-selected="false"><span>Progress tracking</span></button>
 </div>
 <div class="tab-panels">
 <div role="tabpanel"><h3>Your plan, in the app</h3><p>A personalised plan built around where you are starting, with a video demo of every exercise.</p></div>
@@ -332,15 +328,15 @@ write('about', page({
 <p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">Now, in my mid 30s, I care as much about moving well and recovering properly as I do about getting stronger. Still playing, still progressing, and proof that you can start strength training and calisthenics at any age.</p>
 <p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">That's why I do this. Starting, or starting again, is the hardest part. I want to make it feel possible, and fun.</p>
 </div>
-<aside class="facts" data-reveal aria-label="Paul at a glance">
-<!-- Add a real photo of Paul here: <img src="..." alt="Paul coaching"> -->
+<div class="about-side" data-reveal><figure class="about-photo"><img src="${r}assets/curl.jpg" alt="Paul doing a preacher curl in the gym" width="2000" height="1126" loading="lazy"></figure>
+<aside class="facts" aria-label="Paul at a glance">
 <dl>
 <div><dt>Qualified</dt><dd>Level 2 and 3 Personal Training</dd></div>
 <div><dt>Training for</dt><dd>10+ years</dd></div>
 <div><dt>Calisthenics</dt><dd>3 years and counting</dd></div>
 <div><dt>Coaching</dt><dd>1:1, online</dd></div>
 </dl>
-</aside>
+</aside></div>
 </div></section>
 
 <section class="pad" style="padding-top:0"><div class="wrap">
@@ -374,7 +370,7 @@ write('blog', page({
 <div class="wrap"><h1>Less guesswork. <span class="hl">More getting started.</span></h1><p class="lede">Straightforward guides to strength, calisthenics and the questions everyone has at the beginning.</p></div></section>
 <section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap">
 ${posts.map(([t, sl]) => `<a class="featured" href="${r}blog/${sl}/" data-reveal>
-<div class="f-img"><img src="${r}assets/hero-man.jpg" alt="A man in a black tank top pulling up to a bar" width="2000" height="1333" loading="lazy"></div>
+<div class="f-img"><img src="${r}assets/hero-handstand.jpg" alt="Paul holding a handstand on parallettes in a gym" width="2000" height="1126" loading="lazy"></div>
 <div class="f-body"><p class="f-meta"><span>Beginner guide</span><span>3 min read</span><span>Updated ${UPDATED}</span></p>
 <h2>${t}</h2>
 <p class="f-ex">There is no single timeline for a first pull-up. Here is what affects it, the building blocks that get you there, and why smaller progress still counts.</p>
