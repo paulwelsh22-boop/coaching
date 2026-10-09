@@ -334,12 +334,6 @@ write('about', page({
 <div data-reveal><h3>Count every win.</h3><p>Your first banded pull-up. Ten press-ups on your knees. Any progress is good progress, because every person starts somewhere different.</p></div>
 </div></div></section>
 
-<section class="pad" style="padding-top:clamp(56px,7vw,100px)"><div class="wrap split">
-<div style="grid-column:1 / span 7">
-<h2 data-reveal style="margin-bottom:28px">Away from <span class="hl">the bar</span></h2>
-<p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">I've recently moved to Spain and I'm loving the active lifestyle and the calisthenics scene out here.</p>
-<p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">I'm structured with food without counting calories. I'm consistent about 80% of the week, so I can enjoy treats when I want them. It works for me, and it's the same practical approach I bring to coaching.</p>
-</div></div></section>
 ${cta(r, 'Curious if this is a fit?', 'Book a free call and ask me anything.', 'Book a free call')}`,
 }));
 
