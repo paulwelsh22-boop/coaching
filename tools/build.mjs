@@ -200,7 +200,7 @@ ${arcs('', 10)}
 <p data-reveal>Most people don't need more motivation. They need a plan that fits their week, and someone in their corner.</p>
 <a class="btn" data-reveal href="${r}book-a-call/">Book a free call ${arrow}</a></div>
 <div class="glass-grid">
-<article class="glass" data-reveal><h3>A plan built around where you are</h3><p>Strength fundamentals, beginner calisthenics and mobility, sequenced so the first few weeks are genuinely achievable.</p></article>
+<article class="glass" data-reveal><h3>A plan built around where you are</h3><p>The fundamentals, sequenced so the first few weeks are genuinely achievable.</p></article>
 <article class="glass" data-reveal><h3>Technique you can trust</h3><p>Every movement taught step by step, with form feedback on your own videos.</p></article>
 <article class="glass" data-reveal><h3>A clear way to progress</h3><p>An easier and a harder version of every exercise, so you always know what is next.</p></article>
 <article class="glass" data-reveal><h3>Mobility, built in</h3><p>Warm-ups, better positions and recovery routines, so you move well and bounce back.</p></article>
