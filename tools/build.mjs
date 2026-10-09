@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://paulwelshcoaching.com'; // TODO: confirm (with or without www)
 const EMAIL = 'hello@paulwelshcoaching.com';
-const GA_ID = ''; // TODO: Google Analytics 4 measurement ID, e.g. G-XXXXXXXXXX. Leave empty to switch analytics and the cookie banner off.
+const GA_ID = 'G-GQMZ4PN6PZ'; // Google Analytics 4. Leave empty to switch analytics and the cookie banner off.
 const BOOKING_URL = 'https://calendar.app.google/1KBg3BsF3Zg69i1c6'; // Google Calendar appointment page
 const UPDATED = 'October 2026';
 const SHOW_PRICES = false; // set true to show "From £80 / £100" again
@@ -501,7 +501,7 @@ legalPage('terms', 'Terms of Service', 'The terms that apply when you book a cal
 <h2>Price and payment</h2>
 <p>Coaching is charged monthly at the price agreed with you in writing before you start. Payment is by bank transfer to my Monzo business account or through PayPal, taken on the date we agree. I will give you 30 days' notice of any price change.</p>
 <h2>Cancelling</h2>
-<p>You can cancel by giving me 30 days' notice in writing, by text or email. ${T('Confirm: is there a minimum term, and is any part-month refundable?')}</p>
+<p>You can cancel by giving me notice in writing, by text or email. The minimum notice period is 30 days from the date you give notice, and any unpaid amounts, including those that fall due during the notice period, remain payable in full.</p>
 <p>Because the service is supplied at a distance, you have a 14-day right to cancel from the date you sign up. If you ask me to start coaching within those 14 days and then cancel, you will pay for the service already provided.</p>
 <h2>Results</h2>
 <p>I will coach you with reasonable care and skill. I cannot guarantee particular results, because they depend on many things including your effort, consistency, health and circumstances.</p>
