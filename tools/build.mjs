@@ -256,7 +256,7 @@ write('coaching', page({
 <div class="wrap"><div class="car-bar" aria-hidden="true"><span></span></div></div>
 </section>
 
-<section class="pad" style="padding-top:0"><div class="wrap">
+<section class="pad" style="padding-top:clamp(56px,7vw,100px)"><div class="wrap">
 <h2 class="pillars-head" style="max-width:16ch" data-reveal>Progress, <span class="hl">not hype</span></h2>
 <ul class="pillars short">
 <li data-reveal><h3>Structure</h3><p>An easier and a harder version of every exercise, so you always know what is next.</p></li>
@@ -326,7 +326,7 @@ write('about', page({
 </div>
 </section>
 
-<section class="pad" style="padding-top:0"><div class="wrap">
+<section class="pad" style="padding-top:clamp(56px,7vw,100px)"><div class="wrap">
 <h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">Patient. Fun. <span class="hl">Built around you.</span></h2>
 <div class="principles">
 <div data-reveal><h3>Know you first.</h3><p>Everyone is different. I want to know what you want to achieve and why, so your plan isn't one size fits all.</p></div>
@@ -334,7 +334,7 @@ write('about', page({
 <div data-reveal><h3>Count every win.</h3><p>Your first banded pull-up. Ten press-ups on your knees. Any progress is good progress, because every person starts somewhere different.</p></div>
 </div></div></section>
 
-<section class="pad" style="padding-top:0"><div class="wrap split">
+<section class="pad" style="padding-top:clamp(56px,7vw,100px)"><div class="wrap split">
 <div style="grid-column:1 / span 7">
 <h2 data-reveal style="margin-bottom:28px">Away from <span class="hl">the bar</span></h2>
 <p data-reveal style="font-size:1.1875rem;color:var(--ice-dim)">I've recently moved to Spain and I'm loving the active lifestyle and the calisthenics scene out here.</p>
@@ -363,7 +363,7 @@ ${posts.map(([t, sl]) => `<a class="featured" href="${r}blog/${sl}/" data-reveal
 <p class="f-ex">There is no single timeline for a first pull-up. Here is what affects it, the building blocks that get you there, and why smaller progress still counts.</p>
 <span class="text-link">Read the guide ${arrow}</span></div></a>`).join('')}
 </div></section>
-<section class="pad" style="padding-top:0"><div class="wrap">
+<section class="pad" style="padding-top:clamp(56px,7vw,100px)"><div class="wrap">
 <h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">New guides are on the way</h2>
 <div class="cols-2" data-reveal>
 <div class="fit yes"><h3>What we will cover</h3><ul><li>Learning the basic movements properly</li><li>How to progress without rushing</li><li>Simple food for people who train</li></ul></div>
