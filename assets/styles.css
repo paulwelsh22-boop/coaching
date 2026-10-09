@@ -651,3 +651,14 @@ main > section:not(:first-child):not([class*="light"]):not(.bleed):not(.final):n
 @media (max-width: 900px) { .about-grid { display: block; } .about-copy { margin-bottom: 32px; } .about-bleed::after { background: linear-gradient(180deg, rgba(11, 20, 26, 0.88), rgba(11, 20, 26, 0.78)); } }
 .cal .btn { background: var(--ink); color: var(--paper); margin-top: 12px; }
 .cal .btn:hover { background: var(--blue); }
+
+/* Cookie banner */
+.cookie-banner { position: fixed; z-index: 80; left: 16px; right: 16px; bottom: 16px; max-width: 460px; background: var(--ink-2); color: var(--paper); border: 1px solid var(--line-strong); border-radius: 16px; padding: 22px; box-shadow: 0 18px 60px rgba(0, 0, 0, 0.5); transform: translateY(24px); opacity: 0; transition: transform 0.6s var(--ease), opacity 0.4s; }
+.cookie-banner.show { transform: none; opacity: 1; }
+.cookie-banner p { margin: 0 0 16px; font-size: 0.9375rem; color: var(--ice-dim); }
+.cookie-banner p a { color: var(--paper); }
+.cookie-banner .row { display: flex; gap: 10px; flex-wrap: wrap; }
+.cookie-banner .btn { padding: 12px 20px; min-height: 44px; font-size: 0.9375rem; }
+.footer .legal button { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.footer .legal button:hover { color: var(--paper); }
+.legal-doc code { background: rgba(193, 213, 225, 0.12); padding: 2px 7px; border-radius: 6px; font-size: 0.9em; }

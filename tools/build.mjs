@@ -5,7 +5,9 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const SITE = 'https://www.example.com'; // TODO: your real domain
+const SITE = 'https://paulwelshcoaching.com'; // TODO: confirm (with or without www)
+const EMAIL = 'hello@paulwelshcoaching.com';
+const GA_ID = ''; // TODO: Google Analytics 4 measurement ID, e.g. G-XXXXXXXXXX. Leave empty to switch analytics and the cookie banner off.
 const BOOKING_URL = 'https://calendar.app.google/1KBg3BsF3Zg69i1c6'; // Google Calendar appointment page
 const UPDATED = 'October 2026';
 const SHOW_PRICES = false; // set true to show "From £80 / £100" again
@@ -87,6 +89,7 @@ function page({ path, depth, title, desc, body, ld = [], hero = false, ogType = 
 ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${url}">`}
 <meta name="theme-color" content="#152531">
 <meta property="og:type" content="${ogType}"><meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE}/assets/hero-handstand.jpg"><meta name="twitter:card" content="summary_large_image">
+${GA_ID ? `<meta name="ga-id" content="${GA_ID}">` : ''}
 <link rel="icon" type="image/png" href="${r}${favicon}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -112,9 +115,9 @@ FORM: Dark athletic brand site, brand-pinned, seed key n/a (palette/type pinned 
 ${body(r)}
 </main>
 <footer class="footer"><div class="wrap">
-<div class="brand"><img src="${r}assets/logo-stacked-light.png" alt="Paul Welsh Coaching" width="139" height="96"><p>Movement for real life. Strength, calisthenics, mobility and practical nutrition, online.</p></div>
+<div class="brand"><img src="${r}assets/logo-stacked-light.png" alt="Paul Welsh Coaching" width="139" height="96"><p>Movement for real life. Strength, calisthenics, mobility and practical nutrition, online.<br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>
 <nav aria-label="Footer"><a href="${r}coaching/">Coaching</a><a href="${r}about/">About</a><a href="${r}blog/">Blog</a><a href="${r}faq/">FAQ</a><a href="${r}book-a-call/">Contact</a></nav>
-<small><span>&copy; 2026 Paul Welsh Coaching. Online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a></span></small>
+<small><span>&copy; 2026 Paul Welsh Coaching. Online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a>${GA_ID ? '<button type="button" data-cookie-settings>Cookie settings</button>' : ''}</span></small>
 </div></footer>
 ${path === 'book-a-call/' ? '' : `<a class="btn sticky-cta" href="${r}book-a-call/">Book a free call ${arrow}</a>`}
 <script src="${r}assets/main.js" defer></script>
@@ -132,7 +135,7 @@ const cta = (r, headline = 'Start with a free call, not a <span class="hl">sales
 <section class="final pad">${arcs('', 9)}
 <div class="wrap"><h2 data-reveal>${headline}</h2><p data-reveal>${sub}</p><a class="btn" href="${r}book-a-call/" data-reveal>${btn} ${arrow}</a></div></section>`;
 
-const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Paul Welsh Coaching', url: SITE + '/', logo: SITE + '/assets/logo-dark.png', description: 'Online strength and calisthenics coaching, built for people starting out.' };
+const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Paul Welsh Coaching', email: EMAIL, url: SITE + '/', logo: SITE + '/assets/logo-dark.png', description: 'Online strength and calisthenics coaching, built for people starting out.' };
 
 /* ------------------------------ HOME ------------------------------ */
 const stages = [
@@ -431,7 +434,7 @@ write('book-a-call', page({
 <div class="wrap"><h1 style="max-width:16ch">Let's talk it through. <span class="hl">No pressure, no pitch.</span></h1>
 <p class="lede">Fifteen minutes to talk about where you are now, what you want, and whether Paul Welsh Coaching is a fit. If it's not, I'll tell you.</p></div></section>
 <section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap book-grid">
-<div class="cal"><div><h3>Choose a time that suits you</h3><p>Pick a 15 minute slot in my calendar. It opens in a new tab, and you will get a confirmation by email.</p><a class="btn" href="${BOOKING_URL}" target="_blank" rel="noopener">Choose a time ${arrow}</a></div></div>
+<div class="cal"><div><h3>Choose a time that suits you</h3><p>Pick a 15 minute slot in my calendar. It opens in a new tab, and you will get a confirmation by email. Prefer to write? Email <a href="mailto:${EMAIL}">${EMAIL}</a>.</p><a class="btn" href="${BOOKING_URL}" target="_blank" rel="noopener">Choose a time ${arrow}</a></div></div>
 <div><div class="faq-list" style="border-color:var(--line)">${faqHtml(['know', 'oblig', 'away'])}</div></div>
 </div></section>`,
 }));
@@ -439,7 +442,7 @@ write('book-a-call', page({
 /* ------------------------------ LEGAL + 404 ------------------------------ */
 // Drafts for a UK sole trader / small business. Highlighted [ ] items are facts only you know.
 const T = (t) => `<mark class="todo">[${t}]</mark>`;
-const BIZ = T('Your legal or trading name'), ADDR = T('Business address'), MAIL = T('Contact email');
+const BIZ = 'Paul Welsh', ADDR = '43 Northmead Road, L19 5NN', MAIL = `<a href="mailto:${EMAIL}">${EMAIL}</a>`;
 const legalPage = (path, title, desc, inner) => write(path, page({
   path: path + '/', depth: 1, title: title + ' | Paul Welsh Coaching', desc, ld: [],
   body: () => `<section class="page-hero" style="padding-bottom:40px">${arcs('', 8)}
@@ -448,46 +451,57 @@ const legalPage = (path, title, desc, inner) => write(path, page({
 }));
 
 legalPage('privacy', 'Privacy Policy', 'How Paul Welsh Coaching collects, uses and protects your personal information.', `
-<p>This policy explains how ${BIZ} (trading as Paul Welsh Coaching, "I", "me") looks after your personal information under UK data protection law. I am the data controller. You can contact me at ${MAIL} or at ${ADDR}.</p>
+<p>This policy explains how ${BIZ}, trading as Paul Welsh Coaching ("I", "me"), looks after your personal information. I am the data controller. You can contact me at ${MAIL} or at ${ADDR}.</p>
+<p>I am based in Spain and provide coaching to people in the UK and elsewhere. I follow UK data protection law (the UK GDPR and the Data Protection Act 2018) and, where it applies, the EU GDPR.</p>
 <h2>What I collect</h2>
 <ul>
-<li><strong>When you book a call:</strong> your name, email address and any notes you add, collected through Google Calendar's appointment booking.</li>
-<li><strong>When you become a client:</strong> contact details, your goals, training history, and health and injury information you choose to share, your training and progress data in the coaching app, messages, and any photos or videos you send for form checks.</li>
-<li><strong>Payments:</strong> processed by ${T('payment provider, e.g. Stripe, GoCardless')}. I do not store your card details.</li>
-<li><strong>When you use this website:</strong> basic technical data your browser sends (such as IP address and device type) when pages and fonts load. This site does not use advertising or analytics cookies. See the <a href="../cookies/">cookie notice</a>.</li>
-${T('If you add an email list: "your email address if you sign up for guides or updates"')}
+<li><strong>When you book a call or get in touch:</strong> your name, email address and any notes you add, through Google Calendar's appointment booking or by email.</li>
+<li><strong>When you become a client:</strong> your contact details, goals and training history; your answers to the PAR-Q health questionnaire and any other health or injury information you choose to share; your training and progress data in the coaching app (Trainerize); our messages; and any photos or videos you send for form checks.</li>
+<li><strong>Payments:</strong> paid by bank transfer to my Monzo business account or through PayPal. I see the name and payment details your bank or PayPal shares with me. I do not store card details.</li>
+<li><strong>When you use this website:</strong> basic technical data your browser sends when pages load. If you choose to accept analytics cookies, Google Analytics also records how you use the site, such as pages visited, device type and approximate location. See the <a href="../cookies/">cookie notice</a>.</li>
 </ul>
 <h2>Why I use it, and my legal basis</h2>
 <ul>
 <li>To answer your enquiry and book a call: legitimate interests, and steps you ask me to take before a contract.</li>
 <li>To provide coaching: performance of our contract.</li>
-<li>Health information: this is special category data. I process it only with your explicit consent, which you can withdraw at any time, although I may then be unable to coach you safely.</li>
-<li>To keep records for tax and accounting: legal obligation.</li>
-<li>To send updates or guides: your consent, and you can unsubscribe at any time.</li>
+<li>Health information, including your PAR-Q answers: this is special category data. I process it only with your explicit consent, which you can withdraw at any time, although I may then be unable to coach you safely.</li>
+<li>To keep payment and accounting records: legal obligation.</li>
+<li>Website analytics: your consent, through the cookie banner.</li>
 </ul>
 <h2>Who I share it with</h2>
-<p>Only the providers I need to run the service: Google Calendar (booking), WhatsApp (messaging), ${T('coaching app provider')}, ${T('payment provider')}, ${T('email provider, if used')} and my website host ${T('host')}. They process data on my instructions or under their own terms. I do not sell your data. Some providers are based outside the UK; where that happens, I rely on approved safeguards such as the UK International Data Transfer Agreement or an adequacy decision.</p>
+<p>Only the providers I need to run the service. They process data on my instructions or under their own terms. I do not sell your data.</p>
+<ul>
+<li><strong>Google:</strong> Google Workspace (my email), Google Calendar (booking), Google Meet (video check-ins), Google Drive (photos and videos you send) and, if you accept, Google Analytics.</li>
+<li><strong>Trainerize:</strong> the coaching app that holds your plan and training data.</li>
+<li><strong>Monzo and PayPal:</strong> payments.</li>
+<li><strong>Cloudflare and GoDaddy:</strong> hosting my website and my domain name.</li>
+</ul>
+<p>Some of these providers are based outside the UK and the European Economic Area. Where that happens, I rely on approved safeguards such as the UK International Data Transfer Agreement, standard contractual clauses or an adequacy decision.</p>
 <h2>How long I keep it</h2>
-<p>Coaching records are kept for ${T('e.g. 2 years')} after our work ends, and accounting records for ${T('6 years, as required by HMRC')}. Enquiries that do not become coaching are deleted after ${T('e.g. 12 months')}.</p>
+<ul>
+<li>Coaching records, including health questionnaires, messages, photos and videos: up to 24 months after our work ends, then deleted.</li>
+<li>Payment and accounting records: for as long as the law requires, which is usually 6 years.</li>
+<li>Enquiries that do not become coaching: 12 months, then deleted.</li>
+</ul>
 <h2>Your rights</h2>
-<p>You can ask to see, correct, delete or export your data, to restrict or object to how I use it, and to withdraw consent. Email ${MAIL} and I will reply within one month. If you are unhappy, you can complain to the Information Commissioner's Office at <a href="https://ico.org.uk">ico.org.uk</a> or on 0303 123 1113.</p>
+<p>You can ask to see, correct, delete or export your data, to restrict or object to how I use it, and to withdraw consent. Email ${MAIL} and I will reply within one month. If you are unhappy, you can complain to the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk">ico.org.uk</a>, or to the Spanish data protection authority, the AEPD, at <a href="https://www.aepd.es">aepd.es</a>.</p>
 <h2>Age</h2>
-<p>Coaching is for adults aged 18 and over ${T('confirm')}.</p>
+<p>Coaching is for adults aged 18 and over.</p>
 <h2>Changes</h2>
 <p>If I change this policy I will update the date above.</p>`);
 
 legalPage('terms', 'Terms of Service', 'The terms that apply when you book a call or sign up for coaching with Paul Welsh Coaching.', `
-<p>These terms apply to coaching provided by ${BIZ} (trading as Paul Welsh Coaching). By starting coaching you agree to them. They do not affect your statutory rights as a consumer.</p>
+<p>These terms apply to coaching provided by ${BIZ}, trading as Paul Welsh Coaching, of ${ADDR}. By starting coaching you agree to them. They do not affect your statutory rights as a consumer.</p>
 <h2>The service</h2>
-<p>Online coaching includes a personalised training plan in an app, exercise demos, regular check-ins and contact with me, and, if you choose the nutrition plan, practical food guidance. Exactly what is included is confirmed before you start.</p>
+<p>Online coaching includes a personalised training plan in a coaching app, exercise demos, regular online check-ins by video call, and advice by text when you need it. If you choose the nutrition option, it also includes practical food guidance. Exactly what is included is confirmed in writing before you start.</p>
 <h2>Before you start</h2>
-<p>You confirm you are 18 or over and will complete a health questionnaire honestly. If you have a medical condition, are pregnant or have been injured, speak to your doctor first. See the <a href="../health-disclaimer/">health disclaimer</a>.</p>
+<p>You confirm you are 18 or over. You will complete a PAR-Q health questionnaire before we begin and answer it honestly. If you have a medical condition, are pregnant or have been injured, speak to your doctor first. See the <a href="../health-disclaimer/">health disclaimer</a>.</p>
 <h2>Free call</h2>
 <p>The introductory call is free, with no obligation to sign up.</p>
 <h2>Price and payment</h2>
-<p>Coaching is charged monthly at the price agreed with you before you start. Payment is taken ${T('how and when, e.g. by Direct Debit or card on the same date each month')}. Prices may change with ${T('e.g. 30 days')} notice.</p>
+<p>Coaching is charged monthly at the price agreed with you in writing before you start. Payment is by bank transfer to my Monzo business account or through PayPal, taken on the date we agree. I will give you 30 days' notice of any price change.</p>
 <h2>Cancelling</h2>
-<p>You can cancel by ${T('how, e.g. emailing me')} with ${T('notice period, e.g. 14 days')} notice. ${T('State clearly whether there is a minimum term and whether any part-month is refundable.')}</p>
+<p>You can cancel by giving me 30 days' notice in writing, by text or email. ${T('Confirm: is there a minimum term, and is any part-month refundable?')}</p>
 <p>Because the service is supplied at a distance, you have a 14-day right to cancel from the date you sign up. If you ask me to start coaching within those 14 days and then cancel, you will pay for the service already provided.</p>
 <h2>Results</h2>
 <p>I will coach you with reasonable care and skill. I cannot guarantee particular results, because they depend on many things including your effort, consistency, health and circumstances.</p>
@@ -495,27 +509,34 @@ legalPage('terms', 'Terms of Service', 'The terms that apply when you book a cal
 <p>Train within your limits, follow safety guidance, stop and seek advice if something hurts or feels wrong, and tell me about changes to your health. Check any equipment you use is suitable and safe.</p>
 <h2>Content and intellectual property</h2>
 <p>Plans, videos and guides are for your personal use. Please do not copy, share or sell them. If you send me photos or videos, you give me permission to use them to coach you; I will not publish them without your separate written consent.</p>
+<h2>Insurance</h2>
+<p>I hold professional insurance for my coaching.</p>
 <h2>Liability</h2>
-<p>Nothing in these terms limits liability for death or personal injury caused by negligence, for fraud, or for anything else the law does not allow me to limit. Otherwise, my liability to you is limited to the fees you paid in the previous ${T('e.g. 3 months')}, and I am not liable for indirect or unforeseeable losses.</p>
+<p>Nothing in these terms limits liability for death or personal injury caused by negligence, for fraud, or for anything else the law does not allow me to limit. Otherwise, my liability to you is limited to the fees you paid in the previous 3 months, and I am not liable for indirect or unforeseeable losses.</p>
 <h2>Complaints and law</h2>
-<p>If something is wrong, please tell me at ${MAIL} and I will try to put it right. These terms are governed by the laws of ${T('England and Wales')}, and the courts of ${T('England and Wales')} can hear any dispute.</p>`);
+<p>If something is wrong, please tell me at ${MAIL} and I will try to put it right. These terms are governed by the laws of England and Wales, and the courts of England and Wales can hear any dispute.</p>`);
 
 legalPage('cookies', 'Cookie Notice', 'What cookies and third-party services the Paul Welsh Coaching website uses.', `
-<p>This website does not use advertising, tracking or analytics cookies, and it does not set cookies of its own. A few third-party services are involved, described below.</p>
+<p>This website sets no cookies of its own for advertising. It uses one optional analytics tool, which only runs if you say yes, and a few services that load from other companies.</p>
+<h2>Analytics (optional)</h2>
+<p>If you click Accept on the cookie banner, I use Google Analytics to see how people use the site, such as which pages are read and on what kind of device. It sets cookies called <code>_ga</code> and <code>_ga_</code> followed by an ID, which last up to two years. If you click Decline, or ignore the banner, Google Analytics does not load and no analytics cookies are set. You can change your mind at any time with <strong>Cookie settings</strong> in the footer.</p>
+<h2>Search Console</h2>
+<p>I use Google Search Console to see how the site appears in Google search. It works on Google's side and sets no cookies on your device.</p>
 <h2>Fonts</h2>
 <p>The site loads its typeface (Poppins) from Google Fonts. When a page loads, your browser contacts Google, which receives your IP address. Google Fonts does not set cookies for this.</p>
+<h2>Hosting</h2>
+<p>The site is delivered by Cloudflare, which may use strictly necessary cookies for security and performance.</p>
 <h2>Booking</h2>
-<p>Booking uses a Google Calendar appointment page. The Book a Call page links to it and opens it in a new tab on Google's site, so Google's own cookies and privacy policy apply there. This website does not load it or set any cookies for it. If you prefer not to use it, you can contact me directly at ${MAIL}.</p>
+<p>Booking uses a Google Calendar appointment page. The Book a Call page links to it and opens it in a new tab on Google's site, so Google's own cookies and privacy policy apply there. This website does not load it or set any cookies for it. If you prefer not to use it, you can email me at ${MAIL}.</p>
 <h2>Changing your mind</h2>
-<p>You can delete or block cookies in your browser settings at any time.</p>
-${T('If you later add analytics, an email form or social embeds, update this notice and add a cookie consent banner first.')}`);
+<p>You can delete or block cookies in your browser settings at any time.</p>`);
 
 legalPage('health-disclaimer', 'Health Disclaimer', 'Important health and safety information before you start exercising or changing how you eat.', `
 <p>Exercise and changes to how you eat carry some risk. Please read this before you start coaching or follow any guidance on this website.</p>
 <h2>Not medical advice</h2>
 <p>Coaching and everything on this site is general fitness and lifestyle guidance. It is not medical advice and does not replace advice from your doctor or another qualified health professional.</p>
-<h2>Check with your doctor first</h2>
-<p>Speak to your doctor before you start if you have a medical condition, injury or ongoing pain, are pregnant or have recently given birth, take regular medication, have not exercised for a long time, or have any doubt about whether exercise is right for you.</p>
+<h2>Health questionnaire and your doctor</h2>
+<p>Before we start you will complete a PAR-Q health questionnaire. Speak to your doctor first if you have a medical condition, injury or ongoing pain, are pregnant or have recently given birth, take regular medication, have not exercised for a long time, or have any doubt about whether exercise is right for you.</p>
 <h2>While you train</h2>
 <ul><li>Stop straight away and seek advice if you feel pain, dizziness, chest discomfort, unusual breathlessness or faintness.</li><li>Move at a level you can control, and use equipment that is in good condition and suitably installed.</li><li>Tell me about any change to your health so your plan can change with it.</li></ul>
 <h2>Food guidance</h2>

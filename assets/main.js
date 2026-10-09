@@ -296,4 +296,31 @@
     });
   }
 
+
+  /* ---------- Cookie consent: analytics only loads after Accept ---------- */
+  const gaMeta = $('meta[name="ga-id"]');
+  if (gaMeta) {
+    const id = gaMeta.content;
+    const KEY = 'pwc-analytics';
+    const get = () => { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+    const set = (v) => { try { localStorage.setItem(KEY, v); } catch (e) {} };
+    const loadGA = () => {
+      if (window.__ga) return; window.__ga = true;
+      const s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id; document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || []; window.gtag = function () { window.dataLayer.push(arguments); };
+      gtag('js', new Date()); gtag('config', id, { anonymize_ip: true });
+    };
+    const base = location.pathname.split('/').filter(Boolean).length ? '../'.repeat(location.pathname.replace(/\/index\.html$/, '').split('/').filter(Boolean).length) : '';
+    const show = () => {
+      if ($('.cookie-banner')) return;
+      const b = document.createElement('div'); b.className = 'cookie-banner'; b.setAttribute('role', 'dialog'); b.setAttribute('aria-label', 'Cookie settings');
+      b.innerHTML = '<p>I use Google Analytics to see how the site is used, but only if you say yes. No advertising cookies. <a href="' + base + 'cookies/">Cookie notice</a></p><div class="row"><button type="button" class="btn" data-yes>Accept</button><button type="button" class="btn ghost" data-no>Decline</button></div>';
+      document.body.appendChild(b); requestAnimationFrame(() => b.classList.add('show'));
+      const close = (v) => { set(v); if (v === 'yes') loadGA(); b.classList.remove('show'); setTimeout(() => b.remove(), 600); };
+      $('[data-yes]', b).addEventListener('click', () => close('yes'));
+      $('[data-no]', b).addEventListener('click', () => close('no'));
+    };
+    if (get() === 'yes') loadGA(); else if (get() !== 'no') show();
+    $$('[data-cookie-settings]').forEach((el) => el.addEventListener('click', show));
+  }
 })();
