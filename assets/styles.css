@@ -623,3 +623,6 @@ main > section:not(:first-child):not([class*="light"]):not(.bleed):not(.final):n
   .hero { position: sticky; top: 0; height: 100svh; min-height: 0; z-index: 0; }
 }
 @media (max-width: 900px) { .nav { inset: 8px 8px auto 8px; } .nav-links { top: calc(8px + var(--nav-h) + 6px); inset-inline: 8px; border-radius: 18px; } }
+
+.inc-card:nth-child(n) { grid-column: span 3; }
+@media (max-width: 900px) { .inc-card:nth-child(n) { grid-column: auto; } }

@@ -53,7 +53,7 @@ const favicon = 'assets/favicon.png';
 const FAQ = {
   cost: ['How much does online coaching with Paul Welsh Coaching cost?', SHOW_PRICES ? 'Plans start from £80 a month, or £100 a month with nutrition guidance. Your first call is free, with no obligation.' : 'Coaching is a monthly Membership, with or without nutrition guidance. You will hear the exact price on your free call, before you commit to anything.'],
   exp: ['Do I need any experience to start?', 'No. Paul Welsh Coaching is a great place to start, whether you have never trained, are coming back after a break, or already train and want more structure. No gym background, no calisthenics experience and no starting strength required. If you cannot yet do a push-up or a pull-up, that is the point.'],
-  online: ['Is this in-person or online?', 'Fully online and remote. Coaching happens by video check-ins and messaging, so it works wherever you are in the world.'],
+  online: ['Is this in-person or online?', 'Fully online and remote. Coaching happens through your training app and WhatsApp, so it works wherever you are in the world.'],
   diff: ['How is this different from a normal personal trainer?', 'Most personal trainers and calisthenics accounts assume you already have a training base. Paul Welsh Coaching starts from where you are: learning how to move properly, a clear way to progress, and food guidance that does not assume you already know what you are doing.'],
   get: ['What do I get with coaching?', 'A personalised training plan in an app, a video demo for every exercise, regular check-ins and direct contact with me.'],
   involve: ['What does online coaching involve?', 'A personalised training plan in an app, with a video demo of every exercise, regular check-ins to review how it is going, and direct contact with me between check-ins. Your plan is adjusted as you get stronger.'],
@@ -205,7 +205,7 @@ ${arcs('', 10)}
 <article class="glass" data-reveal><h3>A clear way to progress</h3><p>An easier and a harder version of every exercise, so you always know what is next.</p></article>
 <article class="glass" data-reveal><h3>Mobility, built in</h3><p>Warm-ups, better positions and recovery routines, so you move well and bounce back.</p></article>
 <article class="glass" data-reveal><h3>Food that fits real life</h3><p>Practical, no-fuss nutrition guidance. Not a meal plan you will abandon by Thursday.</p></article>
-<article class="glass" data-reveal><h3>Someone who answers</h3><p>Regular video check-ins and direct messaging between them, wherever you train.</p></article>
+<article class="glass" data-reveal><h3>Someone who answers</h3><p>Regular check-ins and direct messaging on WhatsApp, and I'm available when you need me.</p></article>
 </div>
 </div>
 </section>
@@ -268,11 +268,10 @@ write('coaching', page({
 <section class="pad"><div class="wrap">
 <h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">What's <span class="hl">included</span></h2>
 <div class="inc-cards">
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/lsit.jpg);--pos:52% 40%;--size:260%" aria-hidden="true"></div><h3>Your plan, in the app</h3><p>A personalised plan built around where you are starting, with a video demo of every exercise.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/curl.jpg);--pos:50% 36%;--size:250%" aria-hidden="true"></div><h3>Regular check-ins</h3><p>We review how training is going and adjust from there.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/hero-handstand.jpg);--pos:49% 22%;--size:300%" aria-hidden="true"></div><h3>Direct contact</h3><p>Ask questions between check-ins, so you are never stuck on your own.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/curl.jpg);--pos:92% 62%;--size:230%" aria-hidden="true"></div><h3>Food guidance</h3><p>Simple, practical and non-restrictive. Add it to any plan.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/lsit.jpg);--pos:38% 92%;--size:240%" aria-hidden="true"></div><h3>Progress tracking</h3><p>Your training in one place, so your first rep is something you can point to.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/inc-app.jpg);--pos:30% 55%;--size:cover" aria-hidden="true"></div><h3>Your plan, in your app</h3><p>A personalised plan in your own branded training app, with a video demo of every exercise.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/inc-whatsapp.jpg);--pos:50% 42%;--size:cover" aria-hidden="true"></div><h3>Check-ins on WhatsApp</h3><p>Regular check-ins to review how training is going, and I'm available when you need me.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/inc-meal.jpg);--pos:50% 50%;--size:cover" aria-hidden="true"></div><h3>Food guidance</h3><p>Simple, practical and non-restrictive. Add it to any plan.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/inc-muscle.jpg);--pos:50% 38%;--size:cover" aria-hidden="true"></div><h3>Progress tracking</h3><p>Your training in one place, so your first rep is something you can point to.</p></article>
 </div>
 </div></section>
 
@@ -471,7 +470,7 @@ ${T('If you add an email list: "your email address if you sign up for guides or 
 <li>To send updates or guides: your consent, and you can unsubscribe at any time.</li>
 </ul>
 <h2>Who I share it with</h2>
-<p>Only the providers I need to run the service: Calendly (booking), ${T('coaching app provider')}, ${T('payment provider')}, ${T('email provider, if used')} and my website host ${T('host')}. They process data on my instructions or under their own terms. I do not sell your data. Some providers are based outside the UK; where that happens, I rely on approved safeguards such as the UK International Data Transfer Agreement or an adequacy decision.</p>
+<p>Only the providers I need to run the service: Calendly (booking), WhatsApp (messaging), ${T('coaching app provider')}, ${T('payment provider')}, ${T('email provider, if used')} and my website host ${T('host')}. They process data on my instructions or under their own terms. I do not sell your data. Some providers are based outside the UK; where that happens, I rely on approved safeguards such as the UK International Data Transfer Agreement or an adequacy decision.</p>
 <h2>How long I keep it</h2>
 <p>Coaching records are kept for ${T('e.g. 2 years')} after our work ends, and accounting records for ${T('6 years, as required by HMRC')}. Enquiries that do not become coaching are deleted after ${T('e.g. 12 months')}.</p>
 <h2>Your rights</h2>
