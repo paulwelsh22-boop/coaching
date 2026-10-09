@@ -114,7 +114,7 @@ ${body(r)}
 <footer class="footer"><div class="wrap">
 <div class="brand"><img src="${r}assets/logo-stacked-light.png" alt="Paul Welsh Coaching" width="139" height="96"><p>Movement for real life. Strength, calisthenics, mobility and practical nutrition, online.</p></div>
 <nav aria-label="Footer"><a href="${r}coaching/">Coaching</a><a href="${r}about/">About</a><a href="${r}blog/">Blog</a><a href="${r}faq/">FAQ</a><a href="${r}book-a-call/">Contact</a></nav>
-<small><span>&copy; 2026 Paul Welsh Coaching. 1:1 online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a></span></small>
+<small><span>&copy; 2026 Paul Welsh Coaching. Online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a></span></small>
 </div></footer>
 ${path === 'book-a-call/' ? '' : `<a class="btn sticky-cta" href="${r}book-a-call/">Book a free call ${arrow}</a>`}
 <script src="${r}assets/main.js" defer></script>
@@ -132,7 +132,7 @@ const cta = (r, headline = 'Start with a free call, not a <span class="hl">sales
 <section class="final pad">${arcs('', 9)}
 <div class="wrap"><h2 data-reveal>${headline}</h2><p data-reveal>${sub}</p><a class="btn" href="${r}book-a-call/" data-reveal>${btn} ${arrow}</a></div></section>`;
 
-const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Paul Welsh Coaching', url: SITE + '/', logo: SITE + '/assets/logo-dark.png', description: '1:1 online strength and calisthenics coaching, built for people starting out.' };
+const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Paul Welsh Coaching', url: SITE + '/', logo: SITE + '/assets/logo-dark.png', description: 'Online strength and calisthenics coaching, built for people starting out.' };
 
 /* ------------------------------ HOME ------------------------------ */
 const stages = [
@@ -146,7 +146,7 @@ const stages = [
 write('', page({
   path: '', depth: 0,
   title: 'Online Strength & Calisthenics Coaching | Paul Welsh Coaching',
-  desc: '1:1 online strength and calisthenics coaching, ideal if you are new to training or starting again. Learn the technique, build the basics, progress at your pace.',
+  desc: 'Online strength and calisthenics coaching, ideal if you are new to training or starting again. Learn the technique, build the basics, progress at your pace.',
   ld: [org, faqLd(['cost', 'exp', 'online', 'diff'])],
   body: (r) => `
 <section class="hero">
@@ -154,9 +154,9 @@ ${arcs('', 10)}
 <div class="hero-photo"><img src="${r}assets/hero-handstand.jpg" alt="Paul holding a handstand on parallettes in a busy gym" width="2000" height="1126" fetchpriority="high"></div>
 <div class="wrap hero-inner">
 <h1>${words("Your first rep ~starts ~here.")}</h1>
-<p class="lede fade-in">1:1 online coaching in strength, calisthenics and mobility, with food that fits your life. Ideal if you are new to training or starting again: learn the technique, build the basics, and know exactly how to progress.</p>
+<p class="lede fade-in">Online coaching in strength, calisthenics and mobility, with food that fits your life. Ideal if you are new to training or starting again: learn the technique, build the basics, and know exactly how to progress.</p>
 <div class="hero-actions fade-in d2"><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a><a class="btn ghost" href="#path">Build Skills</a></div>
-<div class="hero-foot fade-in d2"><span>1:1 online coaching</span><span>Strength fundamentals</span><span>Beginner calisthenics</span><span>Practical nutrition</span></div>
+<div class="hero-foot fade-in d2"><span>Online coaching</span><span>Strength fundamentals</span><span>Beginner calisthenics</span><span>Practical nutrition</span></div>
 </div>
 </section>
 
@@ -234,12 +234,12 @@ ${cta(r)}`,
 write('coaching', page({
   path: 'coaching/', depth: 1,
   title: 'Online Strength & Calisthenics Coaching | Paul Welsh Coaching',
-  desc: '1:1 remote coaching in strength, calisthenics, mobility and nutrition, ideal if you are new to training or starting again. See what is included.',
+  desc: 'Online coaching in strength, calisthenics, mobility and nutrition, ideal if you are new to training or starting again. See what is included.',
   ld: [org, faqLd(['involve', 'cost', 'busy', 'social', 'call', 'kit', 'often', 'cancel'])],
   body: (r) => `
 <section class="page-hero">${arcs('', 9)}
 <div class="wrap"><h1>Coaching built for your <span class="hl">first rep</span>, not your fiftieth</h1>
-<p class="lede">Strength, calisthenics, mobility and food guidance that fits a real schedule. Delivered 1:1, remotely, with a coach who answers.</p>
+<p class="lede">Strength, calisthenics, mobility and food guidance that fits a real schedule. Delivered remotely, with a coach who answers.</p>
 <a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div></section>
 
 
@@ -320,7 +320,7 @@ write('about', page({
 <div><dt>Qualified</dt><dd>Level 2 and 3 Personal Training</dd></div>
 <div><dt>Training for</dt><dd>10+ years</dd></div>
 <div><dt>Calisthenics</dt><dd>3 years and counting</dd></div>
-<div><dt>Coaching</dt><dd>1:1, online</dd></div>
+<div><dt>Coaching</dt><dd>Online</dd></div>
 </dl>
 </aside>
 </div>

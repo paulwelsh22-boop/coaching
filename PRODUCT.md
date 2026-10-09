@@ -1,6 +1,6 @@
 # Paul Welsh Coaching: product truth
 
-**What it is.** 1:1 online coaching in strength, beginner calisthenics, mobility and practical nutrition. Coach: Paul (Level 2 and 3 PT, 10+ years training, based in Spain), fully remote, clients anywhere.
+**What it is.** Online coaching in strength, beginner calisthenics, mobility and practical nutrition. Coach: Paul (Level 2 and 3 PT, 10+ years training, based in Spain), fully remote, clients anywhere.
 
 **Audience.** Adults of any age starting out: new to training, starting again, or training but lacking structure. Wary of being sold to. Targeted at beginners without saying "only beginners". Paul has no clients yet; the site launches his PT career, so do not imply client history.
 
