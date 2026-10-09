@@ -662,3 +662,11 @@ main > section:not(:first-child):not([class*="light"]):not(.bleed):not(.final):n
 .footer .legal button { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; }
 .footer .legal button:hover { color: var(--paper); }
 .legal-doc code { background: rgba(193, 213, 225, 0.12); padding: 2px 7px; border-radius: 6px; font-size: 0.9em; }
+
+/* Book a call: message on the page, no white box */
+.book-main h2 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); margin-bottom: 18px; }
+.book-main .lede { margin-bottom: 32px; }
+.book-facts { list-style: none; margin: 32px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.book-facts li { border: 1px solid var(--line-strong); border-radius: 4px; padding: 7px 14px; font-size: 0.875rem; font-weight: 500; color: var(--ice); }
+.book-alt { margin: 28px 0 0; color: var(--ice-dim); font-size: 0.9375rem; }
+.book-alt a { color: var(--paper); }

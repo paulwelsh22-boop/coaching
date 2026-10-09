@@ -434,7 +434,7 @@ write('book-a-call', page({
 <div class="wrap"><h1 style="max-width:16ch">Let's talk it through. <span class="hl">No pressure, no pitch.</span></h1>
 <p class="lede">Fifteen minutes to talk about where you are now, what you want, and whether Paul Welsh Coaching is a fit. If it's not, I'll tell you.</p></div></section>
 <section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap book-grid">
-<div class="cal"><div><h3>Choose a time that suits you</h3><p>Pick a 15 minute slot in my calendar. It opens in a new tab, and you will get a confirmation by email. Prefer to write? Email <a href="mailto:${EMAIL}">${EMAIL}</a>.</p><a class="btn" href="${BOOKING_URL}" target="_blank" rel="noopener">Choose a time ${arrow}</a></div></div>
+<div class="book-main"><h2>Choose a time that suits you</h2><p class="lede">Pick a 15 minute slot in my calendar. It opens in a new tab, and you will get a confirmation by email.</p><a class="btn" href="${BOOKING_URL}" target="_blank" rel="noopener">Choose a time ${arrow}</a><ul class="book-facts"><li>15 minutes</li><li>Free, no obligation</li><li>Online</li></ul><p class="book-alt">Prefer to write? Email <a href="mailto:${EMAIL}">${EMAIL}</a>.</p></div>
 <div><div class="faq-list" style="border-color:var(--line)">${faqHtml(['know', 'oblig', 'away'])}</div></div>
 </div></section>`,
 }));
