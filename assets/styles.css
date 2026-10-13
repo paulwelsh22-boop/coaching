@@ -671,12 +671,17 @@ main > section:not(:first-child):not([class*="light"]):not(.bleed):not(.final):n
 .book-alt { margin: 28px 0 0; color: var(--ice-dim); font-size: 0.9375rem; }
 .book-alt a { color: var(--paper); }
 
-/* About: portrait + qualifications stacked on the right */
-.about-right { grid-column: 9 / span 4; display: grid; gap: 14px; }
-.about-portrait { aspect-ratio: 4 / 5; border-radius: 20px; background: var(--black) var(--img) 14.7% 45% / 235% auto no-repeat; filter: grayscale(1) contrast(1.08); border: 1px solid rgba(193, 213, 225, 0.16); }
-.about-right .quals { grid-column: auto; padding: 22px 24px; }
-.about-right .quals dl { grid-template-columns: 1fr 1fr; gap: 18px 20px; }
-.about-right .quals dl div { border-top: 0; padding: 0; }
-.about-right .quals dl div:first-child, .about-right .quals dl div:last-child { padding: 0; }
-.about-right .quals dd { font-size: 1.0625rem; }
-@media (max-width: 900px) { .about-right { margin-top: 32px; max-width: 420px; } }
+/* About hero: portrait photo on the right, like the home page */
+.about-hero { min-height: min(88svh, 780px); display: grid; align-items: end; }
+.about-hero .wrap { padding-bottom: clamp(8px, 2vw, 24px); }
+.about-hero h1 { max-width: 12ch; }
+.about-photo-hero { width: min(54%, 760px); background: var(--black) var(--img) 14.7% 35% / 235% auto no-repeat; filter: grayscale(1) contrast(1.08); }
+@media (max-width: 900px) {
+  .about-hero { min-height: 100svh; }
+  .about-photo-hero { background-size: 270% auto; background-position: 14.7% 30%; }
+}
+.about-photo-hero { background-position: 14.7% 24%; }
+.about-photo-hero::before { background: linear-gradient(90deg, var(--ink) 0%, rgba(21, 37, 49, 0.85) 22%, rgba(21, 37, 49, 0.3) 48%, rgba(21, 37, 49, 0) 70%), linear-gradient(0deg, var(--ink) 0%, rgba(21, 37, 49, 0) 26%), linear-gradient(180deg, rgba(21, 37, 49, 0.7) 0%, rgba(21, 37, 49, 0) 20%); }
+@media (max-width: 900px) { .about-photo-hero { background-position: 14.7% 22%; } }
+.about-photo-hero { -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%); mask-image: linear-gradient(90deg, transparent 0%, #000 38%); }
+@media (max-width: 900px) { .about-photo-hero { -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 55%, transparent 100%); } }

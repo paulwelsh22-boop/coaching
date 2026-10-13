@@ -305,7 +305,8 @@ write('about', page({
   desc: 'Meet Paul, a Level 2 and 3 qualified personal trainer with over 10 years of training experience, coaching strength and calisthenics online.',
   ld: [org],
   body: (r) => `
-<section class="page-hero">${arcs('', 9)}
+<section class="page-hero about-hero">${arcs('', 9)}
+<div class="hero-photo about-photo-hero" role="img" aria-label="Paul in the gym, standing in front of a mirror" style="--img:url(${r}assets/about-portrait.jpg)"></div>
 <div class="wrap"><h1>Hi, I'm Paul. I'll help you <span class="hl">start, and keep going.</span></h1>
 <a class="btn" href="${r}book-a-call/">Let's talk ${arrow}</a></div></section>
 
@@ -318,15 +319,14 @@ write('about', page({
 <p data-reveal>Now, in my mid 30s, I care as much about moving well and recovering properly as I do about getting stronger. Still playing, still progressing, and proof that you can start strength training and calisthenics at any age.</p>
 <p data-reveal>That's why I do this. Starting, or starting again, is the hardest part. I want to make it feel possible, and fun.</p>
 </div>
-<div class="about-right" data-reveal><div class="about-portrait" role="img" aria-label="Paul in the gym, standing in front of a mirror" style="--img:url(${r}assets/about-portrait.jpg)"></div>
-<aside class="quals glass" aria-label="Paul at a glance">
+<aside class="quals glass" data-reveal aria-label="Paul at a glance">
 <dl>
 <div><dt>Qualified</dt><dd>Level 2 and 3 Personal Training</dd></div>
 <div><dt>Training for</dt><dd>10+ years</dd></div>
 <div><dt>Calisthenics</dt><dd>3 years and counting</dd></div>
 <div><dt>Coaching</dt><dd>Online</dd></div>
 </dl>
-</aside></div>
+</aside>
 </div>
 </section>
 
