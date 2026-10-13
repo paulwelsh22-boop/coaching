@@ -240,7 +240,8 @@ write('coaching', page({
   desc: 'Online coaching in strength, calisthenics, mobility and nutrition, ideal if you are new to training or starting again. See what is included.',
   ld: [org, faqLd(['involve', 'cost', 'busy', 'social', 'call', 'kit', 'often', 'cancel'])],
   body: (r) => `
-<section class="page-hero">${arcs('', 9)}
+<section class="page-hero about-hero coaching-hero">${arcs('', 9)}
+<div class="hero-photo coaching-photo-hero"><img src="${r}assets/coaching-hero.jpg" alt="Paul hanging from gymnastic rings with his legs held straight out in front, in a busy gym" width="941" height="1672" fetchpriority="high"></div>
 <div class="wrap"><h1>Coaching built for your <span class="hl">first rep</span>, not your fiftieth</h1>
 <p class="lede">Strength, calisthenics, mobility and food guidance that fits a real schedule. Delivered remotely, with a coach who answers.</p>
 <a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div></section>

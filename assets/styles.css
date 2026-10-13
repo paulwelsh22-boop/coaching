@@ -685,3 +685,13 @@ main > section:not(:first-child):not([class*="light"]):not(.bleed):not(.final):n
 @media (max-width: 900px) { .about-photo-hero { background-position: 14.7% 22%; } }
 .about-photo-hero { -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%); mask-image: linear-gradient(90deg, transparent 0%, #000 38%); }
 @media (max-width: 900px) { .about-photo-hero { -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 55%, transparent 100%); } }
+
+/* Coaching hero: photo on the right, same treatment as About */
+.coaching-hero h1 { max-width: 13ch; }
+.coaching-photo-hero { width: min(54%, 760px); -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%); mask-image: linear-gradient(90deg, transparent 0%, #000 38%); }
+.coaching-photo-hero img { object-position: 50% 30%; filter: contrast(1.05) saturate(0.85); }
+.coaching-photo-hero::before { background: linear-gradient(90deg, var(--ink) 0%, rgba(21, 37, 49, 0.85) 22%, rgba(21, 37, 49, 0.3) 48%, rgba(21, 37, 49, 0) 70%), linear-gradient(0deg, var(--ink) 0%, rgba(21, 37, 49, 0) 26%), linear-gradient(180deg, rgba(21, 37, 49, 0.7) 0%, rgba(21, 37, 49, 0) 20%); }
+@media (max-width: 900px) {
+  .coaching-photo-hero { -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 55%, transparent 100%); }
+  .coaching-photo-hero img { object-position: 50% 42%; }
+}
