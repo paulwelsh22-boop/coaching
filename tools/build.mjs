@@ -53,7 +53,7 @@ const favicon = 'assets/favicon.png';
 
 /* ------------------------------ FAQ data ------------------------------ */
 const FAQ = {
-  cost: ['How much does online coaching with Paul Welsh Coaching cost?', SHOW_PRICES ? 'Plans start from £80 a month, or £100 a month with nutrition guidance. Your first call is free, with no obligation.' : 'Coaching is a monthly Membership, with or without nutrition guidance. You will hear the exact price on your free call, before you commit to anything.'],
+  cost: ['How much does online coaching cost?', SHOW_PRICES ? 'Plans start from £80 a month, or £100 a month with nutrition guidance. Your first call is free, with no obligation.' : 'Coaching is a monthly Membership, with or without nutrition guidance. You will hear the exact price on your free call, before you commit to anything.'],
   exp: ['Do I need any experience to start?', 'No. Paul Welsh Coaching is a great place to start, whether you have never trained, are coming back after a break, or already train and want more structure. No gym background, no calisthenics experience and no starting strength required. If you cannot yet do a push-up or a pull-up, that is the point.'],
   online: ['Is this in-person or online?', 'Fully online and remote. Coaching happens through your training app and WhatsApp, so it works wherever you are in the world.'],
   diff: ['How is this different from a normal personal trainer?', 'Most personal trainers and calisthenics accounts assume you already have a training base. Paul Welsh Coaching starts from where you are: learning how to move properly, a clear way to progress, and food guidance that does not assume you already know what you are doing.'],
@@ -318,14 +318,15 @@ write('about', page({
 <p data-reveal>Now, in my mid 30s, I care as much about moving well and recovering properly as I do about getting stronger. Still playing, still progressing, and proof that you can start strength training and calisthenics at any age.</p>
 <p data-reveal>That's why I do this. Starting, or starting again, is the hardest part. I want to make it feel possible, and fun.</p>
 </div>
-<aside class="quals glass" data-reveal aria-label="Paul at a glance">
+<div class="about-right" data-reveal><div class="about-portrait" role="img" aria-label="Paul in the gym, standing in front of a mirror" style="--img:url(${r}assets/about-portrait.jpg)"></div>
+<aside class="quals glass" aria-label="Paul at a glance">
 <dl>
 <div><dt>Qualified</dt><dd>Level 2 and 3 Personal Training</dd></div>
 <div><dt>Training for</dt><dd>10+ years</dd></div>
 <div><dt>Calisthenics</dt><dd>3 years and counting</dd></div>
 <div><dt>Coaching</dt><dd>Online</dd></div>
 </dl>
-</aside>
+</aside></div>
 </div>
 </section>
 

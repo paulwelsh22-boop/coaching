@@ -670,3 +670,13 @@ main > section:not(:first-child):not([class*="light"]):not(.bleed):not(.final):n
 .book-facts li { border: 1px solid var(--line-strong); border-radius: 4px; padding: 7px 14px; font-size: 0.875rem; font-weight: 500; color: var(--ice); }
 .book-alt { margin: 28px 0 0; color: var(--ice-dim); font-size: 0.9375rem; }
 .book-alt a { color: var(--paper); }
+
+/* About: portrait + qualifications stacked on the right */
+.about-right { grid-column: 9 / span 4; display: grid; gap: 14px; }
+.about-portrait { aspect-ratio: 4 / 5; border-radius: 20px; background: var(--black) var(--img) 14.7% 45% / 235% auto no-repeat; filter: grayscale(1) contrast(1.08); border: 1px solid rgba(193, 213, 225, 0.16); }
+.about-right .quals { grid-column: auto; padding: 22px 24px; }
+.about-right .quals dl { grid-template-columns: 1fr 1fr; gap: 18px 20px; }
+.about-right .quals dl div { border-top: 0; padding: 0; }
+.about-right .quals dl div:first-child, .about-right .quals dl div:last-child { padding: 0; }
+.about-right .quals dd { font-size: 1.0625rem; }
+@media (max-width: 900px) { .about-right { margin-top: 32px; max-width: 420px; } }
