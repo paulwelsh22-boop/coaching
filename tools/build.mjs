@@ -47,7 +47,7 @@ const ICONS = {
   flex: `<path d="M12 3v18M3 12h18M12 3l-3 3M12 3l3 3M12 21l-3-3M12 21l3-3M3 12l3-3M3 12l3 3M21 12l-3-3M21 12l-3 3"/>`,plan: `<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12h6M9 16h4"/>`, tech: `<circle cx="12" cy="5" r="2"/><path d="M12 8v6m0 0-3 6m3-6 3 6M7 11l5-2 5 2"/>`, prog: `<path d="M3 20h4v-4h4v-4h4V8h4V4"/>`, video: `<rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/>`, food: `<path d="M4 12h16a8 8 0 0 1-16 0z"/><path d="M9 8c0-2 1.5-2 1.5-4M14 8c0-2 1.5-2 1.5-4"/>`, msg: `<path d="M4 5h16v11H9l-5 4z"/>`, chart: `<path d="M4 4v16h16M8 15l4-4 3 3 5-6"/>`};
 const ico = (k) => `<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg></span>`;
 const icoLg = (k) => ico(k).replace('class="ico"', 'class="ico lg"');
-const markImg = (r) => `<img src="${r}assets/mark-dark.png" alt="" width="104" height="104" loading="lazy">`;
+const markImg = (r) => `<img src="${r}assets/paul-welsh-coaching-mark-dark.png" alt="" width="104" height="104" loading="lazy">`;
 
 const favicon = 'assets/favicon.png';
 
@@ -88,7 +88,7 @@ function page({ path, depth, title, desc, body, ld = [], hero = false, ogType = 
 <meta name="description" content="${desc}">
 ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${url}">`}
 <meta name="theme-color" content="#152531">
-<meta property="og:type" content="${ogType}"><meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE}/assets/hero-handstand.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="${ogType}"><meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE}/assets/paul-welsh-handstand-calisthenics-coach.jpg"><meta name="twitter:card" content="summary_large_image">
 ${GA_ID ? `<meta name="ga-id" content="${GA_ID}">` : ''}
 <link rel="icon" type="image/png" href="${r}${favicon}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,7 +107,7 @@ FORM: Dark athletic brand site, brand-pinned, seed key n/a (palette/type pinned 
 -->` : ''}
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="wrap">
-<a class="brand" href="${r || './'}" aria-label="Paul Welsh Coaching, home"><img src="${r}assets/logo-light.png" alt="Paul Welsh Coaching" width="149" height="34"></a>
+<a class="brand" href="${r || './'}" aria-label="Paul Welsh Coaching, home"><img src="${r}assets/paul-welsh-coaching-logo-light.png" alt="Paul Welsh Coaching" width="149" height="34"></a>
 <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span></button>
 <ul class="nav-links" id="nav-links">${nav}<li><a class="btn sm" href="${r}book-a-call/">Book a free call</a></li></ul>
 </div></header>
@@ -115,7 +115,7 @@ FORM: Dark athletic brand site, brand-pinned, seed key n/a (palette/type pinned 
 ${body(r)}
 </main>
 <footer class="footer"><div class="wrap">
-<div class="brand"><img src="${r}assets/logo-stacked-light.png" alt="Paul Welsh Coaching" width="139" height="96"><p>Movement for real life. Strength, calisthenics, mobility and practical nutrition, online.<br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>
+<div class="brand"><img src="${r}assets/paul-welsh-coaching-logo-stacked-light.png" alt="Paul Welsh Coaching" width="139" height="96"><p>Movement for real life. Strength, calisthenics, mobility and practical nutrition, online.<br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>
 <nav aria-label="Footer"><a href="${r}coaching/">Coaching</a><a href="${r}about/">About</a><a href="${r}blog/">Blog</a><a href="${r}faq/">FAQ</a><a href="${r}book-a-call/">Contact</a></nav>
 <small><span>&copy; 2026 Paul Welsh Coaching. Online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a>${GA_ID ? '<button type="button" data-cookie-settings>Cookie settings</button>' : ''}</span></small>
 </div></footer>
@@ -135,7 +135,7 @@ const cta = (r, headline = 'Start with a free call, not a <span class="hl">sales
 <section class="final pad">${arcs('', 9)}
 <div class="wrap"><h2 data-reveal>${headline}</h2><p data-reveal>${sub}</p><a class="btn" href="${r}book-a-call/" data-reveal>${btn} ${arrow}</a></div></section>`;
 
-const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Paul Welsh Coaching', email: EMAIL, url: SITE + '/', logo: SITE + '/assets/logo-dark.png', description: 'Online strength and calisthenics coaching, built for people starting out.' };
+const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Paul Welsh Coaching', email: EMAIL, url: SITE + '/', logo: SITE + '/assets/paul-welsh-coaching-logo-dark.png', description: 'Online strength and calisthenics coaching, built for people starting out.' };
 
 /* ------------------------------ HOME ------------------------------ */
 const stages = [
@@ -154,7 +154,7 @@ write('', page({
   body: (r) => `
 <section class="hero">
 ${arcs('', 10)}
-<div class="hero-photo"><img src="${r}assets/hero-handstand.jpg" alt="Paul holding a handstand on parallettes in a busy gym" width="2000" height="1126" fetchpriority="high"></div>
+<div class="hero-photo"><img src="${r}assets/paul-welsh-handstand-calisthenics-coach.jpg" alt="Paul Welsh, online calisthenics coach, holding a handstand on parallettes in a busy gym" width="2000" height="1126" fetchpriority="high"></div>
 <div class="wrap hero-inner">
 <h1>${words("Your first rep ~starts ~here.")}</h1>
 <p class="lede fade-in">Online coaching in strength, calisthenics and mobility, with food that fits your life. Ideal if you are new to training or starting again: learn the technique, build the basics, and know exactly how to progress.</p>
@@ -197,7 +197,7 @@ ${arcs('', 10)}
 </section>
 
 <section class="bleed includes">
-<div class="bleed-bg" data-parallax aria-hidden="true"><img src="${r}assets/lsit.jpg" alt="" width="2000" height="1126" loading="lazy"></div>
+<div class="bleed-bg" data-parallax><img src="${r}assets/l-sit-calisthenics-parallettes-training.jpg" alt="Paul Welsh holding an L-sit on parallettes during calisthenics training" width="2000" height="1126" loading="lazy"></div>
 <div class="wrap">
 <div class="bleed-head"><h2 data-reveal>What coaching actually <span class="hl">includes</span></h2>
 <p data-reveal>Most people don't need more motivation. They need a plan that fits their week, and someone in their corner.</p>
@@ -241,7 +241,7 @@ write('coaching', page({
   ld: [org, faqLd(['involve', 'cost', 'busy', 'social', 'call', 'kit', 'often', 'cancel'])],
   body: (r) => `
 <section class="page-hero about-hero coaching-hero">${arcs('', 9)}
-<div class="hero-photo coaching-photo-hero"><img src="${r}assets/coaching-hero.jpg" alt="Paul hanging from gymnastic rings with his legs held straight out in front, in a busy gym" width="941" height="1672" fetchpriority="high"></div>
+<div class="hero-photo coaching-photo-hero"><img src="${r}assets/paul-welsh-gymnastic-rings-l-sit-calisthenics.jpg" alt="Paul Welsh hanging from gymnastic rings with his legs held out in front, a calisthenics skill, in a busy gym" width="720" height="1280" fetchpriority="high"></div>
 <div class="wrap"><h1>Coaching built for your <span class="hl">first rep</span>, not your fiftieth</h1>
 <p class="lede">Strength, calisthenics, mobility and food guidance that fits a real schedule. Delivered remotely, with a coach who answers.</p>
 <a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div></section>
@@ -272,10 +272,10 @@ write('coaching', page({
 <section class="pad"><div class="wrap">
 <h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">What's <span class="hl">included</span></h2>
 <div class="inc-cards">
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/inc-app.jpg);--pos:30% 55%;--size:cover" aria-hidden="true"></div><h3>Your plan, in your app</h3><p>A personalised plan in your own branded training app, with a video demo of every exercise.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/inc-call.jpg);--pos:50% 50%;--size:cover" aria-hidden="true"></div><h3>Regular check-ins</h3><p>Regular online check-ups, alongside advice by text whenever you need it.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/inc-meal.jpg);--pos:50% 50%;--size:cover" aria-hidden="true"></div><h3>Food guidance</h3><p>Simple, practical and non-restrictive. Add it to any plan.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/inc-muscle.jpg);--pos:50% 38%;--size:cover" aria-hidden="true"></div><h3>Progress tracking</h3><p>Your training in one place, so your first rep is something you can point to.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/online-training-plan-in-coaching-app.jpg);--pos:30% 55%;--size:cover" role="img" aria-label="Person using a training app on their phone to follow an online workout plan"></div><h3>Your plan, in your app</h3><p>A personalised plan in your own branded training app, with a video demo of every exercise.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/online-coaching-video-call-check-in.jpg);--pos:50% 50%;--size:cover" role="img" aria-label="A man on a video call with his online coach for a regular check-in"></div><h3>Regular check-ins</h3><p>Regular online check-ups, alongside advice by text whenever you need it.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/healthy-chicken-rice-bowl-nutrition-guidance.jpg);--pos:50% 50%;--size:cover" role="img" aria-label="A healthy rice bowl with chicken and vegetables, an example of practical nutrition guidance"></div><h3>Food guidance</h3><p>Simple, practical and non-restrictive. Add it to any plan.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/muscular-arm-close-up-progress-tracking.jpg);--pos:50% 38%;--size:cover" role="img" aria-label="Close-up of a muscular arm, representing strength progress tracking"></div><h3>Progress tracking</h3><p>Your training in one place, so your first rep is something you can point to.</p></article>
 </div>
 </div></section>
 
@@ -307,12 +307,12 @@ write('about', page({
   ld: [org],
   body: (r) => `
 <section class="page-hero about-hero">${arcs('', 9)}
-<div class="hero-photo about-photo-hero" role="img" aria-label="Paul in the gym, standing in front of a mirror" style="--img:url(${r}assets/about-portrait.jpg)"></div>
+<div class="hero-photo about-photo-hero" role="img" aria-label="Paul Welsh, qualified online personal trainer, standing in front of a gym mirror" style="--img:url(${r}assets/paul-welsh-personal-trainer-portrait.jpg)"></div>
 <div class="wrap"><h1>Hi, I'm Paul. I'll help you <span class="hl">start, and keep going.</span></h1>
 <a class="btn" href="${r}book-a-call/">Let's talk ${arrow}</a></div></section>
 
 <section class="bleed about-bleed">
-<div class="bleed-bg" data-parallax aria-hidden="true"><img src="${r}assets/curl.jpg" alt="" width="2000" height="1126" loading="eager"></div>
+<div class="bleed-bg" data-parallax><img src="${r}assets/paul-welsh-barbell-curl-strength-training.jpg" alt="Paul Welsh, online personal trainer, doing a barbell preacher curl in the gym" width="2000" height="1126" loading="eager"></div>
 <div class="wrap about-grid">
 <div class="about-copy">
 <p class="lede" data-reveal>I've trained for over ten years, but three years ago I was introduced to calisthenics.</p>
@@ -356,7 +356,7 @@ write('blog', page({
 <div class="wrap"><h1>Less guesswork. <span class="hl">More getting started.</span></h1><p class="lede">Straightforward guides to strength, calisthenics and the questions everyone has at the beginning.</p></div></section>
 <section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap">
 ${posts.map(([t, sl]) => `<a class="featured" href="${r}blog/${sl}/" data-reveal>
-<div class="f-img"><img src="${r}assets/blog-pullup.jpg" alt="A man seen from behind doing a pull-up in a dark gym" width="1067" height="1600" loading="lazy" style="object-position:50% 40%"></div>
+<div class="f-img"><img src="${r}assets/beginner-pull-up-progression-dark-gym.jpg" alt="Man doing a pull-up, seen from behind in a dark gym, for a beginner pull-up progression guide" width="1067" height="1600" loading="lazy" style="object-position:50% 40%"></div>
 <div class="f-body"><p class="f-meta"><span>Beginner guide</span><span>3 min read</span><span>Updated ${UPDATED}</span></p>
 <h2>${t}</h2>
 <p class="f-ex">There is no single timeline for a first pull-up. Here is what affects it, the building blocks that get you there, and why smaller progress still counts.</p>
