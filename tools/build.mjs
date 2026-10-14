@@ -117,7 +117,7 @@ ${body(r)}
 </main>
 <footer class="footer"><div class="wrap">
 <div class="brand"><img src="${r}assets/paul-welsh-coaching-logo-stacked-light.png" alt="Paul Welsh Coaching" width="139" height="96"><p>Movement for real life. Strength, calisthenics, movement and nutrition guidance, online.<br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>
-<nav aria-label="Footer"><a href="${r}coaching/">Coaching</a><a href="${r}about/">About</a><a href="${r}blog/">Blog</a><a href="${r}faq/">FAQ</a><a href="${r}book-a-call/">Contact</a></nav>
+<nav aria-label="Footer"><a href="${r}coaching/">Coaching</a><a href="${r}about/">About</a><a href="${r}blog/">Blog</a><a href="${r}faq/">FAQ</a><a href="${r}book-a-call/">Contact</a><a href="https://www.instagram.com/paulwelshcoaching" target="_blank" rel="noopener me">Instagram</a></nav>
 <small><span>&copy; 2026 Paul Welsh Coaching. Online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a>${GA_ID ? '<button type="button" data-cookie-settings>Cookie settings</button>' : ''}</span></small>
 </div></footer>
 ${path === 'book-a-call/' ? '' : `<a class="btn sticky-cta" href="${r}book-a-call/">Book a free call ${arrow}</a>`}
@@ -136,7 +136,7 @@ const cta = (r, headline = 'Start with a free call, not a <span class="hl">sales
 <section class="final pad">${arcs('', 9)}
 <div class="wrap"><h2 data-reveal>${headline}</h2><p data-reveal>${sub}</p><a class="btn" href="${r}book-a-call/" data-reveal>${btn} ${arrow}</a></div></section>`;
 
-const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Paul Welsh Coaching', email: EMAIL, url: SITE + '/', logo: SITE + '/assets/paul-welsh-coaching-logo-dark.png', description: 'Online strength and calisthenics coaching, built for people starting out.' };
+const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Paul Welsh Coaching', email: EMAIL, url: SITE + '/', logo: SITE + '/assets/paul-welsh-coaching-logo-dark.png', description: 'Online strength and calisthenics coaching, built for people starting out.', sameAs: ['https://www.instagram.com/paulwelshcoaching'] };
 
 /* ------------------------------ HOME ------------------------------ */
 const stages = [
