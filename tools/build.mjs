@@ -1,6 +1,7 @@
 // Generates the static site into ../ . Run: node tools/build.mjs
 // Change SITE and BOOKING_URL once your domain and booking link are known, then re-run.
 import { mkdirSync, writeFileSync } from 'node:fs';
+import { POSTS } from './posts.mjs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -331,6 +332,7 @@ ${cta(r, 'Curious if this is a fit?', 'Book a free call and ask me anything.', '
 }));
 
 /* ------------------------------ BLOG ------------------------------ */
+const readTime = (p) => Math.max(2, Math.round((p.answer + p.sections.map((x) => x[1]).join(' ')).replace(/<[^>]+>/g, ' ').split(/\s+/).length / 200));
 const posts = [
   ['How Long Does It Take to Get Your First Pull-Up? A Beginner\'s Timeline', 'first-pull-up-beginner-timeline'],
 ];
@@ -351,11 +353,17 @@ ${posts.map(([t, sl]) => `<a class="featured" href="${r}blog/${sl}/" data-reveal
 <span class="text-link">Read the guide ${arrow}</span></div></a>`).join('')}
 </div></section>
 <section class="pad" style="padding-top:clamp(56px,7vw,100px)"><div class="wrap">
-<h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">New guides are on the way</h2>
-<div class="cols-2" data-reveal>
-<div class="fit yes"><h3>What we will cover</h3><ul><li>Learning the basic movements properly</li><li>How to progress without rushing</li><li>Simple food for people who train</li></ul></div>
-<div class="fit no"><h3>Want a question answered?</h3><p style="color:var(--ice-dim)">Ask it on a free call and it might become the next guide.</p><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
-</div></div></section>
+<h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">More guides</h2>
+<div class="post-grid">
+${POSTS.map((p) => `<a class="post-card" href="${r}blog/${p.slug}/" data-reveal>
+<div class="f-img"><img src="${r}assets/${p.img}" alt="${p.alt}" width="1067" height="800" loading="lazy" style="object-position:${p.pos}"></div>
+<p class="f-meta"><span>${p.cat}</span><span>${readTime(p)} min read</span></p>
+<h3>${p.h1.replace(/<[^>]+>/g, '')}</h3>
+<p class="f-ex">${p.excerpt}</p>
+<span class="text-link">Read the guide ${arrow}</span></a>`).join('')}
+</div>
+<div class="mid-cta" data-reveal><p>Want a question answered? Ask it on a free call and it might become the next guide.</p><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
+</div></section>
 <section class="light pad"><div class="wrap faq-wrap"><h2 data-reveal>Quick answers while you read</h2><div class="faq-list" data-reveal>${faqHtml(['exp', 'online', 'cost'])}</div></div></section>`,
 }));
 
@@ -398,6 +406,31 @@ ${articleFaq.map(([q, a]) => `<div class="qa"><h3>${q}</h3><p>${a}</p></div>`).j
 <div class="article-end"><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
 </div></div></article>`,
 }));
+
+/* ------------------------------ BLOG POSTS ------------------------------ */
+const postTitles = { 'first-pull-up-beginner-timeline': 'How long does it take to get your first pull-up?', ...Object.fromEntries(POSTS.map((p) => [p.slug, p.title])) };
+for (const p of POSTS) {
+  write(`blog/${p.slug}`, page({
+    path: `blog/${p.slug}/`, depth: 2, ogType: 'article',
+    title: p.title, desc: p.desc,
+    ld: [org,
+      { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.desc, image: `${SITE}/assets/${p.img}`, author: { '@type': 'Person', name: 'Paul', worksFor: { '@type': 'Organization', name: 'Paul Welsh Coaching' } }, publisher: { '@type': 'Organization', name: 'Paul Welsh Coaching' }, datePublished: '2026-10-14', dateModified: '2026-10-14', mainEntityOfPage: `${SITE}/blog/${p.slug}/` },
+      faqLd([], p.faq)],
+    body: (r) => `
+<section class="page-hero" style="padding-bottom:40px">${arcs('', 8)}
+<div class="wrap"><div class="article"><h1 style="max-width:18ch;font-size:clamp(2.25rem,5vw,4.25rem)">${p.h1}</h1>
+<p class="meta">By Paul, Paul Welsh Coaching &middot; ${readTime(p)} min read &middot; Last updated: ${UPDATED}</p></div></div></section>
+<article class="pad" style="padding-top:24px"><div class="wrap"><div class="article">
+<p class="answer">${p.answer}</p>
+${p.sections.map(([h, html]) => `<h2>${h}</h2>\n${html.replaceAll('{r}', r)}`).join('\n')}
+<h2>Common questions</h2>
+${p.faq.map(([q, a]) => `<div class="qa"><h3>${q}</h3><p>${a}</p></div>`).join('')}
+<h2>Keep reading</h2>
+<ul class="read-more">${p.related.map((sl) => `<li><a href="${r}blog/${sl}/">${postTitles[sl]}</a></li>`).join('')}</ul>
+<div class="article-end"><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
+</div></div></article>`,
+  }));
+}
 
 /* ------------------------------ FAQ ------------------------------ */
 const groups = [['Getting started', ['exp', 'loss', 'call', 'know', 'oblig']], ['Pricing and logistics', ['cost', 'involve', 'busy', 'online', 'away', 'cancel', 'often']], ['Training and food', ['diff', 'kit', 'social']]];
@@ -547,6 +580,6 @@ legalPage('health-disclaimer', 'Health Disclaimer', 'Important health and safety
 /* ------------------------------ robots + sitemap ------------------------------ */
 const bots = ['GPTBot', 'ChatGPT-User', 'PerplexityBot', 'ClaudeBot', 'anthropic-ai', 'Google-Extended', 'Bingbot'];
 writeFileSync(join(ROOT, 'robots.txt'), `User-agent: *\nAllow: /\n\n${bots.map((b) => `User-agent: ${b}\nAllow: /\n`).join('\n')}\nSitemap: ${SITE}/sitemap.xml\n`);
-const urls = ['', 'coaching/', 'about/', 'blog/', 'blog/first-pull-up-beginner-timeline/', 'faq/', 'book-a-call/', 'privacy/', 'terms/', 'cookies/', 'health-disclaimer/'];
+const urls = ['', 'coaching/', 'about/', 'blog/', 'blog/first-pull-up-beginner-timeline/', ...POSTS.map((p) => `blog/${p.slug}/`), 'faq/', 'book-a-call/', 'privacy/', 'terms/', 'cookies/', 'health-disclaimer/'];
 writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${SITE}/${u}</loc><lastmod>2026-10-09</lastmod></url>`).join('\n')}\n</urlset>\n`);
 console.log('built', urls.length, 'pages');
