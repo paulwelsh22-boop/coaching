@@ -61,7 +61,7 @@ const FAQ = {
   involve: ['What does online coaching involve?', 'A personalised training plan in an app, with a video demo of every exercise, regular check-ins to review how it is going, and direct contact with me between check-ins. Your plan is adjusted as you get stronger.'],
   loss: ['Is this just for weight loss?', 'No. People start for lots of reasons: getting stronger, learning to move well, building confidence, or simply having a routine they can stick to. We set your goal on the first call and build the plan around it.'],
   busy: ['Will this work around a busy schedule?', 'Yes. The plan is built around the time you actually have, not an ideal week. Short, consistent sessions beat long ones you cannot keep up, so we start with what fits and build from there.'],
-  social: ['What about social events and eating out?', 'Food guidance is practical, not restrictive. You do not have to give up meals out or time with friends. We focus on simple habits you can keep up while still enjoying your life.'],
+  social: ['What about social events and eating out?', 'Nutrition guidance is practical, not restrictive. You do not have to give up meals out or time with friends. We focus on simple habits you can keep up while still enjoying your life.'],
   call: ['What happens after I book a call?', 'You will have a 15 minute call to talk through your goals and where you are now. If it is a fit, you get a plan built around your starting point and a start date.'],
   kit: ['Do I need equipment?', 'No. The early stages are designed around bodyweight and a pull-up bar. Equipment recommendations come later, only if they are useful.'],
   often: ['How often will we be in touch?', 'You get regular check-ins plus messaging between them, so you are never guessing whether you are doing it right.'],
@@ -115,7 +115,7 @@ FORM: Dark athletic brand site, brand-pinned, seed key n/a (palette/type pinned 
 ${body(r)}
 </main>
 <footer class="footer"><div class="wrap">
-<div class="brand"><img src="${r}assets/paul-welsh-coaching-logo-stacked-light.png" alt="Paul Welsh Coaching" width="139" height="96"><p>Movement for real life. Strength, calisthenics, mobility and practical nutrition, online.<br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>
+<div class="brand"><img src="${r}assets/paul-welsh-coaching-logo-stacked-light.png" alt="Paul Welsh Coaching" width="139" height="96"><p>Movement for real life. Strength, calisthenics, movement and nutrition guidance, online.<br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>
 <nav aria-label="Footer"><a href="${r}coaching/">Coaching</a><a href="${r}about/">About</a><a href="${r}blog/">Blog</a><a href="${r}faq/">FAQ</a><a href="${r}book-a-call/">Contact</a></nav>
 <small><span>&copy; 2026 Paul Welsh Coaching. Online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a>${GA_ID ? '<button type="button" data-cookie-settings>Cookie settings</button>' : ''}</span></small>
 </div></footer>
@@ -157,9 +157,9 @@ ${arcs('', 10)}
 <div class="hero-photo"><img src="${r}assets/paul-welsh-handstand-calisthenics-coach.jpg" alt="Paul Welsh, online calisthenics coach, holding a handstand on parallettes in a busy gym" width="2000" height="1126" fetchpriority="high"></div>
 <div class="wrap hero-inner">
 <h1>${words("Your first rep ~starts ~here.")}</h1>
-<p class="lede fade-in">Online coaching in strength, calisthenics and mobility, with food that fits your life. Ideal if you are new to training or starting again: learn the technique, build the basics, and know exactly how to progress.</p>
-<div class="hero-actions fade-in d2"><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a><a class="btn ghost" href="#path">Build Skills</a></div>
-<div class="hero-foot fade-in d2"><span>Online coaching</span><span>Strength fundamentals</span><span>Beginner calisthenics</span><span>Practical nutrition</span></div>
+<p class="lede fade-in">Online coaching in strength, calisthenics and movement, with nutrition guidance that fits your life. Ideal if you are new to training or starting again: learn the technique, build the basics, and know exactly how to progress.</p>
+<div class="hero-actions fade-in d2"><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
+<div class="hero-foot fade-in d2"><span>Online coaching</span><span>Strength fundamentals</span><span>Beginner calisthenics</span><span>Nutrition guidance</span></div>
 </div>
 </section>
 
@@ -206,7 +206,7 @@ ${arcs('', 10)}
 <article class="glass" data-reveal><h3>A plan built around where you are</h3><p>The fundamentals, sequenced so the first few weeks are genuinely achievable.</p></article>
 <article class="glass" data-reveal><h3>Technique you can trust</h3><p>Every movement taught step by step, with form feedback on your own videos.</p></article>
 <article class="glass" data-reveal><h3>A clear way to progress</h3><p>An easier and a harder version of every exercise, so you always know what is next.</p></article>
-<article class="glass" data-reveal><h3>Mobility, built in</h3><p>Warm-ups, better positions and recovery routines, so you move well and bounce back.</p></article>
+<article class="glass" data-reveal><h3>Movement, built in</h3><p>Warm-ups, better positions and recovery routines, so you move well and bounce back.</p></article>
 <article class="glass" data-reveal><h3>Food that fits real life</h3><p>Practical, no-fuss nutrition guidance. Not a meal plan you will abandon by Thursday.</p></article>
 <article class="glass" data-reveal><h3>Someone who answers</h3><p>Regular check-ins and direct messaging on WhatsApp, and I'm available when you need me.</p></article>
 </div>
@@ -237,13 +237,13 @@ ${cta(r)}`,
 write('coaching', page({
   path: 'coaching/', depth: 1,
   title: 'Online Strength & Calisthenics Coaching | Paul Welsh Coaching',
-  desc: 'Online coaching in strength, calisthenics, mobility and nutrition, ideal if you are new to training or starting again. See what is included.',
+  desc: 'Online coaching in strength, calisthenics, movement and nutrition guidance, ideal if you are new to training or starting again. See what is included.',
   ld: [org, faqLd(['involve', 'cost', 'busy', 'social', 'call', 'kit', 'often', 'cancel'])],
   body: (r) => `
 <section class="page-hero about-hero coaching-hero">${arcs('', 9)}
 <div class="hero-photo coaching-photo-hero"><img src="${r}assets/paul-welsh-gymnastic-rings-l-sit-calisthenics.jpg" alt="Paul Welsh hanging from gymnastic rings with his legs held out in front, a calisthenics skill, in a busy gym" width="720" height="1280" fetchpriority="high"></div>
 <div class="wrap"><h1>Coaching built for your <span class="hl">first rep</span>, not your fiftieth</h1>
-<p class="lede">Strength, calisthenics, mobility and food guidance that fits a real schedule. Delivered remotely, with a coach who answers.</p>
+<p class="lede">Strength, calisthenics, movement and nutrition guidance that fits a real schedule. Delivered remotely, with a coach who answers.</p>
 <a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div></section>
 
 
@@ -254,8 +254,8 @@ write('coaching', page({
 <div class="car" data-car tabindex="0" aria-label="Four parts of coaching, scroll sideways"><div class="car-track">
 <article class="part p1"><div>${icoLg('dumb')}<h3>Strength fundamentals</h3><p>Regular gym training, taught from the start.</p></div><ul class="chips"><li>Squat and hinge</li><li>Push and pull</li><li>Gym confidence</li></ul></article>
 <article class="part p2"><div>${icoLg('bar')}<h3>Beginner calisthenics</h3><p>Bodyweight skills, built step by step.</p></div><ul class="chips"><li>Push-ups and rows</li><li>Hangs and pull-ups</li><li>Body control</li></ul></article>
-<article class="part p3"><div>${icoLg('flex')}<h3>Mobility</h3><p>Move better for training, and recover well after it.</p></div><ul class="chips"><li>Warm-ups</li><li>Better positions</li><li>Recovery routines</li></ul></article>
-<article class="part p4"><div>${icoLg('food')}<h3>Food guidance</h3><p>Practical, not restrictive.</p></div><ul class="chips"><li>Easy meals</li><li>Eating to train</li><li>Nutrition plan</li></ul></article>
+<article class="part p3"><div>${icoLg('flex')}<h3>Movement quality</h3><p>Built into your sessions, not a separate programme. You learn to move well as you train.</p></div><ul class="chips"><li>Warm-ups</li><li>Better positions</li><li>Recovery routines</li></ul></article>
+<article class="part p4"><div>${icoLg('food')}<h3>Nutrition guidance</h3><p>Practical, not restrictive.</p></div><ul class="chips"><li>Easy meals</li><li>Eating to train</li><li>Nutrition plan</li></ul></article>
 </div></div>
 <div class="wrap"><div class="car-bar" aria-hidden="true"><span></span></div></div>
 </section>
@@ -267,6 +267,7 @@ write('coaching', page({
 <li data-reveal><h3>Tracking</h3><p>Your training lives in the app, so progress is something you can see.</p></li>
 <li data-reveal><h3>Accountability</h3><p>Check-ins and direct contact mean someone notices when you show up.</p></li>
 </ul>
+<div class="mid-cta" data-reveal><p>Not sure it is right for you? Talk it through with Paul first.</p><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
 </div></section>
 
 <section class="pad"><div class="wrap">
@@ -274,24 +275,11 @@ write('coaching', page({
 <div class="inc-cards">
 <article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/online-training-plan-in-coaching-app.jpg);--pos:30% 55%;--size:cover" role="img" aria-label="Person using a training app on their phone to follow an online workout plan"></div><h3>Your plan, in your app</h3><p>A personalised plan in your own branded training app, with a video demo of every exercise.</p></article>
 <article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/online-coaching-video-call-check-in-laptop.jpg);--pos:50% 35%;--size:cover" role="img" aria-label="Overhead view of a person on a laptop video call with their online coach, taking notes in a notebook"></div><h3>Regular check-ins</h3><p>Regular online check-ups, alongside advice by text whenever you need it.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/healthy-chicken-rice-bowl-nutrition-guidance.jpg);--pos:50% 50%;--size:cover" role="img" aria-label="A healthy rice bowl with chicken and vegetables, an example of practical nutrition guidance"></div><h3>Food guidance</h3><p>Simple, practical and non-restrictive. Add it to any plan.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/healthy-chicken-rice-bowl-nutrition-guidance.jpg);--pos:50% 50%;--size:cover" role="img" aria-label="A healthy rice bowl with chicken and vegetables, an example of practical nutrition guidance"></div><h3>Nutrition guidance</h3><p>Simple, practical and non-restrictive. Add it to any plan.</p></article>
 <article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/muscular-arm-close-up-progress-tracking.jpg);--pos:50% 38%;--size:cover" role="img" aria-label="Close-up of a muscular arm, representing strength progress tracking"></div><h3>Progress tracking</h3><p>Your training in one place, so your first rep is something you can point to.</p></article>
 </div>
 </div></section>
 
-<section class="pad"><div class="wrap">
-<h2 data-reveal style="margin-bottom:12px">Is this <span class="hl">for you?</span></h2>
-<p class="lede" data-reveal style="margin-bottom:clamp(28px,4vw,48px)">Tap anything that sounds like you.</p>
-<div class="ticks" data-ticks>
-<button type="button" aria-pressed="false"><i></i>I'm new to training, starting again, or coming back after a long break</button>
-<button type="button" aria-pressed="false"><i></i>I want to learn proper technique and progress, at any age</button>
-<button type="button" aria-pressed="false"><i></i>I already train, but need more structure or accountability</button>
-<button type="button" aria-pressed="false"><i></i>I want structure without a gym-bro aesthetic</button>
-<button type="button" aria-pressed="false"><i></i>I want strength training and calisthenics, not one or the other</button>
-<button type="button" aria-pressed="false"><i></i>I want to train online, from anywhere</button>
-</div>
-<div class="tick-result" aria-live="polite"><p data-tick-msg>Pick as many as you like.</p><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
-</div></section>
 
 
 

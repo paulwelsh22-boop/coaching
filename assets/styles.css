@@ -695,3 +695,8 @@ main > section:not(:first-child):not([class*="light"]):not(.bleed):not(.final):n
   .coaching-photo-hero { -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 55%, transparent 100%); }
   .coaching-photo-hero img { object-position: 50% 42%; }
 }
+
+/* Mid-page call to action */
+.mid-cta { display: flex; align-items: center; justify-content: space-between; gap: 20px 40px; flex-wrap: wrap; margin-top: clamp(36px, 5vw, 64px); padding-top: clamp(24px, 3vw, 36px); border-top: 1px solid rgba(193, 213, 225, 0.18); }
+.mid-cta p { font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 500; max-width: 24em; margin: 0; }
+@media (max-width: 720px) { .mid-cta .btn { width: 100%; justify-content: center; } }
