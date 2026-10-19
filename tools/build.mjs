@@ -9,7 +9,9 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://paulwelshcoaching.com'; // TODO: confirm (with or without www)
 const EMAIL = 'hello@paulwelshcoaching.com';
 const GA_ID = 'G-GQMZ4PN6PZ'; // Google Analytics 4. Leave empty to switch analytics and the cookie banner off.
-const BOOKING_URL = 'https://calendar.app.google/1KBg3BsF3Zg69i1c6'; // Google Calendar appointment page
+const BOOKING_URL = 'https://calendar.app.google/1KBg3BsF3Zg69i1c6'; // Google Calendar appointment page // kept for when coaching opens; /book-a-call/ is a waitlist for now
+const KIT_FORM_URL = 'https://app.kit.com/forms/10067951/subscriptions'; // Kit (ConvertKit) form, posted to by the native waitlist form
+const SPOTS_OPEN = 'in a few weeks'; // waitlist copy: "Coaching spots open ..."
 const UPDATED = 'October 2026';
 const SHOW_PRICES = false; // set true to show "From £80 / £100" again
 
@@ -69,6 +71,9 @@ const FAQ = {
   cancel: ['Can I cancel anytime?', 'Cancellation terms are explained plainly on your free call, before you commit to anything.'],
   know: ['Do I need to know what I want before I book?', 'No. The call is there to work out the right starting point together, whether you are brand new or already training.'],
   oblig: ['Is there any obligation to sign up after the call?', 'No. It is a genuine conversation, not a sales call in disguise. If it is not a fit, I will tell you.'],
+  wlWhat: ['What happens when I join?', 'Kit, my email provider, will send you an email asking you to confirm your address. Once you have, I will email you when coaching spots open, and now and then send training tips.'],
+  wlFree: ['Is joining free, and is there any obligation?', 'It is free, and there is no obligation. Joining just means you hear about coaching spots first. You can unsubscribe at any time.'],
+  wlWhen: ['When do coaching spots open?', `Coaching spots open ${SPOTS_OPEN}. I will email the waitlist first.`],
   away: ['Where do I need to be based?', 'Anywhere. Coaching is fully remote, so location is not a barrier.'],
 };
 const faqHtml = (keys) => keys.map((k, i) => `<div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a-${k}" id="q-${k}"><span>${FAQ[k][0]}</span><span class="pm" aria-hidden="true"></span></button></h3><div class="a" id="a-${k}" role="region" aria-labelledby="q-${k}"><div><p>${FAQ[k][1]}</p></div></div></div>`).join('');
@@ -120,7 +125,7 @@ ${body(r)}
 <nav aria-label="Footer"><a href="${r}coaching/">Coaching</a><a href="${r}about/">About</a><a href="${r}blog/">Blog</a><a href="${r}faq/">FAQ</a><a href="${r}book-a-call/">Contact</a><a href="https://www.instagram.com/paulwelshcoaching" target="_blank" rel="noopener me">Instagram</a></nav>
 <small><span>&copy; 2026 Paul Welsh Coaching. Online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a>${GA_ID ? '<button type="button" data-cookie-settings>Cookie settings</button>' : ''}</span></small>
 </div></footer>
-${path === 'book-a-call/' ? '' : `<a class="btn sticky-cta" href="${r}book-a-call/">Book a free call ${arrow}</a>`}
+${path === 'book-a-call/' || path === 'thanks/' ? '' : `<a class="btn sticky-cta" href="${r}book-a-call/">Book a free call ${arrow}</a>`}
 <script src="${r}assets/main.js" defer></script>
 </body>
 </html>`;
@@ -446,20 +451,47 @@ ${groups.map(([g, keys]) => `<section class="pad" style="padding-block:clamp(40p
 ${cta(r, 'Still wondering?', 'Fifteen minutes, no pressure. Bring your questions.', 'Book a free call')}`,
 }));
 
-/* ------------------------------ BOOK ------------------------------ */
+/* ------------------------------ BOOK (waitlist) ------------------------------ */
+// Native form that posts to Kit. With JS it submits via fetch (assets/main.js, [data-waitlist]); without JS it posts
+// normally and Kit redirects to /thanks/ (set the form's success redirect in Kit to SITE + '/thanks/').
+const waitlistKeys = ['wlWhat', 'wlFree', 'wlWhen', 'away'];
+const goals = ['Get stronger', 'Learn calisthenics', 'Get back into training', 'Improve nutrition', 'Not sure yet'];
 write('book-a-call', page({
   path: 'book-a-call/', depth: 1,
-  title: 'Book a free call | Paul Welsh Coaching',
-  desc: 'Book a free, no-obligation 15 minute call with Paul Welsh Coaching to see if online coaching is right for you.',
-  ld: [org, faqLd(['know', 'oblig', 'away'])],
+  title: 'Join the waitlist | Paul Welsh Coaching',
+  desc: `Online coaching spots with Paul Welsh Coaching open ${SPOTS_OPEN}. Join the waitlist to hear first. Free, no obligation.`,
+  ld: [org, faqLd(waitlistKeys)],
   body: (r) => `
 <section class="page-hero" style="padding-bottom:clamp(32px,5vw,64px)">${arcs('', 9)}
-<div class="wrap"><h1 style="max-width:16ch">Let's talk it through. <span class="hl">No pressure, no pitch.</span></h1>
-<p class="lede">Fifteen minutes to talk about where you are now, what you want, and whether Paul Welsh Coaching is a fit. If it's not, I'll tell you.</p></div></section>
+<div class="wrap"><h1 style="max-width:16ch">Coaching opens soon. <span class="hl">Join the waitlist.</span></h1>
+<p class="lede">Online coaching spots open ${SPOTS_OPEN}. Join the waitlist and I will email you first, with no pressure and no card details.</p></div></section>
 <section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap book-grid">
-<div class="book-main"><h2>Choose a time that suits you</h2><p class="lede">Pick a 15 minute slot in my calendar. It opens in a new tab, and you will get a confirmation by email.</p><a class="btn" href="${BOOKING_URL}" target="_blank" rel="noopener">Choose a time ${arrow}</a><ul class="book-facts"><li>15 minutes</li><li>Free, no obligation</li><li>Online</li></ul><p class="book-alt">Prefer to write? Email <a href="mailto:${EMAIL}">${EMAIL}</a>.</p></div>
-<div><div class="faq-list" style="border-color:var(--line)">${faqHtml(['know', 'oblig', 'away'])}</div></div>
+<div class="book-main"><h2>Get on the list</h2><p class="lede">Tell me a little about you. Want to know what coaching includes first? <a href="${r}coaching/">See what is included</a>.</p>
+<div class="wl-card">
+<form class="wl-form" data-waitlist action="${KIT_FORM_URL}" method="post" accept-charset="utf-8" aria-describedby="wl-status">
+<div class="wl-field"><label for="wl-name">First name</label><input id="wl-name" name="fields[first_name]" type="text" autocomplete="given-name" required></div>
+<div class="wl-field"><label for="wl-email">Email</label><input id="wl-email" name="email_address" type="email" autocomplete="email" inputmode="email" required></div>
+<div class="wl-field"><label for="wl-goal">What's your main goal? <span class="wl-opt">Optional</span></label><select id="wl-goal" name="fields[main_goal]"><option value="">Choose one</option>${goals.map((g) => `<option>${g}</option>`).join('')}</select></div>
+<div class="wl-hp" aria-hidden="true"><label for="wl-website">Leave this field empty</label><input id="wl-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<label class="wl-consent" for="wl-consent"><input id="wl-consent" type="checkbox" required><span>I'm happy for Paul Welsh Coaching to email me about coaching spots and training tips. I can unsubscribe at any time. <a href="${r}privacy/">Privacy policy</a></span></label>
+<button class="btn wl-submit" type="submit"><span class="wl-label">Join the waitlist</span><span class="wl-spin" aria-hidden="true"></span>${arrow}</button>
+<div class="wl-status" id="wl-status" role="status" aria-live="polite" data-wl-status></div>
+</form>
+</div>
+<ul class="book-facts"><li>Free to join</li><li>No obligation</li><li>Unsubscribe any time</li></ul><p class="book-alt">Prefer to write? Email <a href="mailto:${EMAIL}">${EMAIL}</a>.</p></div>
+<div><div class="faq-list" style="border-color:var(--line)">${faqHtml(waitlistKeys)}</div></div>
 </div></section>`,
+}));
+
+write('thanks', page({
+  path: 'thanks/', depth: 1, noindex: true,
+  title: 'You are on the list | Paul Welsh Coaching',
+  desc: 'Thanks for joining the Paul Welsh Coaching waitlist.',
+  body: (r) => `
+<section class="page-hero" style="min-height:70svh;display:grid;align-items:center">${arcs('', 9)}
+<div class="wrap"><h1 style="max-width:14ch">You're on the <span class="hl">list.</span></h1>
+<p class="lede">Check your inbox and confirm your email, so I can add you properly. If it has not arrived in a few minutes, look in your spam folder. Coaching spots open ${SPOTS_OPEN}.</p>
+<div class="hero-actions"><a class="btn" href="${r}blog/">Read the blog ${arrow}</a><a class="btn ghost" href="${r}coaching/">See what coaching includes</a></div></div></section>`,
 }));
 
 /* ------------------------------ LEGAL + 404 ------------------------------ */
@@ -478,13 +510,15 @@ legalPage('privacy', 'Privacy Policy', 'How Paul Welsh Coaching collects, uses a
 <p>I am based in Spain and provide coaching to people in the UK and elsewhere. I follow UK data protection law (the UK GDPR and the Data Protection Act 2018) and, where it applies, the EU GDPR.</p>
 <h2>What I collect</h2>
 <ul>
-<li><strong>When you book a call or get in touch:</strong> your name, email address and any notes you add, through Google Calendar's appointment booking or by email.</li>
+<li><strong>When you join the waitlist:</strong> your first name, email address and, if you choose to tell me, your main goal. This goes to Kit, my email provider, when you submit the form.</li>
+<li><strong>When you get in touch or book a call:</strong> your name, email address and any notes you add, by email or through Google Calendar's appointment booking if I have it switched on.</li>
 <li><strong>When you become a client:</strong> your contact details, goals and training history; your answers to the PAR-Q health questionnaire and any other health or injury information you choose to share; your training and progress data in the coaching app (Trainerize); our messages; and any photos or videos you send for form checks.</li>
 <li><strong>Payments:</strong> paid by bank transfer to my Monzo business account or through PayPal. I see the name and payment details your bank or PayPal shares with me. I do not store card details.</li>
 <li><strong>When you use this website:</strong> basic technical data your browser sends when pages load. If you choose to accept analytics cookies, Google Analytics also records how you use the site, such as pages visited, device type and approximate location. See the <a href="../cookies/">cookie notice</a>.</li>
 </ul>
 <h2>Why I use it, and my legal basis</h2>
 <ul>
+<li>To email you about coaching spots and training tips if you join the waitlist: your consent, which you can withdraw at any time by unsubscribing.</li>
 <li>To answer your enquiry and book a call: legitimate interests, and steps you ask me to take before a contract.</li>
 <li>To provide coaching: performance of our contract.</li>
 <li>Health information, including your PAR-Q answers: this is special category data. I process it only with your explicit consent, which you can withdraw at any time, although I may then be unable to coach you safely.</li>
@@ -495,6 +529,7 @@ legalPage('privacy', 'Privacy Policy', 'How Paul Welsh Coaching collects, uses a
 <p>Only the providers I need to run the service. They process data on my instructions or under their own terms. I do not sell your data.</p>
 <ul>
 <li><strong>Google:</strong> Google Workspace (my email), Google Calendar (booking), Google Meet (video check-ins), Google Drive (photos and videos you send) and, if you accept, Google Analytics.</li>
+<li><strong>Kit:</strong> the email service that holds the waitlist and sends my emails.</li>
 <li><strong>Trainerize:</strong> the coaching app that holds your plan and training data.</li>
 <li><strong>Monzo and PayPal:</strong> payments.</li>
 <li><strong>Cloudflare and GoDaddy:</strong> hosting my website and my domain name.</li>
@@ -549,8 +584,8 @@ legalPage('cookies', 'Cookie Notice', 'What cookies and third-party services the
 <p>The site loads its typeface (Poppins) from Google Fonts. When a page loads, your browser contacts Google, which receives your IP address. Google Fonts does not set cookies for this.</p>
 <h2>Hosting</h2>
 <p>The site is delivered by Cloudflare, which may use strictly necessary cookies for security and performance.</p>
-<h2>Booking</h2>
-<p>Booking uses a Google Calendar appointment page. The Book a Call page links to it and opens it in a new tab on Google's site, so Google's own cookies and privacy policy apply there. This website does not load it or set any cookies for it. If you prefer not to use it, you can email me at ${MAIL}.</p>
+<h2>Waitlist</h2>
+<p>The waitlist form on the Join the waitlist page sends your details to Kit when you press the button. This website does not load Kit's scripts and sets no cookies for it. Kit's own privacy policy applies to the data it holds. If you prefer not to use the form, you can email me at ${MAIL}.</p>
 <h2>Changing your mind</h2>
 <p>You can delete or block cookies in your browser settings at any time.</p>`);
 

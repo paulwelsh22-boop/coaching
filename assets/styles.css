@@ -717,3 +717,43 @@ main > section:not(:first-child):not([class*="light"]):not(.bleed):not(.final):n
 .article ul { padding-left: 1.3em; display: grid; gap: 10px; margin-bottom: 1.4em; }
 .article ul.read-more { gap: 8px; }
 .article ul.read-more a { font-weight: 600; }
+
+/* Waitlist form (native, posts to Kit) */
+.wl-card { background: var(--ink-2); border: 1px solid var(--line); border-radius: 20px; padding: clamp(22px, 4vw, 40px); max-width: 36rem; }
+.wl-form { display: grid; gap: 20px; }
+.wl-field { display: grid; gap: 8px; }
+.wl-field label { font-size: 0.9375rem; font-weight: 600; color: var(--paper); }
+.wl-opt { font-weight: 400; color: var(--ice-dim); margin-left: 6px; font-size: 0.8125rem; }
+.wl-field input, .wl-field select {
+  width: 100%; min-height: 52px; padding: 13px 16px; border-radius: 4px; border: 1px solid var(--line-strong);
+  background: var(--ink); color: var(--paper); font: inherit; font-size: 1rem; line-height: 1.4;
+  transition: border-color 0.25s, background 0.25s;
+}
+.wl-field input:hover, .wl-field select:hover { border-color: var(--ice-dim); }
+.wl-field input:focus-visible, .wl-field select:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; border-color: var(--ice); }
+.wl-field input:user-invalid { border-color: #f0b4a8; }
+.wl-field select {
+  appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c1d5e1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; background-size: 18px;
+}
+.wl-field select option { color: var(--paper); background: var(--ink); }
+.wl-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.wl-consent { display: grid; grid-template-columns: 22px 1fr; gap: 14px; align-items: start; font-size: 0.9375rem; line-height: 1.55; color: var(--ice-dim); cursor: pointer; }
+.wl-consent input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--ice); cursor: pointer; }
+.wl-consent a { color: var(--paper); }
+.wl-consent input:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
+.wl-submit { width: 100%; justify-content: center; }
+.wl-submit .wl-spin { display: none; width: 18px; height: 18px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: wl-spin 0.7s linear infinite; }
+.wl-submit[aria-busy="true"] { opacity: 0.8; cursor: progress; }
+.wl-submit[aria-busy="true"] .wl-spin { display: inline-block; }
+.wl-submit[aria-busy="true"] svg { display: none; }
+@keyframes wl-spin { to { transform: rotate(360deg); } }
+.wl-status:empty { display: none; }
+.wl-status { font-size: 1rem; line-height: 1.55; padding: 16px 18px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--paper); }
+.wl-status:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
+.wl-status strong { display: block; font-size: 1.125rem; margin-bottom: 4px; }
+.wl-status a { color: var(--paper); font-weight: 600; }
+.wl-status.is-error { border-color: #f0b4a8; }
+.wl-form.is-done .wl-field, .wl-form.is-done .wl-consent, .wl-form.is-done .wl-submit { display: none; }
+@media (prefers-reduced-motion: reduce) { .wl-submit .wl-spin { animation-duration: 2s; } }

@@ -297,6 +297,46 @@
   }
 
 
+  /* ---------- Waitlist form: posts to Kit, with a plain form post as the no-JS fallback ---------- */
+  const wl = $('[data-waitlist]');
+  if (wl) {
+    const status = $('[data-wl-status]', wl);
+    const btn = $('.wl-submit', wl);
+    const label = $('.wl-label', btn);
+    const idle = label.textContent;
+    const say = (html, error) => {
+      status.className = 'wl-status' + (error ? ' is-error' : '');
+      status.innerHTML = html;
+      status.setAttribute('tabindex', '-1');
+      status.focus({ preventScroll: false });
+    };
+    const done = () => {
+      wl.classList.add('is-done');
+      say('<strong>You\'re on the list.</strong>Check your inbox to confirm your email. If it does not arrive in a few minutes, look in your spam folder.');
+    };
+    wl.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (btn.getAttribute('aria-busy') === 'true') return;
+      if (!wl.checkValidity()) { wl.reportValidity(); return; }
+      const data = new FormData(wl);
+      const trap = data.get('website');
+      data.delete('website');
+      if (trap) { done(); return; } /* honeypot filled: a bot, so pretend and send nothing */
+      btn.setAttribute('aria-busy', 'true'); btn.disabled = true; label.textContent = 'Joining...';
+      status.className = 'wl-status'; status.textContent = '';
+      fetch(wl.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+        .then((res) => res.json().catch(() => ({})).then((j) => ({ ok: res.ok, j })))
+        .then(({ ok, j }) => {
+          if (!ok || j.status === 'error') throw new Error('kit');
+          done();
+        })
+        .catch(() => {
+          say('<strong>That did not go through.</strong>Your details have not been saved. Please try again, or email <a href="mailto:hello@paulwelshcoaching.com">hello@paulwelshcoaching.com</a> and I will add you by hand.', true);
+        })
+        .finally(() => { btn.removeAttribute('aria-busy'); btn.disabled = false; label.textContent = idle; });
+    });
+  }
+
   /* ---------- Cookie consent: analytics only loads after Accept ---------- */
   const gaMeta = $('meta[name="ga-id"]');
   if (gaMeta) {
