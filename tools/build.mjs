@@ -455,8 +455,8 @@ ${cta(r, 'Still wondering?', 'Fifteen minutes, no pressure. Bring your questions
 // Native form that posts to Kit. With JS it submits via fetch (assets/main.js, [data-waitlist]); without JS it posts
 // normally and Kit redirects to /thanks/ (set the form's success redirect in Kit to SITE + '/thanks/').
 const waitlistKeys = ['wlWhat', 'wlFree', 'wlWhen', 'away'];
-// Goal is saved in Kit as a tag; IDs come from the Kit form (Grow > Forms > the waitlist form). Change a tag name in Kit freely, but a new option needs its tag ID here.
-const goals = [['24796200', 'Get stronger'], ['24796202', 'Learn calisthenics'], ['24796206', 'Get back into training'], ['24796207', 'Improve nutrition'], ['24796208', 'Not sure yet']];
+// Goal is saved in Kit as the custom field main_goal (label Main_goal), so the option text is the value.
+const goals = ['Get stronger', 'Learn calisthenics', 'Get back into training', 'Improve nutrition', 'Not sure yet'];
 write('book-a-call', page({
   path: 'book-a-call/', depth: 1,
   title: 'Join the waitlist | Paul Welsh Coaching',
@@ -473,7 +473,7 @@ write('book-a-call', page({
 <div class="wl-field"><label for="wl-name">First name</label><input id="wl-name" name="fields[first_name]" type="text" autocomplete="given-name" required></div>
 <div class="wl-field"><label for="wl-email">Email</label><input id="wl-email" name="email_address" type="email" autocomplete="email" inputmode="email" required></div>
 <div class="wl-field"><label for="wl-phone">Telephone <span class="wl-opt">Optional</span></label><input id="wl-phone" name="fields[telephone]" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="wl-phone-hint"><p class="wl-hint" id="wl-phone-hint">Only used to arrange a call with you.</p></div>
-<div class="wl-field"><label for="wl-goal">What's your main goal? <span class="wl-opt">Optional</span></label><select id="wl-goal" name="tags[]"><option value="">Choose one</option>${goals.map(([id, g]) => `<option value="${id}">${g}</option>`).join('')}</select></div>
+<div class="wl-field"><label for="wl-goal">What's your main goal? <span class="wl-opt">Optional</span></label><select id="wl-goal" name="fields[main_goal]"><option value="">Choose one</option>${goals.map((g) => `<option>${g}</option>`).join('')}</select></div>
 <div class="wl-hp" aria-hidden="true"><label for="wl-website">Leave this field empty</label><input id="wl-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
 <label class="wl-consent" for="wl-consent"><input id="wl-consent" type="checkbox" required><span>I'm happy for Paul Welsh Coaching to email me about coaching spots and training tips. I can unsubscribe at any time. <a href="${r}privacy/">Privacy policy</a></span></label>
 <button class="btn wl-submit" type="submit"><span class="wl-label">Join the waitlist</span><span class="wl-spin" aria-hidden="true"></span>${arrow}</button>
