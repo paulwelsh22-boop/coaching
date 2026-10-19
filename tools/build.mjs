@@ -71,7 +71,7 @@ const FAQ = {
   cancel: ['Can I cancel anytime?', 'Cancellation terms are explained plainly on your free call, before you commit to anything.'],
   know: ['Do I need to know what I want before I book?', 'No. The call is there to work out the right starting point together, whether you are brand new or already training.'],
   oblig: ['Is there any obligation to sign up after the call?', 'No. It is a genuine conversation, not a sales call in disguise. If it is not a fit, I will tell you.'],
-  wlWhat: ['What happens when I join?', 'Kit, my email provider, will send you an email asking you to confirm your address. Once you have, I will email you when coaching spots open, and now and then send training tips.'],
+  wlWhat: ['What happens when I join?', 'I will email you when coaching spots open, and now and then send training tips. Your details are held by Kit, my email provider, and you can unsubscribe at any time.'],
   wlFree: ['Is joining free, and is there any obligation?', 'It is free, and there is no obligation. Joining just means you hear about coaching spots first. You can unsubscribe at any time.'],
   wlWhen: ['When do coaching spots open?', `Coaching spots open ${SPOTS_OPEN}. I will email the waitlist first.`],
   away: ['Where do I need to be based?', 'Anywhere. Coaching is fully remote, so location is not a barrier.'],
@@ -483,7 +483,7 @@ write('thanks', page({
   body: (r) => `
 <section class="page-hero" style="min-height:70svh;display:grid;align-items:center">${arcs('', 9)}
 <div class="wrap"><h1 style="max-width:14ch">You're on the <span class="hl">list.</span></h1>
-<p class="lede">Check your inbox and confirm your email, so I can add you properly. If it has not arrived in a few minutes, look in your spam folder. Coaching spots open ${SPOTS_OPEN}.</p>
+<p class="lede">Thanks for joining. I will email you first when coaching spots open, which will be ${SPOTS_OPEN}. Until then, there is plenty to read on the blog.</p>
 <div class="hero-actions"><a class="btn" href="${r}blog/">Read the blog ${arrow}</a><a class="btn ghost" href="${r}coaching/">See what coaching includes</a></div></div></section>`,
 }));
 
