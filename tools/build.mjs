@@ -10,7 +10,7 @@ const SITE = 'https://paulwelshcoaching.com'; // TODO: confirm (with or without 
 const EMAIL = 'hello@paulwelshcoaching.com';
 const GA_ID = 'G-GQMZ4PN6PZ'; // Google Analytics 4. Leave empty to switch analytics and the cookie banner off.
 const BOOKING_URL = 'https://calendar.app.google/1KBg3BsF3Zg69i1c6'; // Google Calendar appointment page // kept for when coaching opens; /book-a-call/ is a waitlist for now
-const KIT_FORM_URL = 'https://app.kit.com/forms/10067951/subscriptions'; // Kit (ConvertKit) form, posted to by the native waitlist form
+const KIT_EMBED = { uid: '1abc021974', src: 'https://paul-welsh-coaching.kit.com/1abc021974/index.js' }; // Kit (ConvertKit) embed for the waitlist form
 const SPOTS_OPEN = 'in a few weeks'; // waitlist copy: "Coaching spots open ..."
 const UPDATED = 'October 2026';
 const SHOW_PRICES = false; // set true to show "From £80 / £100" again
@@ -452,10 +452,9 @@ ${cta(r, 'Still wondering?', 'Fifteen minutes, no pressure. Bring your questions
 }));
 
 /* ------------------------------ BOOK (waitlist) ------------------------------ */
-// Native form that posts to Kit. With JS it submits via fetch (assets/main.js, [data-waitlist]); without JS it posts
-// normally and Kit redirects to /thanks/ (set the form's success redirect in Kit to SITE + '/thanks/').
+// Kit's embed script renders the form into .wl-embed. Fields, redirect and spam protection are set in Kit; the look is in
+// assets/styles.css (.wl-card .formkit-*). Kit is set to redirect to SITE + '/thanks/' after signup.
 const waitlistKeys = ['wlWhat', 'wlFree', 'wlWhen', 'away'];
-const goals = ['Get stronger', 'Learn calisthenics', 'Get back into training', 'Improve nutrition', 'Not sure yet'];
 write('book-a-call', page({
   path: 'book-a-call/', depth: 1,
   title: 'Join the waitlist | Paul Welsh Coaching',
@@ -468,15 +467,9 @@ write('book-a-call', page({
 <section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap book-grid">
 <div class="book-main"><h2>Get on the list</h2><p class="lede">Tell me a little about you. Want to know what coaching includes first? <a href="${r}coaching/">See what is included</a>.</p>
 <div class="wl-card">
-<form class="wl-form" data-waitlist action="${KIT_FORM_URL}" method="post" accept-charset="utf-8" aria-describedby="wl-status">
-<div class="wl-field"><label for="wl-name">First name</label><input id="wl-name" name="fields[first_name]" type="text" autocomplete="given-name" required></div>
-<div class="wl-field"><label for="wl-email">Email</label><input id="wl-email" name="email_address" type="email" autocomplete="email" inputmode="email" required></div>
-<div class="wl-field"><label for="wl-goal">What's your main goal? <span class="wl-opt">Optional</span></label><select id="wl-goal" name="fields[main_goal]"><option value="">Choose one</option>${goals.map((g) => `<option>${g}</option>`).join('')}</select></div>
-<div class="wl-hp" aria-hidden="true"><label for="wl-website">Leave this field empty</label><input id="wl-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-<label class="wl-consent" for="wl-consent"><input id="wl-consent" type="checkbox" required><span>I'm happy for Paul Welsh Coaching to email me about coaching spots and training tips. I can unsubscribe at any time. <a href="${r}privacy/">Privacy policy</a></span></label>
-<button class="btn wl-submit" type="submit"><span class="wl-label">Join the waitlist</span><span class="wl-spin" aria-hidden="true"></span>${arrow}</button>
-<div class="wl-status" id="wl-status" role="status" aria-live="polite" data-wl-status></div>
-</form>
+<div class="wl-embed"><script async data-uid="${KIT_EMBED.uid}" src="${KIT_EMBED.src}"></script></div>
+<noscript><p class="wl-note">The waitlist form needs JavaScript. Without it, email <a href="mailto:${EMAIL}">${EMAIL}</a> and I will add you.</p></noscript>
+<p class="wl-note">By joining you agree to Paul Welsh Coaching emailing you about coaching spots and training tips. You can unsubscribe at any time. See the <a href="${r}privacy/">privacy policy</a>.</p>
 </div>
 <ul class="book-facts"><li>Free to join</li><li>No obligation</li><li>Unsubscribe any time</li></ul><p class="book-alt">Prefer to write? Email <a href="mailto:${EMAIL}">${EMAIL}</a>.</p></div>
 <div><div class="faq-list" style="border-color:var(--line)">${faqHtml(waitlistKeys)}</div></div>
@@ -510,7 +503,7 @@ legalPage('privacy', 'Privacy Policy', 'How Paul Welsh Coaching collects, uses a
 <p>I am based in Spain and provide coaching to people in the UK and elsewhere. I follow UK data protection law (the UK GDPR and the Data Protection Act 2018) and, where it applies, the EU GDPR.</p>
 <h2>What I collect</h2>
 <ul>
-<li><strong>When you join the waitlist:</strong> your first name, email address and, if you choose to tell me, your main goal. This goes to Kit, my email provider, when you submit the form.</li>
+<li><strong>When you join the waitlist:</strong> your name, email address, telephone number and your main goal, if you choose one. This goes to Kit, my email provider, when you submit the form.</li>
 <li><strong>When you get in touch or book a call:</strong> your name, email address and any notes you add, by email or through Google Calendar's appointment booking if I have it switched on.</li>
 <li><strong>When you become a client:</strong> your contact details, goals and training history; your answers to the PAR-Q health questionnaire and any other health or injury information you choose to share; your training and progress data in the coaching app (Trainerize); our messages; and any photos or videos you send for form checks.</li>
 <li><strong>Payments:</strong> paid by bank transfer to my Monzo business account or through PayPal. I see the name and payment details your bank or PayPal shares with me. I do not store card details.</li>
@@ -585,7 +578,7 @@ legalPage('cookies', 'Cookie Notice', 'What cookies and third-party services the
 <h2>Hosting</h2>
 <p>The site is delivered by Cloudflare, which may use strictly necessary cookies for security and performance.</p>
 <h2>Waitlist</h2>
-<p>The waitlist form on the Join the waitlist page sends your details to Kit when you press the button. This website does not load Kit's scripts and sets no cookies for it. Kit's own privacy policy applies to the data it holds. If you prefer not to use the form, you can email me at ${MAIL}.</p>
+<p>The waitlist form on the Join the waitlist page is provided by Kit. Loading it runs Kit's script on that page, and the form includes a security check (reCAPTCHA) from Google. Kit and Google may set their own cookies or similar technologies there, under their own policies. If you prefer not to use the form, you can email me at ${MAIL}.</p>
 <h2>Changing your mind</h2>
 <p>You can delete or block cookies in your browser settings at any time.</p>`);
 
