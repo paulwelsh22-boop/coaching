@@ -718,39 +718,44 @@ main > section:not(:first-child):not([class*="light"]):not(.bleed):not(.final):n
 .article ul.read-more { gap: 8px; }
 .article ul.read-more a { font-weight: 600; }
 
-/* Waitlist form: Kit's embed, restyled. Kit sets inline colours on the inputs, so these need !important. */
+/* Waitlist form (native, posts to Kit) */
 .wl-card { background: var(--ink-2); border: 1px solid var(--line); border-radius: 20px; padding: clamp(22px, 4vw, 40px); max-width: 36rem; }
-.wl-card .formkit-form { max-width: 100% !important; margin: 0 !important; background: transparent !important; font-family: var(--font) !important; color: var(--paper) !important; }
-.wl-card .formkit-form [data-style="clean"] { padding: 0 !important; min-height: 0 !important; }
-.wl-card .formkit-fields { display: grid !important; gap: 16px !important; margin: 0 !important; }
-.wl-card .formkit-field { margin: 0 !important; width: 100% !important; min-width: 0 !important; flex: none !important; }
-.wl-card .formkit-input, .wl-card .formkit-select {
-  width: 100% !important; min-height: 52px !important; padding: 13px 16px !important; border-radius: 4px !important;
-  border: 1px solid var(--line-strong) !important; background: var(--ink) !important; color: var(--paper) !important;
-  font-family: var(--font) !important; font-size: 1rem !important; font-weight: 400 !important; line-height: 1.4 !important; box-shadow: none !important;
+.wl-form { display: grid; gap: 20px; }
+.wl-field { display: grid; gap: 8px; }
+.wl-field label { font-size: 0.9375rem; font-weight: 600; color: var(--paper); }
+.wl-opt { font-weight: 400; color: var(--ice-dim); margin-left: 6px; font-size: 0.8125rem; }
+.wl-field input, .wl-field select {
+  width: 100%; min-height: 52px; padding: 13px 16px; border-radius: 4px; border: 1px solid var(--line-strong);
+  background: var(--ink); color: var(--paper); font: inherit; font-size: 1rem; line-height: 1.4;
+  transition: border-color 0.25s, background 0.25s;
 }
-.wl-card .formkit-input::placeholder { color: var(--ice-dim) !important; opacity: 1 !important; }
-.wl-card .formkit-input:hover, .wl-card .formkit-select:hover { border-color: var(--ice-dim) !important; }
-.wl-card .formkit-input:focus, .wl-card .formkit-select:focus { outline: 2px solid var(--ice) !important; outline-offset: 2px !important; border-color: var(--ice) !important; }
-.wl-card .formkit-select {
-  appearance: none !important; -webkit-appearance: none !important; padding-right: 44px !important; cursor: pointer !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c1d5e1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important; background-position: right 14px center !important; background-size: 18px !important;
+.wl-field input:hover, .wl-field select:hover { border-color: var(--ice-dim); }
+.wl-field input:focus-visible, .wl-field select:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; border-color: var(--ice); }
+.wl-field input:user-invalid { border-color: #f0b4a8; }
+.wl-field select {
+  appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c1d5e1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; background-size: 18px;
 }
-.wl-card [data-group="dropdown"]::before, .wl-card [data-group="dropdown"]::after { display: none !important; }
-.wl-card .formkit-select option { background: var(--ink); color: var(--paper); }
-.wl-card .formkit-submit {
-  width: 100% !important; min-height: 52px !important; margin: 8px 0 0 !important; border: 1px solid transparent !important; border-radius: 4px !important;
-  background: var(--paper) !important; color: var(--ink) !important; font-family: var(--font) !important; font-size: 1rem !important; font-weight: 600 !important;
-  transition: background 0.25s !important;
-}
-.wl-card .formkit-submit:hover { background: var(--ice) !important; }
-.wl-card .formkit-submit > span, .wl-card .formkit-submit:hover > span, .wl-card .formkit-submit:focus > span { padding: 0 !important; background-color: transparent !important; }
-.wl-card .formkit-submit:focus-visible { outline: 2px solid var(--ice) !important; outline-offset: 3px !important; }
-.wl-card .formkit-alert { margin: 0 0 16px !important; padding: 14px 16px !important; border: 1px solid var(--line-strong) !important; border-radius: 4px !important; background: transparent !important; color: var(--paper) !important; font-size: 0.9375rem !important; }
-.wl-card .formkit-alert:empty { display: none !important; }
-.wl-card .formkit-alert-error { border-color: #f0b4a8 !important; }
-.wl-card .formkit-alert-success { border-color: var(--ice) !important; }
-.wl-card .formkit-powered-by-convertkit-container { margin: 12px 0 0 !important; opacity: 0.6; }
-.wl-note { margin: 16px 0 0; font-size: 0.875rem; line-height: 1.55; color: var(--ice-dim); }
-.wl-note a { color: var(--paper); }
+.wl-field select option { color: var(--paper); background: var(--ink); }
+.wl-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.wl-consent { display: grid; grid-template-columns: 22px 1fr; gap: 14px; align-items: start; font-size: 0.9375rem; line-height: 1.55; color: var(--ice-dim); cursor: pointer; }
+.wl-consent input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--ice); cursor: pointer; }
+.wl-consent a { color: var(--paper); }
+.wl-consent input:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
+.wl-submit { width: 100%; justify-content: center; }
+.wl-submit .wl-spin { display: none; width: 18px; height: 18px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: wl-spin 0.7s linear infinite; }
+.wl-submit[aria-busy="true"] { opacity: 0.8; cursor: progress; }
+.wl-submit[aria-busy="true"] .wl-spin { display: inline-block; }
+.wl-submit[aria-busy="true"] svg { display: none; }
+@keyframes wl-spin { to { transform: rotate(360deg); } }
+.wl-status:empty { display: none; }
+.wl-status { font-size: 1rem; line-height: 1.55; padding: 16px 18px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--paper); }
+.wl-status:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
+.wl-status strong { display: block; font-size: 1.125rem; margin-bottom: 4px; }
+.wl-status a { color: var(--paper); font-weight: 600; }
+.wl-status.is-error { border-color: #f0b4a8; }
+.wl-form.is-done .wl-field, .wl-form.is-done .wl-consent, .wl-form.is-done .wl-submit { display: none; }
+@media (prefers-reduced-motion: reduce) { .wl-submit .wl-spin { animation-duration: 2s; } }
+
+.wl-hint { margin: 0; font-size: 0.8125rem; color: var(--ice-dim); }
