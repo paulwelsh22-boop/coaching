@@ -322,18 +322,28 @@
       const trap = data.get('website');
       data.delete('website');
       if (trap) { done(); return; } /* honeypot filled: a bot, so pretend and send nothing */
+      let sending = false;
       btn.setAttribute('aria-busy', 'true'); btn.disabled = true; label.textContent = 'Joining...';
       status.className = 'wl-status'; status.textContent = '';
       fetch(wl.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
         .then((res) => res.json().catch(() => ({})).then((j) => ({ ok: res.ok, j })))
         .then(({ ok, j }) => {
           if (!ok || j.status === 'error') throw new Error('kit');
+          if (j.status === 'quarantined') {
+            /* Kit holds the signup until the visitor passes its security check, so send them there to finish */
+            const to = /^https:\/\/([a-z0-9-]+\.)?kit\.com\//.test(j.url || '') ? j.url : null;
+            if (!to) throw new Error('kit');
+            sending = true;
+            say('<strong>One more step.</strong>Kit needs a quick security check to finish adding you. Taking you there now. If nothing happens, <a href="' + to + '">continue here</a>.');
+            location.assign(to);
+            return;
+          }
           done();
         })
         .catch(() => {
           say('<strong>That did not go through.</strong>Your details have not been saved. Please try again, or email <a href="mailto:hello@paulwelshcoaching.com">hello@paulwelshcoaching.com</a> and I will add you by hand.', true);
         })
-        .finally(() => { btn.removeAttribute('aria-busy'); btn.disabled = false; label.textContent = idle; });
+        .finally(() => { if (sending) return; btn.removeAttribute('aria-busy'); btn.disabled = false; label.textContent = idle; });
     });
   }
 
