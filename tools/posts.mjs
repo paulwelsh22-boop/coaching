@@ -1,4 +1,7 @@
 /* Blog post content. Links use {r} as the relative-root placeholder, replaced at build time. */
+import * as STRENGTH from './content/strength-guide.mjs';
+import * as ONLINE from './content/online-coaching-guide.mjs';
+
 export const POSTS = [
   {
     slug: 'how-to-start-strength-training-beginners',
@@ -11,39 +14,9 @@ export const POSTS = [
     alt: 'Paul Welsh performing a controlled barbell curl in a gym as part of beginner strength training',
     excerpt: 'Where to begin, what to train, and how hard to push in the first month. A simple plan for anyone who has never lifted, or has not for a long time.',
     answer: 'Start with two or three full-body sessions a week, built around five basic movements: squat, hinge, push, pull and carry. Pick weights you can control for 8 to 10 reps, finish each set with a couple of reps still in the tank, and add a little at a time. Learn the technique first. The weight comes later.',
-    sections: [
-      ['Before you start', `<p>Strength training is for most adults, at most ages. If you have a medical condition, an injury or ongoing pain, are pregnant or have recently given birth, or are unsure whether it is right for you, speak to your doctor first. You can read more in the <a href="{r}health-disclaimer/">health disclaimer</a>.</p>
-<p>This guide is general, not a personal plan. Use it to understand the shape of a sensible first month, and adjust to where you are.</p>`],
-      ['The five movements that matter', `<p>You do not need dozens of exercises. Nearly every good beginner programme is built from five patterns:</p>
-<ul>
-<li><strong>Squat.</strong> Sitting down and standing up under control. A goblet squat or box squat is a friendly place to begin.</li>
-<li><strong>Hinge.</strong> Pushing your hips back with a flat back, as in a Romanian deadlift with light dumbbells.</li>
-<li><strong>Push.</strong> Pressing away from you, such as an incline push-up or a dumbbell press.</li>
-<li><strong>Pull.</strong> Drawing weight towards you, such as a seated row or dumbbell row.</li>
-<li><strong>Carry.</strong> Walking while holding something heavy. A farmer's carry builds grip, posture and trunk strength.</li>
-</ul>`],
-      ['Your first 4 weeks', `<p>Two or three sessions a week, 30 to 50 minutes each, with a rest day between. Each session starts with a five to ten minute warm-up, then one exercise for each pattern, for two or three sets of 8 to 10 reps.</p>
-<ol>
-<li><strong>Week 1: learn.</strong> Use light weights and aim for smooth, repeatable reps. Two sessions is plenty.</li>
-<li><strong>Week 2: repeat.</strong> Same exercises, two or three sets. Add a third session if you are recovering well.</li>
-<li><strong>Week 3: add a little.</strong> If every rep felt controlled with a couple to spare, add the smallest increase available, or one more rep.</li>
-<li><strong>Week 4: review.</strong> Keep the weights steady, notice what feels easier, and pick one thing to improve next month.</li>
-</ol>`],
-      ['How hard should it feel?', `<p>A useful rule is to stop each set with two or three reps left in reserve. It should feel like effort, not a fight. If your form breaks down, the weight is too heavy for now. Muscle soreness a day or two after your first sessions is normal. Sharp pain is not, so stop and get advice if you have it.</p>`],
-      ['Common beginner mistakes', `<ul>
-<li><strong>Doing too much, too soon.</strong> Big first weeks lead to big sore weeks and quiet gyms.</li>
-<li><strong>Changing the programme every session.</strong> You need repetition to get better at a movement.</li>
-<li><strong>Skipping the warm-up.</strong> Five minutes of easy movement makes the first working set feel far better.</li>
-<li><strong>Comparing yourself with the person next to you.</strong> They are not on your timeline.</li>
-</ul>`],
-      ['How Paul Welsh Coaching approaches this', `<p>I bring strength fundamentals and beginner calisthenics together, then build the plan around where you actually are. Your training lives in an app, with exercise demos and regular check-ins so you know what to do and someone notices when you do it. See <a href="{r}coaching/">how coaching works</a>, or read the <a href="{r}blog/beginner-calisthenics-where-to-start/">beginner calisthenics guide</a> if you would rather start with bodyweight.</p>`],
-    ],
-    faq: [
-      ['How many times a week should a beginner do strength training?', 'Two or three sessions a week, on non-consecutive days, is a sensible starting point for most beginners. It gives you enough practice to improve and enough time to recover.'],
-      ['Do I need to go to a gym?', 'A gym makes it easier to progress because you have a range of weights and machines. You can also begin with bodyweight and simple home equipment, then add a gym later.'],
-      ['How long should a beginner strength session take?', 'Around 30 to 50 minutes, including a warm-up, is enough. Shorter sessions you repeat consistently beat long ones you dread.'],
-      ['Will strength training make me bulky?', 'Not by accident. Building a lot of muscle takes years of focused training and eating for it. For most beginners the early changes are feeling stronger, moving better and having more confidence.'],
-    ],
+    sections: STRENGTH.sections,
+    faq: STRENGTH.faq,
+    modified: '2026-10-20',
     related: ['beginner-calisthenics-where-to-start', 'getting-back-into-training-after-a-break'],
   },
   {
@@ -127,38 +100,9 @@ export const POSTS = [
     alt: 'Overhead view of a person on a laptop video call with their online coach, taking notes in a notebook',
     excerpt: 'What online coaching includes, who it works well for, who it does not, and the questions to ask any coach before you commit.',
     answer: 'Online personal training is worth it if you want a plan built for you, regular feedback and accountability, and the flexibility to train when and where suits you. It is less suited to people who need a coach physically beside them for every rep. Choose a coach who is clear about what is included and how they support you.',
-    sections: [
-      ['What online coaching actually involves', `<p>The details vary between coaches, but a good online service usually includes:</p>
-<ul>
-<li>A personalised training plan in an app, with demos for each exercise.</li>
-<li>Regular check-ins by video call or message, so the plan changes as you do.</li>
-<li>Feedback on your technique from videos you send.</li>
-<li>Support between check-ins when you have a question or a rough week.</li>
-</ul>`],
-      ['How it compares with in-person training', `<p>In-person sessions put a coach next to you, which helps with hands-on cueing. They also mean fixed times and a set location, and you often train with the coach for an hour or less a week. Online coaching trades that for flexibility and support throughout the week. You do the training on your own schedule, then use check-ins and video feedback to stay on track.</p>`],
-      ['Who it suits', `<ul>
-<li>People with busy or unpredictable schedules.</li>
-<li>Anyone training at a gym, at home, or both.</li>
-<li>Beginners who want a clear plan and someone to ask when they are unsure.</li>
-<li>People who do not live near a coach they like.</li>
-</ul>`],
-      ['Who might prefer something else', `<p>If you need hands-on guidance for every rep, or you find it very hard to train unless someone is there in person, in-person sessions may suit you better. Some people start in person and move to online coaching once they feel confident.</p>`],
-      ['What to ask before you sign up', `<ol>
-<li><strong>What exactly is included?</strong> Plans, check-ins, feedback and messaging should be clear in writing.</li>
-<li><strong>How often do we speak, and how quickly do you reply?</strong></li>
-<li><strong>How is the plan adapted to me?</strong> Be wary of generic PDFs.</li>
-<li><strong>What are the minimum term and cancellation terms?</strong></li>
-<li><strong>What are your qualifications and experience?</strong> Good coaches are happy to say.</li>
-</ol>
-<p>Treat any promise of guaranteed results as a red flag. Progress depends on you, your starting point and your consistency.</p>`],
-      ['How Paul Welsh Coaching works', `<p>Coaching combines strength fundamentals and beginner calisthenics, with nutrition guidance if you want it. You get a plan in your app, regular online check-ins and advice by text when you need it. Everything included is confirmed in writing before you start. <a href="{r}coaching/">See what is included</a>, or <a href="{r}book-a-call/">book a free call</a> and ask me anything.</p>`],
-    ],
-    faq: [
-      ['How does online personal training work?', 'You get a training plan in an app, regular check-ins with your coach, and feedback on your technique from videos you send. You train at the gym or at home, whenever suits you.'],
-      ['Is online coaching as effective as in-person training?', 'It can be, if the plan fits you, you follow it consistently, and your coach gives good feedback. The format matters less than the quality of the coaching and your commitment.'],
-      ['Do I need a gym for online coaching?', 'No. A coach can build a plan for a gym, for home with simple equipment, or a mix. Tell them what you have access to.'],
-      ['Do I need to be experienced to get an online coach?', 'No. Beginners are often the people who benefit most from a clear plan, regular feedback and someone to ask when they are unsure.'],
-    ],
+    sections: ONLINE.sections,
+    faq: ONLINE.faq,
+    modified: '2026-10-20',
     related: ['getting-back-into-training-after-a-break', 'how-to-start-strength-training-beginners'],
   },
 ];

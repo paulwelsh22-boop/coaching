@@ -271,6 +271,9 @@ section { position: relative; }
 .author-box .text-link { margin-top: 14px; font-size: 0.9375rem; }
 .meta a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line-strong); }
 @media (max-width: 520px) { .author-box { flex-direction: column; gap: 14px; } }
+.article .sources { padding-left: 1.4em; gap: 8px; margin-top: 0.6em; }
+.article .sources li { font-size: 0.9375rem; line-height: 1.6; color: var(--ice-dim); overflow-wrap: anywhere; }
+.article .sources a { color: var(--ice); }
 .article-end { margin-top: 3em; padding-top: 2em; border-top: 1px solid var(--line); }
 
 /* Booking */

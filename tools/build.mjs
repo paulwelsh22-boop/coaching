@@ -156,7 +156,7 @@ const website = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': S
 const person = { '@context': 'https://schema.org', '@type': 'Person', '@id': PERSON_ID, name: 'Paul Welsh', url: SITE + '/about/', image: SITE + '/assets/paul-welsh-personal-trainer-portrait.jpg', jobTitle: 'Online Personal Trainer', hasCredential: { '@type': 'EducationalOccupationalCredential', name: 'Active IQ Level 3 Diploma in Personal Training', credentialCategory: 'Diploma', educationalLevel: 'Level 3', recognizedBy: { '@type': 'Organization', name: 'Active IQ' } }, description: 'Level 2 and 3 qualified personal trainer with over 10 years of training experience, coaching strength and calisthenics online.', worksFor: { '@id': ORG_ID }, knowsAbout: ['Strength training', 'Calisthenics', 'Beginner fitness', 'Nutrition guidance'], sameAs: ['https://www.instagram.com/paulwelshcoaching'] };
 const authorRef = { '@type': 'Person', '@id': PERSON_ID, name: 'Paul Welsh', url: SITE + '/about/', jobTitle: 'Online Personal Trainer' };
 const crumbs = (items) => ({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE + '/' + path })) });
-const postLd = ({ headline, desc, img, slug, published }) => ({ '@context': 'https://schema.org', '@type': 'BlogPosting', headline, description: desc, image: SITE + '/assets/' + img, url: SITE + '/blog/' + slug + '/', inLanguage: 'en-GB', author: authorRef, publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Paul Welsh Coaching', logo: { '@type': 'ImageObject', url: LOGO } }, datePublished: published, dateModified: published, mainEntityOfPage: SITE + '/blog/' + slug + '/' });
+const postLd = ({ headline, desc, img, slug, published, modified = published }) => ({ '@context': 'https://schema.org', '@type': 'BlogPosting', headline, description: desc, image: SITE + '/assets/' + img, url: SITE + '/blog/' + slug + '/', inLanguage: 'en-GB', author: authorRef, publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Paul Welsh Coaching', logo: { '@type': 'ImageObject', url: LOGO } }, datePublished: published, dateModified: modified, mainEntityOfPage: SITE + '/blog/' + slug + '/' });
 const LASTMOD = '2026-10-20'; // bump when site-wide copy changes; posts use their own dates
 
 /* ------------------------------ HOME ------------------------------ */
@@ -438,7 +438,7 @@ for (const p of POSTS) {
     path: `blog/${p.slug}/`, depth: 2, ogType: 'article', image: p.img,
     title: p.title, desc: p.desc,
     ld: [org,
-      postLd({ headline: p.title, desc: p.desc, img: p.img, slug: p.slug, published: '2026-10-14' }),
+      postLd({ headline: p.title, desc: p.desc, img: p.img, slug: p.slug, published: '2026-10-14', modified: p.modified }),
       crumbs([['Home', ''], ['Blog', 'blog/'], [p.title, `blog/${p.slug}/`]]),
       faqLd([], p.faq)],
     body: (r) => `
@@ -639,5 +639,5 @@ legalPage('health-disclaimer', 'Health Disclaimer', 'Important health and safety
 const bots = ['GPTBot', 'ChatGPT-User', 'PerplexityBot', 'ClaudeBot', 'anthropic-ai', 'Google-Extended', 'Bingbot'];
 writeFileSync(join(ROOT, 'robots.txt'), `User-agent: *\nAllow: /\n\n${bots.map((b) => `User-agent: ${b}\nAllow: /\n`).join('\n')}\nSitemap: ${SITE}/sitemap.xml\n`);
 const urls = ['', 'coaching/', 'about/', 'blog/', 'blog/first-pull-up-beginner-timeline/', ...POSTS.map((p) => `blog/${p.slug}/`), 'faq/', 'book-a-call/', 'privacy/', 'terms/', 'cookies/', 'health-disclaimer/'];
-writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${SITE}/${u}</loc><lastmod>${u === 'blog/first-pull-up-beginner-timeline/' ? '2026-10-01' : u.startsWith('blog/') && u !== 'blog/' ? '2026-10-14' : LASTMOD}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${SITE}/${u}</loc><lastmod>${u === 'blog/first-pull-up-beginner-timeline/' ? '2026-10-01' : u.startsWith('blog/') && u !== 'blog/' ? (POSTS.find((p) => 'blog/' + p.slug + '/' === u)?.modified || '2026-10-14') : LASTMOD}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 console.log('built', urls.length, 'pages');
