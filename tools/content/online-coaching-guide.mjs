@@ -50,7 +50,8 @@ export const sections = [
 <p>Be careful with both ends of the market. Very cheap can mean a generic plan and little feedback, and very expensive does not guarantee more of your coach's attention. Ask for the inclusions and terms in writing, then decide what fits your budget and your goals.</p>`],
 
   ['How to check an online coach is qualified', `<p>Anyone can call themselves a personal trainer, so it is worth checking. In England, personal training qualifications are awarded by organisations and regulated by Ofqual. The government's ${link('https://www.gov.uk/find-a-regulated-qualification', 'Find a regulated qualification')} service lets you check whether a qualification is officially recognised, and it links to a search for regulated awarding organisations. Ask your coach for the exact name of their qualification and who awarded it.</p>
-<p>Many coaches also register with a professional body such as ${link('https://www.cimspa.co.uk/', 'CIMSPA')}, the Chartered Institute for the Management of Sport and Physical Activity. Registration is not a legal requirement, so its absence is not a red flag on its own, but a coach who can show their qualification, insurance and first-aid training is giving you useful information. A good coach will also ask about your health and any injuries before they write a plan.</p>`],
+<p>Many coaches also register with a professional body such as ${link('https://www.cimspa.co.uk/', 'CIMSPA')}, the Chartered Institute for the Management of Sport and Physical Activity. Registration is not a legal requirement, so its absence is not a red flag on its own, but a coach who can show their qualification, insurance and first-aid training is giving you useful information. A good coach will also ask about your health and any injuries before they write a plan.</p>
+<p>For transparency, my own qualification, the Active IQ Level 3 Diploma in Personal Training, is regulated by Ofqual and endorsed by CIMSPA.</p>`],
 
   ['What to ask before you sign up', `<ol>
 <li><strong>What exactly is included?</strong> Plans, check-ins, feedback and messaging should be clear in writing.</li>
@@ -79,7 +80,7 @@ export const sections = [
 <li><strong>Ask questions early.</strong> If an exercise confuses you, send a message before the next session, not after it.</li>
 </ul>`],
 
-  ['How Paul Welsh Coaching works', `<p>Coaching combines strength fundamentals and beginner calisthenics, with nutrition guidance if you want it. You get a plan in your app, regular online check-ins and advice by text when you need it. Everything included is confirmed in writing before you start. I hold the Active IQ Level 3 Diploma in Personal Training, and you can read more <a href="{r}about/">about me</a>. <a href="{r}coaching/">See what is included</a>, or <a href="{r}book-a-call/">book a free call</a> and ask me anything.</p>`],
+  ['How Paul Welsh Coaching works', `<p>Coaching combines strength fundamentals and beginner calisthenics, with nutrition guidance if you want it. You get a plan in your app, regular online check-ins and advice by text when you need it. Everything included is confirmed in writing before you start. I hold the Active IQ Level 3 Diploma in Personal Training, which is endorsed by CIMSPA, and you can read more <a href="{r}about/">about me</a>. <a href="{r}coaching/">See what is included</a>, or <a href="{r}book-a-call/">book a free call</a> and ask me anything.</p>`],
 
   ['Sources', `<ol class="sources">
 <li>Lacroix A, Hortobagyi T, Beurskens R, Granacher U. ${link('https://pubmed.ncbi.nlm.nih.gov/28573401/', 'Effects of supervised vs. unsupervised training programs on balance and muscle strength in older adults: a systematic review and meta-analysis')}. Sports Medicine 2017;47(11):2341-2361.</li>
