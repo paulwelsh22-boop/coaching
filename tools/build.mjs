@@ -1,6 +1,6 @@
 // Generates the static site into ../ . Run: node tools/build.mjs
 // Change SITE and BOOKING_URL once your domain and booking link are known, then re-run.
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readdirSync } from 'node:fs';
 import { POSTS } from './posts.mjs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -54,6 +54,16 @@ const markImg = (r) => `<img src="${r}assets/paul-welsh-coaching-mark-dark.png" 
 
 const favicon = 'assets/favicon.png';
 
+// <picture> with AVIF and WebP renditions from assets/img (made by tools/optimize-images.mjs); the original JPEG is the fallback.
+const IMG_FILES = readdirSync(join(ROOT, 'assets', 'img'));
+function pic(r, file, alt, attrs, sizes) {
+  const base = file.replace(/\.jpg$/, '');
+  const widths = IMG_FILES.map((f) => f.match(new RegExp('^' + base + '-(\\d+)\\.avif$'))).filter(Boolean).map((m) => +m[1]).sort((a, b) => a - b);
+  const set = (ext) => widths.map((w) => `${r}assets/img/${base}-${w}.${ext} ${w}w`).join(', ');
+  return `<picture><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${r}assets/${file}" alt="${alt}" ${attrs}></picture>`;
+}
+const bgImg = (r, file, w) => `${r}assets/img/${file.replace(/\.jpg$/, '')}-${w}.webp`;
+
 /* ------------------------------ FAQ data ------------------------------ */
 const FAQ = {
   cost: ['How much does online coaching cost?', SHOW_PRICES ? 'Plans start from £80 a month, or £100 a month with nutrition guidance. Your first call is free, with no obligation.' : 'Coaching is a monthly Membership, with or without nutrition guidance. You will hear the exact price on your free call, before you commit to anything.'],
@@ -97,8 +107,8 @@ ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" hr
 <meta property="og:type" content="${ogType}"><meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE}/assets/${image}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${SITE}/assets/${image}">
 ${GA_ID ? `<meta name="ga-id" content="${GA_ID}">` : ''}
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" href="${r}${favicon}"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="${r}assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${r}assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${r}assets/styles.css">
 <script>document.documentElement.className='js'</script>
 ${ld.map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join('\n')}
@@ -162,7 +172,7 @@ write('', page({
   body: (r) => `
 <section class="hero">
 ${arcs('', 10)}
-<div class="hero-photo"><img src="${r}assets/paul-welsh-handstand-calisthenics-coach.jpg" alt="Paul Welsh, online calisthenics coach, holding a handstand on parallettes in a busy gym" width="2000" height="1126" fetchpriority="high"></div>
+<div class="hero-photo">${pic(r, 'paul-welsh-handstand-calisthenics-coach.jpg', "Paul Welsh, online calisthenics coach, holding a handstand on parallettes in a busy gym", 'width="2000" height="1126" fetchpriority="high"', '(min-width: 1200px) 960px, (min-width: 900px) 60vw, 100vw')}</div>
 <div class="wrap hero-inner">
 <h1>${words("Your first rep ~starts ~here.")}</h1>
 <p class="lede fade-in">Online coaching in strength, calisthenics and movement, with nutrition guidance that fits your life. Ideal if you are new to training or starting again: learn the technique, build the basics, and know exactly how to progress.</p>
@@ -205,7 +215,7 @@ ${arcs('', 10)}
 </section>
 
 <section class="bleed includes">
-<div class="bleed-bg" data-parallax><img src="${r}assets/l-sit-calisthenics-parallettes-training.jpg" alt="Paul Welsh holding an L-sit on parallettes during calisthenics training" width="2000" height="1126" loading="lazy"></div>
+<div class="bleed-bg" data-parallax>${pic(r, 'l-sit-calisthenics-parallettes-training.jpg', "Paul Welsh holding an L-sit on parallettes during calisthenics training", 'width="2000" height="1126" loading="lazy"', '100vw')}</div>
 <div class="wrap">
 <div class="bleed-head"><h2 data-reveal>What coaching actually <span class="hl">includes</span></h2>
 <p data-reveal>Most people don't need more motivation. They need a plan that fits their week, and someone in their corner.</p>
@@ -249,7 +259,7 @@ write('coaching', page({
   ld: [org, faqLd(['involve', 'cost', 'busy', 'social', 'call', 'kit', 'often', 'cancel'])],
   body: (r) => `
 <section class="page-hero about-hero coaching-hero">${arcs('', 9)}
-<div class="hero-photo coaching-photo-hero"><img src="${r}assets/paul-welsh-gymnastic-rings-l-sit-calisthenics.jpg" alt="Paul Welsh hanging from gymnastic rings with his legs held out in front, a calisthenics skill, in a busy gym" width="720" height="1280" fetchpriority="high"></div>
+<div class="hero-photo coaching-photo-hero">${pic(r, 'paul-welsh-gymnastic-rings-l-sit-calisthenics.jpg', "Paul Welsh hanging from gymnastic rings with his legs held out in front, a calisthenics skill, in a busy gym", 'width="720" height="1280" fetchpriority="high"', '(min-width: 900px) 40vw, 100vw')}</div>
 <div class="wrap"><h1>Coaching built for your <span class="hl">first rep</span>, not your fiftieth</h1>
 <p class="lede">Strength, calisthenics, movement and nutrition guidance that fits a real schedule. Delivered remotely, with a coach who answers.</p>
 <a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div></section>
@@ -281,10 +291,10 @@ write('coaching', page({
 <section class="pad"><div class="wrap">
 <h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">What's <span class="hl">included</span></h2>
 <div class="inc-cards">
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/online-training-plan-in-coaching-app.jpg);--pos:30% 55%;--size:cover" role="img" aria-label="Person using a training app on their phone to follow an online workout plan"></div><h3>Your plan, in your app</h3><p>A personalised plan in your own branded training app, with a video demo of every exercise.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/online-coaching-video-call-check-in-laptop.jpg);--pos:50% 35%;--size:cover" role="img" aria-label="Overhead view of a person on a laptop video call with their online coach, taking notes in a notebook"></div><h3>Regular check-ins</h3><p>Regular online check-ups, alongside advice by text whenever you need it.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/healthy-chicken-rice-bowl-nutrition-guidance.jpg);--pos:50% 50%;--size:cover" role="img" aria-label="A healthy rice bowl with chicken and vegetables, an example of practical nutrition guidance"></div><h3>Nutrition guidance</h3><p>Simple, practical and non-restrictive. Add it to any plan.</p></article>
-<article class="inc-card" data-reveal><div class="bg" style="--img:url(${r}assets/muscular-arm-close-up-progress-tracking.jpg);--pos:50% 38%;--size:cover" role="img" aria-label="Close-up of a muscular arm, representing strength progress tracking"></div><h3>Progress tracking</h3><p>Your training in one place, so your first rep is something you can point to.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${bgImg(r, 'online-training-plan-in-coaching-app.jpg', 800)});--pos:30% 55%;--size:cover" role="img" aria-label="Person using a training app on their phone to follow an online workout plan"></div><h3>Your plan, in your app</h3><p>A personalised plan in your own branded training app, with a video demo of every exercise.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${bgImg(r, 'online-coaching-video-call-check-in-laptop.jpg', 800)});--pos:50% 35%;--size:cover" role="img" aria-label="Overhead view of a person on a laptop video call with their online coach, taking notes in a notebook"></div><h3>Regular check-ins</h3><p>Regular online check-ups, alongside advice by text whenever you need it.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${bgImg(r, 'healthy-chicken-rice-bowl-nutrition-guidance.jpg', 800)});--pos:50% 50%;--size:cover" role="img" aria-label="A healthy rice bowl with chicken and vegetables, an example of practical nutrition guidance"></div><h3>Nutrition guidance</h3><p>Simple, practical and non-restrictive. Add it to any plan.</p></article>
+<article class="inc-card" data-reveal><div class="bg" style="--img:url(${bgImg(r, 'muscular-arm-close-up-progress-tracking.jpg', 800)});--pos:50% 38%;--size:cover" role="img" aria-label="Close-up of a muscular arm, representing strength progress tracking"></div><h3>Progress tracking</h3><p>Your training in one place, so your first rep is something you can point to.</p></article>
 </div>
 </div></section>
 
@@ -303,12 +313,12 @@ write('about', page({
   ld: [org, person],
   body: (r) => `
 <section class="page-hero about-hero">${arcs('', 9)}
-<div class="hero-photo about-photo-hero" role="img" aria-label="Paul Welsh, qualified online personal trainer, standing in front of a gym mirror" style="--img:url(${r}assets/paul-welsh-personal-trainer-portrait.jpg)"></div>
+<div class="hero-photo about-photo-hero" role="img" aria-label="Paul Welsh, qualified online personal trainer, standing in front of a gym mirror" style="--img:url(${bgImg(r, 'paul-welsh-personal-trainer-portrait.jpg', 1200)})"></div>
 <div class="wrap"><h1>Hi, I'm Paul. I'll help you <span class="hl">start, and keep going.</span></h1>
 <a class="btn" href="${r}book-a-call/">Let's talk ${arrow}</a></div></section>
 
 <section class="bleed about-bleed">
-<div class="bleed-bg" data-parallax><img src="${r}assets/paul-welsh-barbell-curl-strength-training.jpg" alt="Paul Welsh, online personal trainer, doing a barbell preacher curl in the gym" width="2000" height="1126" loading="eager"></div>
+<div class="bleed-bg" data-parallax>${pic(r, 'paul-welsh-barbell-curl-strength-training.jpg', "Paul Welsh, online personal trainer, doing a barbell preacher curl in the gym", 'width="2000" height="1126" loading="eager"', '100vw')}</div>
 <div class="wrap about-grid">
 <div class="about-copy">
 <p class="lede" data-reveal>I've trained for over ten years, but three years ago I was introduced to calisthenics.</p>
@@ -354,7 +364,7 @@ write('blog', page({
 <div class="wrap"><h1>Less guesswork. <span class="hl">More getting started.</span></h1><p class="lede">Straightforward guides to strength, calisthenics and the questions everyone has at the beginning.</p></div></section>
 <section class="pad" style="padding-top:clamp(40px,6vw,88px)"><div class="wrap">
 ${posts.map(([t, sl]) => `<a class="featured" href="${r}blog/${sl}/" data-reveal>
-<div class="f-img"><img src="${r}assets/beginner-pull-up-progression-dark-gym.jpg" alt="Man doing a pull-up, seen from behind in a dark gym, for a beginner pull-up progression guide" width="1067" height="1600" loading="lazy" style="object-position:50% 40%"></div>
+<div class="f-img">${pic(r, 'beginner-pull-up-progression-dark-gym.jpg', "Man doing a pull-up, seen from behind in a dark gym, for a beginner pull-up progression guide", 'width="1067" height="1600" loading="lazy" style="object-position:50% 40%"', '(min-width: 900px) 50vw, 100vw')}</div>
 <div class="f-body"><p class="f-meta"><span>Beginner guide</span><span>3 min read</span><span>Updated ${UPDATED}</span></p>
 <h2>${t}</h2>
 <p class="f-ex">There is no single timeline for a first pull-up. Here is what affects it, the building blocks that get you there, and why smaller progress still counts.</p>
@@ -364,7 +374,7 @@ ${posts.map(([t, sl]) => `<a class="featured" href="${r}blog/${sl}/" data-reveal
 <h2 data-reveal style="margin-bottom:clamp(32px,5vw,56px)">More guides</h2>
 <div class="post-grid">
 ${POSTS.map((p) => `<a class="post-card" href="${r}blog/${p.slug}/" data-reveal>
-<div class="f-img"><img src="${r}assets/${p.img}" alt="${p.alt}" width="1067" height="800" loading="lazy" style="object-position:${p.pos}"></div>
+<div class="f-img">${pic(r, p.img, p.alt, `width="1067" height="800" loading="lazy" style="object-position:${p.pos}"`, '(min-width: 900px) 33vw, 100vw')}</div>
 <p class="f-meta"><span>${p.cat}</span><span>${readTime(p)} min read</span></p>
 <h3>${p.h1.replace(/<[^>]+>/g, '')}</h3>
 <p class="f-ex">${p.excerpt}</p>
@@ -588,7 +598,7 @@ legalPage('cookies', 'Cookie Notice', 'What cookies and third-party services the
 <h2>Search Console</h2>
 <p>I use Google Search Console to see how the site appears in Google search. It works on Google's side and sets no cookies on your device.</p>
 <h2>Fonts</h2>
-<p>The site loads its typeface (Poppins) from Google Fonts. When a page loads, your browser contacts Google, which receives your IP address. Google Fonts does not set cookies for this.</p>
+<p>The site's typeface (Poppins) is served from this website, so loading it does not involve Google or any other third party and sets no cookies.</p>
 <h2>Hosting</h2>
 <p>The site is delivered by Cloudflare, which may use strictly necessary cookies for security and performance.</p>
 <h2>Waitlist</h2>
