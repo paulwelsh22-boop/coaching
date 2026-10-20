@@ -81,7 +81,7 @@ const faqLd = (keys, extra = []) => ({ '@context': 'https://schema.org', '@type'
 
 /* ------------------------------ Page shell ------------------------------ */
 const NAV = [['Home', ''], ['Coaching', 'coaching/'], ['About', 'about/'], ['Blog', 'blog/']];
-function page({ path, depth, title, desc, body, ld = [], hero = false, ogType = 'website', root, noindex = false }) {
+function page({ path, depth, title, desc, body, ld = [], hero = false, ogType = 'website', root, noindex = false, image = 'paul-welsh-handstand-calisthenics-coach.jpg' }) {
   const r = root ?? '../'.repeat(depth);
   const url = SITE + '/' + path;
   const nav = NAV.map(([l, h]) => `<li><a href="${h === '' ? (r || './') : r + h}"${(h === '' ? path === '' : path.startsWith(h)) ? ' aria-current="page"' : ''}>${l}</a></li>`).join('');
@@ -94,9 +94,9 @@ function page({ path, depth, title, desc, body, ld = [], hero = false, ogType = 
 <meta name="description" content="${desc}">
 ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${url}">`}
 <meta name="theme-color" content="#152531">
-<meta property="og:type" content="${ogType}"><meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE}/assets/paul-welsh-handstand-calisthenics-coach.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="${ogType}"><meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE}/assets/${image}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${SITE}/assets/${image}">
 ${GA_ID ? `<meta name="ga-id" content="${GA_ID}">` : ''}
-<link rel="icon" type="image/png" href="${r}${favicon}">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" href="${r}${favicon}"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${r}assets/styles.css">
@@ -104,13 +104,6 @@ ${GA_ID ? `<meta name="ga-id" content="${GA_ID}">` : ''}
 ${ld.map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join('\n')}
 </head>
 <body>
-${path === '' ? `<!--
-THESIS: A beginner site that opens on the person at their first rep, not the performance; refuses the gym-bro hero and the icon-card grid.
-OWN-WORLD: Blue Black studio dark, Ice Blue and Off White type, Poppins at heavy display weights, concentric arc lines from the r1 mark, dark moody training photography, one light Off White section as the "first rep" page.
-STORY: Visitor sees "this is for me", feels the path from day one to their first skills is small and steady, books a free call.
-FIRST VIEWPORT: Left, 5.5rem headline and a Book a free call button; right, the athlete photo fading into the ground with arcs drawing in behind.
-FORM: Dark athletic brand site, brand-pinned, seed key n/a (palette/type pinned by brief). FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
--->` : ''}
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="wrap">
 <a class="brand" href="${r || './'}" aria-label="Paul Welsh Coaching, home"><img src="${r}assets/paul-welsh-coaching-logo-light.png" alt="Paul Welsh Coaching" width="149" height="34"></a>
@@ -121,7 +114,7 @@ FORM: Dark athletic brand site, brand-pinned, seed key n/a (palette/type pinned 
 ${body(r)}
 </main>
 <footer class="footer"><div class="wrap">
-<div class="brand"><img src="${r}assets/paul-welsh-coaching-logo-stacked-light.png" alt="Paul Welsh Coaching" width="139" height="96"><p>Movement for real life. Strength, calisthenics, movement and nutrition guidance, online.<br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>
+<div class="brand"><img src="${r}assets/paul-welsh-coaching-logo-stacked-light.png" alt="" width="139" height="96" loading="lazy"><p>Movement for real life. Strength, calisthenics, movement and nutrition guidance, online.<br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>
 <nav aria-label="Footer"><a href="${r}coaching/">Coaching</a><a href="${r}about/">About</a><a href="${r}blog/">Blog</a><a href="${r}faq/">FAQ</a><a href="${r}book-a-call/">Contact</a><a href="https://www.instagram.com/paulwelshcoaching" target="_blank" rel="noopener me">Instagram</a></nav>
 <small><span>&copy; 2026 Paul Welsh Coaching. Online coaching, wherever you are.</span><span class="legal"><a href="${r}privacy/">Privacy</a><a href="${r}terms/">Terms</a><a href="${r}cookies/">Cookies</a><a href="${r}health-disclaimer/">Health disclaimer</a>${GA_ID ? '<button type="button" data-cookie-settings>Cookie settings</button>' : ''}</span></small>
 </div></footer>
@@ -141,7 +134,16 @@ const cta = (r, headline = 'Start with a free call, not a <span class="hl">sales
 <section class="final pad">${arcs('', 9)}
 <div class="wrap"><h2 data-reveal>${headline}</h2><p data-reveal>${sub}</p><a class="btn" href="${r}book-a-call/" data-reveal>${btn} ${arrow}</a></div></section>`;
 
-const org = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Paul Welsh Coaching', email: EMAIL, url: SITE + '/', logo: SITE + '/assets/paul-welsh-coaching-logo-dark.png', description: 'Online strength and calisthenics coaching, built for people starting out.', sameAs: ['https://www.instagram.com/paulwelshcoaching'] };
+const ORG_ID = SITE + '/#organization';
+const PERSON_ID = SITE + '/about/#paul';
+const LOGO = SITE + '/assets/paul-welsh-coaching-logo-dark.png';
+const org = { '@context': 'https://schema.org', '@type': 'Organization', '@id': ORG_ID, name: 'Paul Welsh Coaching', email: EMAIL, url: SITE + '/', logo: LOGO, description: 'Online strength and calisthenics coaching, built for people starting out.', founder: { '@id': PERSON_ID }, areaServed: 'Worldwide', knowsAbout: ['Strength training', 'Beginner calisthenics', 'Movement quality', 'Nutrition guidance'], sameAs: ['https://www.instagram.com/paulwelshcoaching'] };
+const website = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE + '/#website', url: SITE + '/', name: 'Paul Welsh Coaching', inLanguage: 'en-GB', publisher: { '@id': ORG_ID } };
+const person = { '@context': 'https://schema.org', '@type': 'Person', '@id': PERSON_ID, name: 'Paul Welsh', url: SITE + '/about/', image: SITE + '/assets/paul-welsh-personal-trainer-portrait.jpg', jobTitle: 'Online Personal Trainer', description: 'Level 2 and 3 qualified personal trainer with over 10 years of training experience, coaching strength and calisthenics online.', worksFor: { '@id': ORG_ID }, knowsAbout: ['Strength training', 'Calisthenics', 'Beginner fitness', 'Nutrition guidance'], sameAs: ['https://www.instagram.com/paulwelshcoaching'] };
+const authorRef = { '@type': 'Person', '@id': PERSON_ID, name: 'Paul Welsh', url: SITE + '/about/', jobTitle: 'Online Personal Trainer' };
+const crumbs = (items) => ({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE + '/' + path })) });
+const postLd = ({ headline, desc, img, slug, published }) => ({ '@context': 'https://schema.org', '@type': 'BlogPosting', headline, description: desc, image: SITE + '/assets/' + img, url: SITE + '/blog/' + slug + '/', inLanguage: 'en-GB', author: authorRef, publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Paul Welsh Coaching', logo: { '@type': 'ImageObject', url: LOGO } }, datePublished: published, dateModified: published, mainEntityOfPage: SITE + '/blog/' + slug + '/' });
+const LASTMOD = '2026-10-20'; // bump when site-wide copy changes; posts use their own dates
 
 /* ------------------------------ HOME ------------------------------ */
 const stages = [
@@ -156,7 +158,7 @@ write('', page({
   path: '', depth: 0,
   title: 'Online Strength & Calisthenics Coaching | Paul Welsh Coaching',
   desc: 'Online strength and calisthenics coaching, ideal if you are new to training or starting again. Learn the technique, build the basics, progress at your pace.',
-  ld: [org, faqLd(['cost', 'exp', 'online', 'diff'])],
+  ld: [org, website, faqLd(['cost', 'exp', 'online', 'diff'])],
   body: (r) => `
 <section class="hero">
 ${arcs('', 10)}
@@ -194,7 +196,7 @@ ${arcs('', 10)}
 <div class="rail"><div class="rail-fill"></div><div class="knob" role="slider" tabindex="0" aria-label="Progression stage" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">1</div></div>
 </div></div>
 <div class="path-detail" aria-live="polite">
-<div class="detail-text"><p class="step-label swap" data-step></p><h3 class="swap" data-title></h3><p class="when swap" data-when></p><p class="swap" data-body></p></div>
+<div class="detail-text"><p class="step-label swap" data-step>Step 1</p><h3 class="swap" data-title>${stages[0].title}</h3><p class="when swap" data-when>${stages[0].when}</p><p class="swap" data-body>${stages[0].body}</p></div>
 </div>
 </div>
 <p class="path-note" data-reveal>Everyone moves at their own pace. In coaching, every stage is adjusted week to week from your check-ins, so you progress when you are ready.</p>
@@ -242,8 +244,8 @@ ${cta(r)}`,
 /* ------------------------------ COACHING ------------------------------ */
 write('coaching', page({
   path: 'coaching/', depth: 1,
-  title: 'Online Strength & Calisthenics Coaching | Paul Welsh Coaching',
-  desc: 'Online coaching in strength, calisthenics, movement and nutrition guidance, ideal if you are new to training or starting again. See what is included.',
+  title: 'Online Coaching: Strength, Calisthenics & Nutrition | Paul Welsh Coaching',
+  desc: 'What is included in online coaching: a plan in your app, a video demo for every exercise, regular check-ins and practical nutrition guidance. Built for beginners.',
   ld: [org, faqLd(['involve', 'cost', 'busy', 'social', 'call', 'kit', 'often', 'cancel'])],
   body: (r) => `
 <section class="page-hero about-hero coaching-hero">${arcs('', 9)}
@@ -296,9 +298,9 @@ ${cta(r, SHOW_PRICES ? 'Plans from £80. First call free.' : 'Find your plan. Fi
 /* ------------------------------ ABOUT ------------------------------ */
 write('about', page({
   path: 'about/', depth: 1,
-  title: 'About Paul | Paul Welsh Coaching',
+  title: 'About Paul Welsh: Level 3 Online Personal Trainer | Paul Welsh Coaching',
   desc: 'Meet Paul, a Level 2 and 3 qualified personal trainer with over 10 years of training experience, coaching strength and calisthenics online.',
-  ld: [org],
+  ld: [org, person],
   body: (r) => `
 <section class="page-hero about-hero">${arcs('', 9)}
 <div class="hero-photo about-photo-hero" role="img" aria-label="Paul Welsh, qualified online personal trainer, standing in front of a gym mirror" style="--img:url(${r}assets/paul-welsh-personal-trainer-portrait.jpg)"></div>
@@ -343,8 +345,8 @@ const posts = [
 ];
 write('blog', page({
   path: 'blog/', depth: 1,
-  title: 'Training Blog | Paul Welsh Coaching',
-  desc: 'Straight answers for anyone starting out: technique, progression, calisthenics vs weights and simple food.',
+  title: 'Beginner Strength & Calisthenics Blog | Paul Welsh Coaching',
+  desc: 'Straight answers for anyone starting out: first pull-ups, beginner strength training, calisthenics progressions, restarting after a break and simple food.',
   ld: [org],
   body: (r) => `
 <section class="page-hero">${arcs('', 9)}
@@ -379,11 +381,12 @@ const articleFaq = [
   ['Why can I do push-ups but not a pull-up?', 'Push-ups and pull-ups use different strength patterns, pushing and pulling. Being confident with push-ups does not automatically mean you can lift your bodyweight in a pull-up.'],
 ];
 write('blog/first-pull-up-beginner-timeline', page({
-  path: 'blog/first-pull-up-beginner-timeline/', depth: 2, ogType: 'article',
+  path: 'blog/first-pull-up-beginner-timeline/', depth: 2, ogType: 'article', image: 'beginner-pull-up-progression-dark-gym.jpg',
   title: 'How Long Does a First Pull-Up Take? A Beginner Guide',
   desc: 'There is no single timeline for a first pull-up. Here is what affects it, and the progression that gets you there.',
   ld: [org,
-    { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: 'How Long Does It Take to Get Your First Pull-Up? A Beginner\'s Timeline', author: { '@type': 'Person', name: 'Paul', worksFor: { '@type': 'Organization', name: 'Paul Welsh Coaching' } }, publisher: { '@type': 'Organization', name: 'Paul Welsh Coaching' }, datePublished: '2026-10-01', dateModified: '2026-10-01', mainEntityOfPage: SITE + '/blog/first-pull-up-beginner-timeline/' },
+    postLd({ headline: 'How Long Does It Take to Get Your First Pull-Up? A Beginner\'s Timeline', desc: 'There is no single timeline for a first pull-up. Here is what affects it, and the progression that gets you there.', img: 'beginner-pull-up-progression-dark-gym.jpg', slug: 'first-pull-up-beginner-timeline', published: '2026-10-01' }),
+    crumbs([['Home', ''], ['Blog', 'blog/'], ['How long does a first pull-up take?', 'blog/first-pull-up-beginner-timeline/']]),
     faqLd([], articleFaq)],
   body: (r) => `
 <section class="page-hero" style="padding-bottom:40px">${arcs('', 8)}
@@ -416,10 +419,11 @@ ${articleFaq.map(([q, a]) => `<div class="qa"><h3>${q}</h3><p>${a}</p></div>`).j
 const postTitles = { 'first-pull-up-beginner-timeline': 'How long does it take to get your first pull-up?', ...Object.fromEntries(POSTS.map((p) => [p.slug, p.title])) };
 for (const p of POSTS) {
   write(`blog/${p.slug}`, page({
-    path: `blog/${p.slug}/`, depth: 2, ogType: 'article',
+    path: `blog/${p.slug}/`, depth: 2, ogType: 'article', image: p.img,
     title: p.title, desc: p.desc,
     ld: [org,
-      { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.desc, image: `${SITE}/assets/${p.img}`, author: { '@type': 'Person', name: 'Paul', worksFor: { '@type': 'Organization', name: 'Paul Welsh Coaching' } }, publisher: { '@type': 'Organization', name: 'Paul Welsh Coaching' }, datePublished: '2026-10-14', dateModified: '2026-10-14', mainEntityOfPage: `${SITE}/blog/${p.slug}/` },
+      postLd({ headline: p.title, desc: p.desc, img: p.img, slug: p.slug, published: '2026-10-14' }),
+      crumbs([['Home', ''], ['Blog', 'blog/'], [p.title, `blog/${p.slug}/`]]),
       faqLd([], p.faq)],
     body: (r) => `
 <section class="page-hero" style="padding-bottom:40px">${arcs('', 8)}
@@ -441,7 +445,7 @@ ${p.faq.map(([q, a]) => `<div class="qa"><h3>${q}</h3><p>${a}</p></div>`).join('
 const groups = [['Getting started', ['exp', 'loss', 'call', 'know', 'oblig']], ['Pricing and logistics', ['cost', 'involve', 'busy', 'online', 'away', 'cancel', 'often']], ['Training and food', ['diff', 'kit', 'social']]];
 write('faq', page({
   path: 'faq/', depth: 1,
-  title: 'FAQ | Paul Welsh Coaching',
+  title: 'Online Coaching FAQ: Cost, Equipment & Format | Paul Welsh Coaching',
   desc: 'Answers to the questions people ask before starting online coaching: cost, experience, equipment, format and booking.',
   ld: [org, faqLd(groups.flatMap((g) => g[1]))],
   body: (r) => `
@@ -618,5 +622,5 @@ legalPage('health-disclaimer', 'Health Disclaimer', 'Important health and safety
 const bots = ['GPTBot', 'ChatGPT-User', 'PerplexityBot', 'ClaudeBot', 'anthropic-ai', 'Google-Extended', 'Bingbot'];
 writeFileSync(join(ROOT, 'robots.txt'), `User-agent: *\nAllow: /\n\n${bots.map((b) => `User-agent: ${b}\nAllow: /\n`).join('\n')}\nSitemap: ${SITE}/sitemap.xml\n`);
 const urls = ['', 'coaching/', 'about/', 'blog/', 'blog/first-pull-up-beginner-timeline/', ...POSTS.map((p) => `blog/${p.slug}/`), 'faq/', 'book-a-call/', 'privacy/', 'terms/', 'cookies/', 'health-disclaimer/'];
-writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${SITE}/${u}</loc><lastmod>2026-10-09</lastmod></url>`).join('\n')}\n</urlset>\n`);
+writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${SITE}/${u}</loc><lastmod>${u === 'blog/first-pull-up-beginner-timeline/' ? '2026-10-01' : u.startsWith('blog/') && u !== 'blog/' ? '2026-10-14' : LASTMOD}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 console.log('built', urls.length, 'pages');
