@@ -144,6 +144,10 @@ const cta = (r, headline = 'Start with a free call, not a <span class="hl">sales
 <section class="final pad">${arcs('', 9)}
 <div class="wrap"><h2 data-reveal>${headline}</h2><p data-reveal>${sub}</p><a class="btn" href="${r}book-a-call/" data-reveal>${btn} ${arrow}</a></div></section>`;
 
+// Author box shown at the end of each post. Swap AUTHOR_PHOTO for a headshot (assets/ path) when there is one.
+const AUTHOR_PHOTO = 'assets/paul-welsh-coaching-mark-light.png';
+const authorBox = (r) => `<aside class="author-box" aria-label="About the author"><img src="${r}${AUTHOR_PHOTO}" alt="" width="64" height="64" loading="lazy"><div><p class="ab-name">Written by <a href="${r}about/" rel="author">Paul Welsh</a></p><p class="ab-role">Active IQ Level 3 qualified personal trainer. Training for 10+ years. Online strength and calisthenics coach.</p><p class="ab-bio">I help people who are new to training, or starting again, learn to move well and build strength at their own pace. Starting is the hardest part, so I make it feel possible, and fun.</p><a class="text-link" href="${r}about/">More about Paul ${arrow}</a></div></aside>`;
+
 const ORG_ID = SITE + '/#organization';
 const PERSON_ID = SITE + '/about/#paul';
 const LOGO = SITE + '/assets/paul-welsh-coaching-logo-dark.png';
@@ -402,7 +406,7 @@ write('blog/first-pull-up-beginner-timeline', page({
   body: (r) => `
 <section class="page-hero" style="padding-bottom:40px">${arcs('', 8)}
 <div class="wrap"><div class="article"><h1 style="max-width:16ch;font-size:clamp(2.25rem,5vw,4.25rem)">How long does it take to get your <span class="hl">first pull-up?</span></h1>
-<p class="meta">By Paul, Paul Welsh Coaching &middot; Last updated: ${UPDATED}</p></div></div></section>
+<p class="meta">By <a href="${r}about/" rel="author">Paul Welsh</a> &middot; Last updated: ${UPDATED}</p></div></div></section>
 <article class="pad" style="padding-top:24px"><div class="wrap"><div class="article">
 <p class="answer">There is no single reliable timeline for every beginner. Your starting strength, the amount of bodyweight you are moving, consistency and recovery all affect how long your first strict pull-up takes. Think in terms of gradual progress, rather than a deadline.</p>
 <h2>Why "just try harder" isn't a plan</h2>
@@ -422,6 +426,7 @@ write('blog/first-pull-up-beginner-timeline', page({
 <p>My coaching brings strength fundamentals and beginner calisthenics together. The aim is a plan built around where you actually are, adjusted from your check-ins. See <a href="${r}coaching/">how coaching works</a>.</p>
 <h2>Your pull-up questions</h2>
 ${articleFaq.map(([q, a]) => `<div class="qa"><h3>${q}</h3><p>${a}</p></div>`).join('')}
+${authorBox(r)}
 <div class="article-end"><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
 </div></div></article>`,
 }));
@@ -439,12 +444,13 @@ for (const p of POSTS) {
     body: (r) => `
 <section class="page-hero" style="padding-bottom:40px">${arcs('', 8)}
 <div class="wrap"><div class="article"><h1 style="max-width:18ch;font-size:clamp(2.25rem,5vw,4.25rem)">${p.h1}</h1>
-<p class="meta">By Paul, Paul Welsh Coaching &middot; ${readTime(p)} min read &middot; Last updated: ${UPDATED}</p></div></div></section>
+<p class="meta">By <a href="${r}about/" rel="author">Paul Welsh</a> &middot; ${readTime(p)} min read &middot; Last updated: ${UPDATED}</p></div></div></section>
 <article class="pad" style="padding-top:24px"><div class="wrap"><div class="article">
 <p class="answer">${p.answer}</p>
 ${p.sections.map(([h, html]) => `<h2>${h}</h2>\n${html.replaceAll('{r}', r)}`).join('\n')}
 <h2>Common questions</h2>
 ${p.faq.map(([q, a]) => `<div class="qa"><h3>${q}</h3><p>${a}</p></div>`).join('')}
+${authorBox(r)}
 <h2>Keep reading</h2>
 <ul class="read-more">${p.related.map((sl) => `<li><a href="${r}blog/${sl}/">${postTitles[sl]}</a></li>`).join('')}</ul>
 <div class="article-end"><a class="btn" href="${r}book-a-call/">Book a free call ${arrow}</a></div>
